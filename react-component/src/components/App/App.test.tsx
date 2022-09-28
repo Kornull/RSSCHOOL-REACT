@@ -1,9 +1,36 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('render pages', () => {
+  it('home page renders', () => {
+    window.history.pushState({}, '', '/');
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+  it('about page renders', () => {
+    window.history.pushState({}, '', '/about');
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+  it('404 page renders', () => {
+    window.history.pushState({}, '', '/tdfygh');
+
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
 });
