@@ -1,0 +1,34 @@
+.header {
+  width: 100%;
+  height: 70px;
+  background: #38727e;
+  padding: 0 10px;
+  color: aliceblue;
+
+  &Container {
+    max-width: 1200px;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+    border-left: 1px solid #ffee00;
+    border-right: 1px solid #ffee00;
+  }
+  &Navigate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    gap: 7px;
+    height: 70px;
+  }
+  &NavigateLink{
+    padding:22px 10px;
+    text-align: center;
+  }
+  &PageLink{
+   font-size: 20px;
+   color: #fff;
+   text-decoration: none;
+ }
+}
