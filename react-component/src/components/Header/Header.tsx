@@ -5,17 +5,29 @@ import { NavLink } from 'react-router-dom';
 class Header extends Component {
   render() {
     return (
-      <header className={styles.header}>
-        <div className={styles.headerContainer}>
+      <header className={styles.Header}>
+        <div className={styles.HeaderContainer}>
           <nav>
-            <ul className={styles.headerNavigate}>
-              <li className={styles.headerNavigateLink}>
-                <NavLink className={styles.headerPageLink} to="/" end>
+            <ul className={styles.HeaderNavigate} data-testid="nav-list">
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.HeaderPageLinkActive : styles.HeaderPageLink
+                  }
+                  end
+                  to="/"
+                >
                   Main
                 </NavLink>
               </li>
-              <li className={styles.headerNavigateLink}>
-                <NavLink className={styles.headerPageLink} to="/about" end>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.HeaderPageLinkActive : styles.HeaderPageLink
+                  }
+                  end
+                  to="/about"
+                >
                   About us
                 </NavLink>
               </li>
