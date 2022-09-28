@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Header.module.scss';
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
   render() {
@@ -9,14 +10,14 @@ class Header extends Component {
           <nav>
             <ul className={styles.headerNavigate}>
               <li className={styles.headerNavigateLink}>
-                <a className={styles.headerPageLink} href="/">
+                <NavLink className={styles.headerPageLink} to="/" end>
                   Main
-                </a>
+                </NavLink>
               </li>
               <li className={styles.headerNavigateLink}>
-                <a className={styles.headerPageLink} href="/">
+                <NavLink className={styles.headerPageLink} to="/about" end>
                   About us
-                </a>
+                </NavLink>
               </li>
             </ul>
           </nav>

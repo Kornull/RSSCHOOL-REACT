@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import { Outlet } from 'react-router-dom';
+import Header from '../Header';
 
 class Layout extends Component {
   render() {
     return (
       <>
         <Header />
+        <main className="container">
+          <Outlet />
+        </main>
       </>
     );
   }
