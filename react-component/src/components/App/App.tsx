@@ -9,7 +9,7 @@ import NotFoundPage from '../../pages/NotFoundPage';
 class App extends Component {
   render(): React.ReactNode {
     return (
-      <>
+      <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
@@ -17,7 +17,7 @@ class App extends Component {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </>
+      </div>
     );
   }
 }
