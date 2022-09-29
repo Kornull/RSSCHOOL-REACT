@@ -1,0 +1,27 @@
+.Search {
+  width: 80%;
+  margin: 0 auto;
+
+  &Input {
+    width: 70%;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 2px solid #006600;
+    outline: none;
+    box-shadow: 0 0 2px #16ff16;
+    background-color: rgba(85, 149, 164, 0.17);
+    color: #0000ff;
+    padding: 5px 15px;
+    margin-top: 50px;
+
+    &:focus {
+      box-shadow: 0 0 10px yellow;
+      border: 2px red solid;
+    }
+
+    &::placeholder {
+      color: #0101FF77;
+    }
+  }
+}
