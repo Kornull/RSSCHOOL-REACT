@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 describe('render pages', () => {
-  it('home page renders', () => {
+  test('home page renders', () => {
     window.history.pushState({}, '', '/');
     render(
       <BrowserRouter>
@@ -13,7 +13,7 @@ describe('render pages', () => {
     );
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
-  it('about page renders', () => {
+  test('about page renders', () => {
     window.history.pushState({}, '', '/about');
     render(
       <BrowserRouter>
@@ -23,7 +23,7 @@ describe('render pages', () => {
 
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
-  it('404 page renders', () => {
+  test('404 page renders', () => {
     window.history.pushState({}, '', '/tdfygh');
 
     render(

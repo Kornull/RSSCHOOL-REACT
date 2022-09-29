@@ -5,19 +5,35 @@ type StateSearch = {
   search: string;
 };
 
+enum LocalStoreKey {
+  keyStorage = 'SearchValues',
+}
+
 class Search extends Component {
   state: StateSearch = {
     search: '',
   };
+
   handelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ [event.target.name]: event.target.value });
+    event.preventDefault();
+    this.setState({ search: event.target.value });
   };
+
+  componentDidMount() {
+    const value = localStorage.getItem(LocalStoreKey.keyStorage);
+    if (value) this.setState({ search: value });
+  }
+
+  componentWillUnmount() {
+    const { search } = this.state;
+    localStorage.setItem(LocalStoreKey.keyStorage, search);
+  }
 
   render() {
     const { search } = this.state;
     return (
       <div className={styles.Search}>
-        <form action="">
+        <form>
           <input
             className={styles.SearchInput}
             name="search"
@@ -26,6 +42,7 @@ class Search extends Component {
             value={search}
             autoComplete="off"
             onChange={this.handelChange}
+            autoFocus
           />
         </form>
       </div>

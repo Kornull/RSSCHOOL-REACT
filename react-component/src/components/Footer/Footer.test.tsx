@@ -4,9 +4,7 @@ import Footer from './Footer';
 import { MemoryRouter } from 'react-router-dom';
 import { TextFooter } from './Footer';
 
-describe('Footer component', () => {
-  it('Footer renders', () => {
-    render(<Footer />);
-    expect(screen.getByText(TextFooter.textFooter)).toBeInTheDocument();
-  });
+test('Footer component', () => {
+  render(<Footer />);
+  expect(screen.getByText(TextFooter.textFooter)).toBeInTheDocument();
 });

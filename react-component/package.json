@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test  --coverage",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,6 +53,7 @@
     "eslint-plugin-react": "^7.31.8",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
+    "mock-local-storage": "^1.1.23",
     "prettier": "2.7.1",
     "sass": "^1.55.0"
   }
