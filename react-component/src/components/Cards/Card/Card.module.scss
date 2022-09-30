@@ -1,0 +1,40 @@
+.Card {
+  width: 250px;
+  border: 1px solid #65c5dc;
+  min-height:400px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #417885;
+  box-shadow: 0 0 15px #35636e;
+  transition: box-shadow .2s linear;
+  &:hover {
+    cursor: pointer;
+  box-shadow: 0 0 15px #2fff00;
+}
+  &Image {
+    width: 100%;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #65c5dc;
+  }
+  &Description {
+    padding: 10px 0 0 7px;
+    text-align: start;
+    color: #ffffff;
+  }
+  &AboutList{
+    padding: 10px 0 10px 15px;
+    text-align: left;
+  }
+  &AboutHero {
+    font-size: 18px;
+    padding-bottom: 12px;
+  }
+  &DossierText{
+    position: relative;
+    font-style: italic;
+    padding-left: 5px;
+    text-decoration: underline;
+    text-decoration-color: #37ff22;
+    text-shadow: 0 0 5px #37ff22;
+  }
+}
