@@ -6,7 +6,7 @@ export enum TextFooter {
 }
 
 class Footer extends Component {
-  render() {
+  render(): JSX.Element {
     return (
       <footer className={styles.Footer}>
         <div className={styles.FooterContainer}>

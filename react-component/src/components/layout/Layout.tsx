@@ -4,11 +4,11 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 class Layout extends Component {
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <Header />
-        <main className="container" style={styleMain}>
+        <main className="container">
           <Outlet />
         </main>
         <Footer />
@@ -17,7 +17,4 @@ class Layout extends Component {
   }
 }
 
-const styleMain = {
-  minHeight: 'calc(100vh - 130px)',
-};
 export default Layout;

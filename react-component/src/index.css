@@ -29,4 +29,5 @@ code {
     margin: 0 auto;
     text-align: center;
     padding-top: 50px;
+    min-height: calc(100vh - 130px);
 }

@@ -10,8 +10,6 @@
     width: 100%;
     height: 70px;
     margin: 0 auto;
-    border-left: 1px solid #ffee00;
-    border-right: 1px solid #ffee00;
   }
 
   &Navigate {
@@ -34,16 +32,21 @@
       color: yellow;
       transition: color .3s linear;
     }
-  }
 
-  &PageLinkActive {
-    font-size: 22px;
-    color: #46ff46;
-    transition: color .2s linear, text-decoration .2s linear;
-
-    &:hover {
-      color: yellow;
+    &:global.active {
+      color: #46ff46;
+      text-decoration: underline;
     }
   }
+
+  //&PageLinkActive {
+  //  font-size: 22px;
+  //
+  //  transition: color .2s linear, text-decoration .2s linear;
+  //
+  //  &:hover {
+  //    color: yellow;
+  //  }
+  //}
 
 }
