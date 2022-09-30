@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AboutCard } from '../../pages/HomePage/HomePage';
-import Card from './Card/Card';
+import Card from './Card';
 import styles from './Cards.module.scss';
 
 type CardsProps = {

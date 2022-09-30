@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Search from '../../components/Search';
-import Cards from '../../components/Cards/Cards';
+import Cards from '../../components/Cards';
 
 export type AboutCard = {
   id: number;
@@ -36,8 +36,8 @@ class HomePage extends Component {
     fetch(
       'https://rickandmortyapi.com/api/character/1,589,99,7,313,4,666,13,23,34,65,43,2,67,89,30'
     )
-      .then((response) => response.json())
-      .then((data) => this.setState({ cards: data }));
+      .then((response: Response) => response.json())
+      .then((data: AboutCard[]) => this.setState({ cards: data }));
   }
 
   render() {

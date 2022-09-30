@@ -54,15 +54,15 @@ describe('create input element', () => {
     render(<Search />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
-  it('test focus input', () => {
+  test('test focus input', () => {
     const { getByTestId } = render(<input type="text" data-testid="search-input" />);
     const input = getByTestId('search-input');
     expect(input).not.toHaveFocus();
     input.focus();
     expect(input).toHaveFocus();
   });
-  it('write input', () => {
-    render(<Search />);
-    userEvent.type(screen.getByRole('textbox'), 'react component');
-  });
+});
+test('write input', () => {
+  render(<Search />);
+  userEvent.type(screen.getByRole('textbox'), 'react component');
 });

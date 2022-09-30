@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 
 class NotFoundPage extends Component {
   render() {
-    return <h1>404</h1>;
+    return (
+      <div>
+        <h1>404</h1>
+        <p>page not found</p>
+        <p>Select an item from the menu for further viewing</p>
+      </div>
+    );
   }
 }
 
