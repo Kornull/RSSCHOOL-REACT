@@ -9,16 +9,16 @@
     height: 50px;
     font-size: 18px;
     border-radius: 15px;
-    border: 2px solid #006600;
+    border: 2px solid #98ee98;
     outline: none;
-    box-shadow: 0 0 2px #16ff16;
-    background-color: rgba(85, 149, 164, 0.17);
+    box-shadow: 0 0 5px #068006D6;
+    background-color: #ffffff;
     color: #020267;
     padding: 5px 50px 5px 15px;
 
     &:focus {
-      box-shadow: 0 0 10px rgba(0, 42, 255, 0.65);
-      border: 2px #00ff3b solid;
+      box-shadow: 0 0 15px #1aff03;
+      border: 2px #6fc469 solid;
     }
 
     &::placeholder {
@@ -27,8 +27,9 @@
   }
   &Form{
     position: relative;
-    width: 350px;
-    margin: 0 auto;
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto 50px;
   }
   &Icon {
     position: absolute;
@@ -40,6 +41,7 @@
     transition: fill .2s linear;
     &:hover {
       fill: #9b26a2;
+      cursor: pointer;
     }
   }
 }
