@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Search.module.scss';
+import IconSVG from '../../image/icon-search.svg';
 
 type StateSearch = {
   search: string;
@@ -33,17 +34,20 @@ class Search extends Component {
     const { search } = this.state;
     return (
       <div className={styles.Search}>
-        <form>
+        <form className={styles.SearchForm}>
           <input
             className={styles.SearchInput}
             name="search"
             type="text"
-            placeholder="Search"
+            placeholder="Search..."
             value={search}
             autoComplete="off"
             onChange={this.handelChange}
             autoFocus
           />
+          <svg className={styles.SearchIcon}>
+            <use xlinkHref={`${IconSVG}#icon-search`} />
+          </svg>
         </form>
       </div>
     );

@@ -1,6 +1,7 @@
 .Search {
+
   width: 80%;
-  margin: 0 auto;
+  margin: 50px auto 0;
 
   &Input {
     max-width: 350px;
@@ -12,9 +13,8 @@
     outline: none;
     box-shadow: 0 0 2px #16ff16;
     background-color: rgba(85, 149, 164, 0.17);
-    color: #0000ff;
-    padding: 5px 15px;
-    margin-top: 50px;
+    color: #020267;
+    padding: 5px 50px 5px 15px;
 
     &:focus {
       box-shadow: 0 0 10px rgba(0, 42, 255, 0.65);
@@ -23,6 +23,23 @@
 
     &::placeholder {
       color: #0101FF77;
+    }
+  }
+  &Form{
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+  }
+  &Icon {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    fill: #002865;
+    transition: fill .2s linear;
+    &:hover {
+      fill: #9b26a2;
     }
   }
 }
