@@ -39,13 +39,24 @@ const setLocalStorage = (id: string, data: string | object): void => {
 };
 
 describe('data is added into local storage', () => {
+  const idLocal = '1';
+  const textInput = '0123';
+
   test('test localStorage input text', () => {
-    const idLocal = '1';
-    const textInput = '0123';
     setLocalStorage(idLocal, textInput);
     expect(localStorage.getItem(idLocal)).toEqual(JSON.stringify(textInput));
     localStorageMock.clear();
     expect(localStorage.getItem(idLocal)).toBe(undefined);
+  });
+  test('has text on localstorage', () => {
+    render(<Search />);
+    setLocalStorage(idLocal, textInput);
+    expect(localStorage.getItem(idLocal)).toEqual(JSON.stringify(textInput));
+    userEvent.type(screen.getByRole('textbox'), `${textInput}`);
+  });
+  test('write input', () => {
+    render(<Search />);
+    userEvent.type(screen.getByRole('textbox'), 'react component');
   });
 });
 
@@ -61,8 +72,4 @@ describe('create input element', () => {
     input.focus();
     expect(input).toHaveFocus();
   });
-});
-test('write input', () => {
-  render(<Search />);
-  userEvent.type(screen.getByRole('textbox'), 'react component');
 });
