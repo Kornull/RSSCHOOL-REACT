@@ -35,7 +35,7 @@ type Data = {
 
 type State = {
   cards: AboutCard[];
-  loading?: boolean;
+  loading: boolean;
 };
 
 class HomePage extends Component {
