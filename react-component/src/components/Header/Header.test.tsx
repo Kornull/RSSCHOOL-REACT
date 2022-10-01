@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 import { MemoryRouter } from 'react-router-dom';
 
-test('Header component', () => {
+test('header component', () => {
   render(
     <MemoryRouter>
       <Header />
@@ -12,7 +12,7 @@ test('Header component', () => {
 
   expect(screen.getByText(/main/i)).toBeInTheDocument();
 });
-test('Header has list and navigation', () => {
+test('header has list and navigation', () => {
   render(
     <MemoryRouter>
       <Header />

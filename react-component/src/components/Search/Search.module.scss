@@ -25,12 +25,14 @@
       color: #0101FF77;
     }
   }
-  &Form{
+
+  &Form {
     position: relative;
     max-width: 350px;
     width: 100%;
     margin: 0 auto 50px;
   }
+
   &Icon {
     position: absolute;
     right: 15px;
@@ -39,6 +41,7 @@
     height: 30px;
     fill: #002865;
     transition: fill .2s linear;
+
     &:hover {
       fill: #9b26a2;
       cursor: pointer;

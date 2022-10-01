@@ -38,7 +38,6 @@ class Card extends Component<AboutCard> {
               }
             </li>
           </ul>
-          <p></p>
         </div>
       </div>
     );
@@ -46,33 +45,3 @@ class Card extends Component<AboutCard> {
 }
 
 export default Card;
-
-// id: number;
-// name: string;
-// status: string;
-// species: string;
-// type: string;
-// gender: string;
-// origin?: {
-//   name: string;
-//   url: string;
-// };
-// location?: {
-//   name: string;
-//   url: string;
-// };
-// image?: string;
-// episode?: string[];
-// url?: string;
-// created?: string;
-// // {
-//   id: 30, name
-// :
-//   'Baby Poopybutthole', status
-// :
-//   'Alive', species
-// :
-//   'Poopybutthole', type
-// :
-//   '', …
-// }
