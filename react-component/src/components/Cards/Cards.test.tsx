@@ -7,4 +7,10 @@ test('render homepage cards', () => {
   render(<Cards cardList={characterInfo} />);
   expect(screen.getByRole('img')).toBeInTheDocument();
   expect(screen.getByText(/name/i)).toBeInTheDocument();
+  expect(screen.getByText(/location/i)).toBeInTheDocument();
+});
+
+test('not render cards', () => {
+  render(<Cards cardList={[]} />);
+  expect(screen.getByText(/nothing/i)).toBeInTheDocument();
 });

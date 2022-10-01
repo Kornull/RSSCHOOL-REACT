@@ -23,6 +23,7 @@ class Search extends Component<Record<string, never>, StateSearch> {
   componentDidMount(): void {
     const value = localStorage.getItem(LocalStoreKey.keyStorage);
     if (value) this.setState({ search: value });
+    localStorage.setItem(LocalStoreKey.keyStorage, '');
   }
 
   componentWillUnmount(): void {
