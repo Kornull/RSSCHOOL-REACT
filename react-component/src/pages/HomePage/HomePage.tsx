@@ -3,6 +3,10 @@ import Search from '../../components/Search';
 import Cards from '../../components/Cards';
 import Load from '../../image/loading.gif';
 
+export enum UrlApi {
+  LinkApi = 'https://rickandmortyapi.com/api/character/',
+}
+
 export type AboutCard = {
   id: number;
   name: string;
@@ -41,7 +45,7 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
-    fetch('https://risckandmortyapi.com/api/character/')
+    fetch(`${UrlApi.LinkApi}`)
       .then((response: Response) => response.json())
       .then((data: Data) => this.setState({ cards: data.results, loading: false }));
   }
