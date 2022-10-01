@@ -19,7 +19,7 @@ describe('render components on home page', () => {
     render(<HomePage />);
 
     await waitFor(() => {
-      expect(screen.getByText(/Sanchez/i)).toBeInTheDocument();
+      expect(screen.getByText(/sanchez/i)).toBeInTheDocument();
     });
   });
 });
