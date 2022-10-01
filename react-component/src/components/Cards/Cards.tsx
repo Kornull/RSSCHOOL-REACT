@@ -4,7 +4,7 @@ import Card from './Card';
 import styles from './Cards.module.scss';
 
 type CardsProps = {
-  cardList: AboutCard[];
+  cardList: AboutCard[] | undefined;
 };
 
 class Cards extends Component<CardsProps> {

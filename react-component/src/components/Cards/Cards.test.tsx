@@ -11,6 +11,6 @@ test('render homepage cards', () => {
 });
 
 test('not render cards', () => {
-  render(<Cards cardList={[]} />);
+  render(<Cards cardList={undefined} />);
   expect(screen.getByText(/nothing/i)).toBeInTheDocument();
 });

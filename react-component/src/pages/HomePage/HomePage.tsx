@@ -34,7 +34,7 @@ type Data = {
 };
 
 type State = {
-  cards: AboutCard[];
+  cards: AboutCard[] | undefined;
   loading: boolean;
 };
 
