@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from '../../components/Search';
 import Cards from '../../components/Cards';
+import Load from '../../image/loading.gif';
 
 export type AboutCard = {
   id: number;
@@ -23,28 +24,38 @@ export type AboutCard = {
   created?: string;
 };
 
+type Data = {
+  info: object;
+  results: AboutCard[];
+};
+
 type State = {
   cards: AboutCard[];
+  loading?: boolean;
 };
 
 class HomePage extends Component {
   state: State = {
     cards: [],
+    loading: true,
   };
 
   componentDidMount() {
-    fetch(
-      'https://rickandmortyapi.com/api/character/1,589,99,7,313,4,666,13,23,34,65,43,2,67,89,30'
-    )
+    fetch('https://risckandmortyapi.com/api/character/')
       .then((response: Response) => response.json())
-      .then((data: AboutCard[]) => this.setState({ cards: data }));
+      .then((data: Data) => this.setState({ cards: data.results, loading: false }));
   }
 
   render() {
+    const { cards, loading } = this.state;
     return (
       <>
         <Search />
-        <Cards cardList={this.state.cards} />
+        {loading ? (
+          <img className="loading-gif" src={Load} alt="loading"></img>
+        ) : (
+          <Cards cardList={cards} />
+        )}
       </>
     );
   }

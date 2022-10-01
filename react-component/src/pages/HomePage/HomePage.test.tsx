@@ -9,7 +9,7 @@ test('real fetch call', async () => {
 test('error', async () => {
   const res = await fetch('https://rickandmortyapi.com/api/character/1');
   const result = await res.json();
-  expect.assertions('f');
+  expect.assertions(0);
   try {
     await result;
   } catch (e) {

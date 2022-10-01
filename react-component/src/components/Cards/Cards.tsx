@@ -13,12 +13,14 @@ class Cards extends Component<CardsProps> {
   }
 
   render(): JSX.Element {
-    const { cardList } = this.props;
+    const { cardList = [] } = this.props;
     return (
       <div className={styles.CardsBlock}>
-        {cardList.map((card) => (
-          <Card key={card.id} {...card} />
-        ))}
+        {cardList.length ? (
+          cardList.map((card) => <Card key={card.id} {...card} />)
+        ) : (
+          <h3>Nothing found</h3>
+        )}
       </div>
     );
   }

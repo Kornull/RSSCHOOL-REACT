@@ -18,10 +18,10 @@ class Card extends Component<AboutCard> {
           <h3>Dossier :</h3>
           <ul className={styles.CardAboutList}>
             <li className={styles.CardAboutHero}>
-              Status: {<span className={styles.CardDossierText}>{status}</span>}
+              Name: {<span className={styles.CardDossierText}>{name}</span>}
             </li>
             <li className={styles.CardAboutHero}>
-              Name: {<span className={styles.CardDossierText}>{name}</span>}
+              Status: {<span className={styles.CardDossierText}>{status}</span>}
             </li>
             <li className={styles.CardAboutHero}>
               Species: {<span className={styles.CardDossierText}>{species}</span>}
