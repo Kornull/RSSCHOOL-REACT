@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './App.scss';
-import Layout from '../layout';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
+
 import AboutPage from '../../pages/AboutPage';
 import NotFoundPage from '../../pages/NotFoundPage';
+import Layout from '../layout';
+
+import './App.scss';
 
 class App extends Component {
   render(): React.ReactNode {

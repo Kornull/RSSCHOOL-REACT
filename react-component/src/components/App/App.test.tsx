@@ -1,34 +1,41 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import '@testing-library/jest-dom';
 import App from './App';
+import { MemoryRouter } from 'react-router-dom';
 
-test('home page renders', () => {
-  window.history.pushState({}, '', '/');
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
-  expect(screen.getByRole('main')).toBeInTheDocument();
-});
-test('about page renders', () => {
-  window.history.pushState({}, '', '/about');
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
+describe('checks if there is a main block on the page when rendering pages', () => {
+  test('rendering a component 404 page', () => {
+    const badRoute = '/some/bad/route';
+    render(
+      <MemoryRouter initialEntries={[badRoute]}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByTestId('page-404')).toBeInTheDocument();
+    expect(screen.getByTestId('navigation-list')).toBeInTheDocument();
+  });
 
-  expect(screen.getByRole('main')).toBeInTheDocument();
-});
-test('404 page renders', () => {
-  window.history.pushState({}, '', '/tdfygh');
+  test('rendering a component that main page', () => {
+    const route = '/';
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <App />
+      </MemoryRouter>
+    );
 
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
-  expect(screen.getByRole('main')).toBeInTheDocument();
+    expect(screen.getByTestId('search-cards')).toBeInTheDocument();
+    expect(screen.getByTestId('navigation-list')).toBeInTheDocument();
+  });
+  test('rendering a component about us page', () => {
+    const aboutRoute = '/about';
+    render(
+      <MemoryRouter initialEntries={[aboutRoute]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/main/i)).toBeInTheDocument();
+    expect(screen.getByTestId('navigation-list')).toBeInTheDocument();
+  });
 });
