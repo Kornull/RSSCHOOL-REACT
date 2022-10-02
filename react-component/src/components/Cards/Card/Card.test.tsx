@@ -22,7 +22,6 @@ export const characterInfo = [
     episode: [
       'https://rickandmortyapi.com/api/episode/1',
       'https://rickandmortyapi.com/api/episode/2',
-      // ...
     ],
     url: 'https://rickandmortyapi.com/api/character/1',
     created: '2017-11-04T18:48:46.250Z',
@@ -43,12 +42,10 @@ describe('render card character', () => {
         type={type}
       />
     );
+    expect(screen.getByTestId('person-card')).toHaveTextContent(name);
+    expect(screen.getByTestId('person-card')).toHaveTextContent(species);
+    expect(screen.getByTestId('person-card')).toHaveTextContent(status);
     expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(screen.getByText(/name/i)).toBeInTheDocument();
-    expect(screen.getByText(/species/i)).toBeInTheDocument();
-    expect(screen.getByText(/status/i)).toBeInTheDocument();
-    expect(screen.getByText(/dossier/i)).toBeInTheDocument();
-    expect(screen.getByText(/location/i)).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });
   test('location unknown', () => {

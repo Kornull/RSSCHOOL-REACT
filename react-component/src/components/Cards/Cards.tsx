@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
 import { AboutCard } from '../../pages/HomePage/HomePage';
 import Card from './Card';
+
 import styles from './Cards.module.scss';
 
 type CardsProps = {
-  cardList: AboutCard[] | undefined;
+  cardList?: AboutCard[];
 };
 
 class Cards extends Component<CardsProps> {
