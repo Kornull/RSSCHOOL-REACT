@@ -8,7 +8,7 @@ class Layout extends Component {
     return (
       <>
         <Header />
-        <main className="container">
+        <main className="main container" data-testid="main-block">
           <Outlet />
         </main>
         <Footer />
