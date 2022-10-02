@@ -60,7 +60,7 @@ describe('data is writing and deleting in to local storage', () => {
   });
 });
 
-describe('create form element', () => {
+describe('create form element in main page', () => {
   test('app has search form', () => {
     render(<Search />);
     expect(screen.getByTestId('form-search')).toBeInTheDocument();
@@ -69,6 +69,5 @@ describe('create form element', () => {
   test('displaying the search cards on the main page', () => {
     render(<Search />);
     expect(screen.getByTestId('search-cards')).toBeInTheDocument();
-    screen.debug();
   });
 });
