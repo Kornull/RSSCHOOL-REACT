@@ -30,7 +30,8 @@ export const characterInfo = [
 
 describe('render card character', () => {
   const { id, status, name, species, gender, location, type } = characterInfo[0];
-  test('', () => {
+
+  test('displaying fields in a card', () => {
     render(
       <Card
         id={id}
@@ -48,7 +49,8 @@ describe('render card character', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });
-  test('location unknown', () => {
+
+  test('checking what you output if the location field is undefined', () => {
     render(
       <Card
         id={id}
