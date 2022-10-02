@@ -15,7 +15,7 @@ class Cards extends Component<CardsProps> {
   render(): JSX.Element {
     const { cardList = [] } = this.props;
     return (
-      <div className={styles.CardsBlock}>
+      <div className={styles.cardsBlock}>
         {cardList.length ? (
           cardList.map((card) => <Card key={card.id} {...card} />)
         ) : (

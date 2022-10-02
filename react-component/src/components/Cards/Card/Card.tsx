@@ -10,29 +10,29 @@ class Card extends Component<AboutCard> {
   render(): JSX.Element {
     const { id, status, name, species, gender, image, location }: Readonly<AboutCard> = this.props;
     return (
-      <div id={`${id}`} className={styles.Card}>
+      <div id={`${id}`} className={styles.card}>
         <div>
-          <img className={styles.CardImage} src={image} alt={name} />
+          <img className={styles.cardImage} src={image} alt={name} />
         </div>
-        <div className={styles.CardDescription}>
+        <div className={styles.cardDescription}>
           <h3>Dossier :</h3>
-          <ul className={styles.CardAboutList}>
-            <li className={styles.CardAboutHero}>
-              Name: {<span className={styles.CardDossierText}>{name}</span>}
+          <ul className={styles.cardAboutList}>
+            <li className={styles.cardAboutHero}>
+              Name: {<span className={styles.cardDossierText}>{name}</span>}
             </li>
-            <li className={styles.CardAboutHero}>
-              Status: {<span className={styles.CardDossierText}>{status}</span>}
+            <li className={styles.cardAboutHero}>
+              Status: {<span className={styles.cardDossierText}>{status}</span>}
             </li>
-            <li className={styles.CardAboutHero}>
-              Species: {<span className={styles.CardDossierText}>{species}</span>}
+            <li className={styles.cardAboutHero}>
+              Species: {<span className={styles.cardDossierText}>{species}</span>}
             </li>
-            <li className={styles.CardAboutHero}>
-              Gender: {<span className={styles.CardDossierText}>{gender}</span>}
+            <li className={styles.cardAboutHero}>
+              Gender: {<span className={styles.cardDossierText}>{gender}</span>}
             </li>
-            <li className={styles.CardAboutHero}>
+            <li className={styles.cardAboutHero}>
               Location:
               {
-                <span className={styles.CardDossierText}>
+                <span className={styles.cardDossierText}>
                   {location ? location.name : 'unknown'}
                 </span>
               }

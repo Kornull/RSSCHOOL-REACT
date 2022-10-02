@@ -34,19 +34,18 @@ class Search extends Component<Record<string, never>, StateSearch> {
   render(): JSX.Element {
     const { search } = this.state;
     return (
-      <div className={styles.Search}>
-        <form className={styles.SearchForm}>
+      <div className={styles.search}>
+        <form className={styles.searchForm}>
           <input
-            className={styles.SearchInput}
+            className={styles.searchInput}
             name="search"
             type="text"
             placeholder="Search..."
             value={search}
             autoComplete="off"
             onChange={this.handelChange}
-            autoFocus
           />
-          <svg className={styles.SearchIcon}>
+          <svg className={styles.searchIcon}>
             <use xlinkHref={`${IconSVG}#icon-search`} />
           </svg>
         </form>

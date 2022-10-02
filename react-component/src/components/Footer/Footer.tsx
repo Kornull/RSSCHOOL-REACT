@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import styles from './Footer.module.scss';
 
-export enum TextFooter {
-  textFooter = '© by Kornull 2022',
-}
-
 class Footer extends Component {
   render(): JSX.Element {
     return (
-      <footer className={styles.Footer}>
-        <div className={styles.FooterContainer}>
-          <p>{TextFooter.textFooter}</p>
+      <footer className={styles.footer}>
+        <div className={styles.footerContainer}>
+          <p>© by Kornull 2022</p>
         </div>
       </footer>
     );

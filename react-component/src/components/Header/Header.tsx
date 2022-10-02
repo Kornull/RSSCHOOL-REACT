@@ -5,17 +5,17 @@ import { NavLink } from 'react-router-dom';
 class Header extends Component {
   render(): JSX.Element {
     return (
-      <header className={styles.Header}>
-        <div className={styles.HeaderContainer}>
+      <header className={styles.header}>
+        <div className={styles.headerContainer}>
           <nav>
-            <ul className={styles.HeaderNavigate} data-testid="nav-list">
+            <ul className={styles.headerNavigate} data-testid="nav-list">
               <li>
-                <NavLink className={styles.HeaderPageLink} end to="/">
+                <NavLink className={styles.headerPageLink} end to="/">
                   Main
                 </NavLink>
               </li>
               <li>
-                <NavLink className={styles.HeaderPageLink} end to="/about">
+                <NavLink className={styles.headerPageLink} end to="/about">
                   About us
                 </NavLink>
               </li>

@@ -6,8 +6,8 @@ import styles from './NotFoundPage.module.scss';
 class NotFoundPage extends Component {
   render() {
     return (
-      <div className={styles.NotPage}>
-        <img className={styles.NotPageImg} src={NotFoundPng} alt="not-found" />
+      <div className={styles.notPage}>
+        <img className={styles.notPageImg} src={NotFoundPng} alt="not-found" />
         <p>Page not found</p>
         <p>Select an item from the menu for further viewing</p>
       </div>
