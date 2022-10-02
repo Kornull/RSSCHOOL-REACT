@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 class Header extends Component {
   render(): JSX.Element {
     return (
-      <header className={styles.header}>
+      <header className={styles.header} data-testid="header-component">
         <div className={styles.headerContainer}>
           <nav>
-            <ul className={styles.headerNavigate} data-testid="nav-list">
+            <ul className={styles.headerNavigate} data-testid="navigation-list">
               <li>
                 <NavLink className={styles.headerPageLink} end to="/">
                   Main

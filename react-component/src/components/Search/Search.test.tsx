@@ -54,10 +54,6 @@ describe('data is writing and deleting in to local storage', () => {
     expect(localStorage.getItem(idLocal)).toEqual(JSON.stringify(textInput));
     userEvent.type(screen.getByRole('textbox'), `${textInput}`);
   });
-  test('checking the entry into input', () => {
-    render(<Search />);
-    userEvent.type(screen.getByRole('textbox'), 'react component');
-  });
 });
 
 describe('create form element in main page', () => {

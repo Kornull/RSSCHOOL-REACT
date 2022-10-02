@@ -3,22 +3,25 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 import { MemoryRouter } from 'react-router-dom';
 
-test('header component', () => {
-  render(
-    <MemoryRouter>
-      <Header />
-    </MemoryRouter>
-  );
+describe('checks if the header is rendered or not', () => {
+  test('render header component', () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
 
-  expect(screen.getByText(/main/i)).toBeInTheDocument();
-});
-test('header has list and navigation', () => {
-  render(
-    <MemoryRouter>
-      <Header />
-    </MemoryRouter>
-  );
+    expect(screen.getByTestId('header-component')).toBeInTheDocument();
+  });
+  test('header has list and navigation', () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
 
-  expect(screen.getByRole('list')).toBeInTheDocument();
-  expect(screen.getByRole('navigation')).toBeInTheDocument();
+    expect(screen.getByTestId('navigation-list')).toHaveTextContent(/main/i);
+    expect(screen.getByTestId('navigation-list')).toHaveTextContent(/about/i);
+    expect(screen.getByRole('navigation')).toBeInTheDocument();
+  });
 });
