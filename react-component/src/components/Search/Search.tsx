@@ -35,9 +35,10 @@ class Search extends Component<Record<string, never>, StateSearch> {
     const { search } = this.state;
     return (
       <div className={styles.search}>
-        <form className={styles.searchForm}>
+        <form className={styles.searchForm} data-testid="form-search">
           <input
             className={styles.searchInput}
+            data-testid="search-cards"
             name="search"
             type="text"
             placeholder="Search..."
