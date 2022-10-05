@@ -19,6 +19,11 @@ class Header extends Component {
                   About us
                 </NavLink>
               </li>
+              <li>
+                <NavLink className={styles.headerPageLink} end to="/user-form">
+                  Form
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>
