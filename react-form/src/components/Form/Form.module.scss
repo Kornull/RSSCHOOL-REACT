@@ -1,0 +1,33 @@
+.formBlock {
+  text-align: start;
+  max-width: 500px;
+  width: 100%;
+  color: #ffffff;
+  margin: 0 auto;
+  min-height: 500px;
+  background: rgba(8, 22, 199, 0.91);
+  border-radius: 25px;
+  border: 2px solid #ff0000;
+  padding: 15px;
+  box-shadow: 0 0 15px #FFD400E5;
+  &UseForm{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin: 0 auto;
+  }
+  &Label{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+  select,
+  input{
+    max-width: 300px;
+  }
+  select{
+    margin-bottom: 10px;
+  }
+}
+
