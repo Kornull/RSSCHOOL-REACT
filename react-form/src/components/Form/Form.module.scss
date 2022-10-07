@@ -22,12 +22,19 @@
     display: flex;
     justify-content: space-between;
   }
+  &Select{
+    overflow: hidden;
+    max-width: 300px;
+    overflow-y: auto;
+  }
   select,
   input{
-    max-width: 300px;
   }
   select{
     margin-bottom: 10px;
   }
 }
 
+input:invalid:required {
+ border-bottom:2px solid red;
+}
