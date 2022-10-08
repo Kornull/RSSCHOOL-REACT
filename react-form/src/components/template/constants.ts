@@ -1,4 +1,4 @@
-export const planets: string[] = [
+export const planetsArray: string[] = [
   'Alphabetrium',
   'Arboles Mentirosos',
   'Big Pluto',
@@ -52,3 +52,8 @@ export const planets: string[] = [
   'Zipple',
   'Zorpantheon 9',
 ];
+
+export const isValidEmail =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+export const imageIsValid = /.+(\.jpg|\.jpeg|\.gif|\.png)$/i;

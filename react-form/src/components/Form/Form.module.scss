@@ -2,39 +2,55 @@
   text-align: start;
   max-width: 500px;
   width: 100%;
-  color: #ffffff;
+  color: #000;
   margin: 0 auto;
   min-height: 500px;
-  background: rgba(8, 22, 199, 0.91);
+  background: rgba(253, 253, 253, 0.59);
   border-radius: 25px;
   border: 2px solid #ff0000;
   padding: 15px;
   box-shadow: 0 0 15px #FFD400E5;
-  &UseForm{
+
+  &UseForm {
     width: 300px;
     display: flex;
     flex-direction: column;
     gap: 9px;
     margin: 0 auto;
   }
-  &Label{
+
+  &Label {
     width: 50%;
     display: flex;
     justify-content: space-between;
   }
-  &Select{
+
+  &Select {
     overflow: hidden;
     max-width: 300px;
     overflow-y: auto;
   }
-  select,
-  input{
+
+  &ErrorText {
+    color: #FF0000FF;
   }
-  select{
+
+  &Input {
+    padding: 5px 7px;
+    border-radius: 15px;
+    font-size: 18px;
+    &:invalid {
+      border-color: #1aff03;
+    }
+  }
+
+  select {
+    padding: 5px 7px;
+    border-radius: 15px;
+    font-size: 18px;
+  }
+
+  select {
     margin-bottom: 10px;
   }
-}
-
-input:invalid:required {
- border-bottom:2px solid red;
 }

@@ -1,6 +1,6 @@
-import React, { Component, FormEvent } from 'react';
+import React, { ChangeEvent, Component, FormEvent } from 'react';
 
-import { planets } from '../template/planets';
+import { isValidEmail, planetsArray, imageIsValid } from '../template/constants';
 import styles from './Form.module.scss';
 import UserCards from '../Cards/UserCards/UserCards';
 
@@ -16,6 +16,11 @@ type StateForm = {
   userCards: CardMenu[];
   buttonDisabled: boolean;
   cardUser: string;
+  email: boolean;
+  lastName: boolean;
+  firstName: boolean;
+  gender: boolean;
+  checkbox: boolean;
 };
 
 class Form extends Component {
@@ -27,84 +32,175 @@ class Form extends Component {
   private file = React.createRef<HTMLInputElement>();
   private checkbox = React.createRef<HTMLInputElement>();
   private select = React.createRef<HTMLSelectElement>();
+  private form = React.createRef<HTMLFormElement>();
   state: StateForm = {
     userCards: [],
     buttonDisabled: true,
     cardUser: '',
+    email: true,
+    lastName: true,
+    firstName: true,
+    gender: true,
+    checkbox: true,
   };
 
-  handleReview = () => {
+  handleCheckbox = () => {
+    this.setState({ gender: true, checkbox: true, buttonDisabled: false });
+  };
+
+  handleChangeLength = (ev: ChangeEvent) => {
     this.setState({ buttonDisabled: false });
+    const element = ev.target as HTMLInputElement;
+    if (element.value.length >= 1) {
+      this.setState({ [element.name]: true });
+    }
   };
 
   handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(this.file.current?.files);
-    if (this.file.current?.files) {
-      this.setState({ cardUser: URL.createObjectURL(this.file.current.files[0]) });
+    if (
+      this.email.current &&
+      this.lastName.current &&
+      this.firstName.current &&
+      this.genderFemale.current &&
+      this.genderMale.current &&
+      this.checkbox.current
+    ) {
+      if (this.firstName.current.value.length < 3) {
+        this.setState({ firstName: false, buttonDisabled: true });
+        return;
+      }
+
+      if (this.lastName.current.value.length < 3) {
+        this.setState({ lastName: false, buttonDisabled: true });
+        return;
+      }
+
+      if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
+        this.setState({ email: false, buttonDisabled: true });
+        return;
+      }
+
+      if (!this.genderMale.current.checked && !this.genderFemale.current.checked) {
+        this.setState({ gender: false, buttonDisabled: true });
+        return;
+      }
+      if (!this.checkbox.current.checked) {
+        this.setState({ checkbox: false, buttonDisabled: true });
+        return;
+      }
     }
-    // if (this.email.current && this.lastName.current && this.firstName.current) {
-    //   const isValidEmail =
-    //     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-    //       this.email.current.value.toLowerCase()
-    //     );
-    //
-    //   if (this.lastName.current.value.length < 3) {
-    //     this.setState({ buttonDisabled: true });
-    //     alert('first');
-    //     return;
-    //   }
-    //   if (this.firstName.current.value.length < 3) {
-    //     this.setState({ buttonDisabled: true });
-    //     alert('last');
-    //     return;
-    //   }
-    //   if (!isValidEmail) {
-    //     this.setState({ buttonDisabled: true });
-    //     alert('rrrr');
-    //     return;
-    //   }
-    // }
+    if (this.file.current?.files && this.file.current?.files[0]) {
+      const userImage = this.file.current?.files[0].name;
+      if (userImage !== undefined && imageIsValid.test(userImage)) {
+        this.setState({ cardUser: URL.createObjectURL(this.file.current.files[0]) });
+      }
+    }
+
+    this.setState({
+      emailIsValidate: true,
+      lastNameIsValidate: true,
+      firstNameIsValidate: true,
+      genderIsValidate: true,
+      checkboxIsValidate: true,
+    });
+    this.form.current?.reset();
   };
 
   render() {
     return (
-      <div className={styles.formBlock}>
-        <form
-          className={styles.formBlockUseForm}
-          onSubmit={this.handleSubmit}
-          onChange={this.handleReview}
-          noValidate
-        >
-          First name
-          <input type="text" name="firstName" ref={this.firstName} required />
-          Last name
-          <input type="text" name="lastName" ref={this.lastName} required />
-          Email
-          <input type="email" name="email" ref={this.email} required />
-          <label htmlFor="male" className={styles.formBlockLabel}>
-            Female
-            <input type="radio" name="gender" value="female" ref={this.genderFemale} required />
-            Male
-            <input type="radio" name="gender" value="male" ref={this.genderMale} required />
-          </label>
-          <select className={styles.formBlockSelect} name="select" ref={this.select}>
-            <option value={this.select.current?.value}>Your planet</option>
-            {planets.map((planet: string) => (
-              <option key={planet} value={planet}>
-                {planet}
-              </option>
-            ))}
-          </select>
-          <input type="file" accept="image/*" ref={this.file} />
-          Add your image
-          <input type="checkbox" ref={this.checkbox} />I am
-          <button disabled={this.state.buttonDisabled}>Submit</button>
-          <button>Reset</button>
-        </form>
+      <>
+        <div className={styles.formBlock}>
+          <form
+            className={styles.formBlockUseForm}
+            onSubmit={this.handleSubmit}
+            ref={this.form}
+            autoComplete="off"
+            noValidate
+          >
+            First name
+            <input
+              className={styles.formBlockInput}
+              type="text"
+              name="firstName"
+              autoComplete="disabled"
+              onChange={this.handleChangeLength}
+              ref={this.firstName}
+            />
+            {this.state.firstName ? null : (
+              <span className={styles.formBlockErrorText}>Enter your name</span>
+            )}
+            Last name
+            <input
+              className={styles.formBlockInput}
+              type="text"
+              name="lastName"
+              autoComplete="disabled"
+              onChange={this.handleChangeLength}
+              ref={this.lastName}
+            />
+            {this.state.lastName ? null : (
+              <span className={styles.formBlockErrorText}>Enter your Last name</span>
+            )}
+            Email
+            <input
+              className={styles.formBlockInput}
+              type="email"
+              name="email"
+              autoComplete="disabled"
+              onChange={this.handleChangeLength}
+              ref={this.email}
+            />
+            {this.state.email ? null : (
+              <span className={styles.formBlockErrorText}>Enter valid email</span>
+            )}
+            <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleCheckbox}>
+              Female
+              <input
+                className={styles.formBlockInput}
+                type="radio"
+                name="gender"
+                value="female"
+                ref={this.genderFemale}
+              />
+              Male
+              <input
+                className={styles.formBlockInput}
+                type="radio"
+                name="gender"
+                value="male"
+                ref={this.genderMale}
+              />
+            </label>
+            {this.state.gender ? null : (
+              <span className={styles.formBlockErrorText}>Choose your gender</span>
+            )}
+            <select className={styles.formBlockSelect} name="select" ref={this.select}>
+              <option value={this.select.current?.value}>Your planet</option>
+              {planetsArray.map((planet: string) => (
+                <option key={planet} value={planet}>
+                  {planet}
+                </option>
+              ))}
+            </select>
+            Add your image
+            <input className={styles.formBlockInput} type="file" accept="image/*" ref={this.file} />
+            I agree with the conditions
+            <input
+              type="checkbox"
+              autoComplete="disabled"
+              ref={this.checkbox}
+              onChange={this.handleCheckbox}
+            />
+            {this.state.checkbox ? null : (
+              <span className={styles.formBlockErrorText}>You must agree to the terms</span>
+            )}
+            <button disabled={this.state.buttonDisabled}>Submit</button>
+          </form>
+        </div>
         <UserCards images={this.state.cardUser} />
-      </div>
+      </>
     );
   }
 }
