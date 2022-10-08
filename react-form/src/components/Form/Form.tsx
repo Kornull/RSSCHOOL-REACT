@@ -184,19 +184,26 @@ class Form extends Component {
                 </option>
               ))}
             </select>
-            Add your image
-            <input className={styles.formBlockInput} type="file" accept="image/*" ref={this.file} />
-            I agree with the conditions
-            <input
-              type="checkbox"
-              autoComplete="disabled"
-              ref={this.checkbox}
-              onChange={this.handleCheckbox}
-            />
-            {this.state.checkbox ? null : (
-              <span className={styles.formBlockErrorText}>You must agree to the terms</span>
-            )}
-            <button disabled={this.state.buttonDisabled}>Submit</button>
+            <input className={styles.formBlockFile} id="input__file" type="file" ref={this.file} />
+            Add your image:
+            <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
+              Choice image
+            </label>
+            <label className={styles.formBlockCheckbox}>
+              I agree with the conditions
+              <input
+                type="checkbox"
+                autoComplete="disabled"
+                ref={this.checkbox}
+                onChange={this.handleCheckbox}
+              />
+              {this.state.checkbox ? null : (
+                <span className={styles.formBlockErrorText}>You must agree to the terms</span>
+              )}
+            </label>
+            <button className={styles.formBlockButtonSubmit} disabled={this.state.buttonDisabled}>
+              Submit
+            </button>
           </form>
         </div>
         <UserCards images={this.state.cardUser} />
