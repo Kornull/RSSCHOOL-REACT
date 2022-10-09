@@ -1,18 +1,21 @@
 .formBlock {
   text-align: start;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
-  color: #000;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: bold;
   margin: 0 auto 40px;
   min-height: 500px;
-  background: rgba(253, 253, 253, 0.59);
+  background: rgb(49, 117, 143);
   border-radius: 25px;
   border: 2px solid #ff0000;
   padding: 15px;
   box-shadow: 0 0 15px #FFD400E5;
 
   &UseForm {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 9px;
@@ -23,6 +26,7 @@
     width: 50%;
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
   }
 
   &Select {
@@ -32,7 +36,10 @@
   }
 
   &ErrorText {
-    color: #FF0000FF;
+    color: #f7ff00;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   &Input {
@@ -84,47 +91,54 @@
   &Checkbox {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 5px;
-    margin-bottom: 15px;
+    white-space:pre-line;
+    margin-bottom: 30px;
 
     & input {
+      display: block;
+    }
+    & span{
       position: absolute;
-      right: 5%;
-      top: 35%;
+      bottom: -17px;
+      left: 0;
     }
   }
 
   &LabelFileButton {
-    width: 40%;
-    max-width: 420px;
-    padding: 5px 10px;
-    background: #1bbc9b;
-    color: #fff;
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    padding: 10px 0;
+    background: #4fe7c5;
+    color: #ff0000;
     font-size: 15px;
     font-weight: 700;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    text-align: center;
     align-items: center;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
     justify-content: flex-start;
     border-radius: 3px;
     cursor: pointer;
-    margin: 0 auto;
+    border: 1px solid #FFFF00;
+    box-shadow: 0 0 10px #020267;
 
     &:hover {
       color: #020267;
+      box-shadow: 0 0 10px #ff0000;
     }
   }
 }
 
+.blockImageCard{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+}
 .imageBlock {
   width: 100px;
-  height: 100px;
   overflow: hidden;
 }
 

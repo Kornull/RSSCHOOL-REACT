@@ -49,7 +49,7 @@ class Form extends Component {
   };
 
   handleRadio = () => {
-    this.setState({ buttonDisabled: false, gender: true });
+    this.setState({ buttonDisabled: false, checkbox: true, gender: true });
   };
 
   handleChangeLength = (ev: ChangeEvent) => {
@@ -124,6 +124,7 @@ class Form extends Component {
       gender: true,
       checkbox: true,
       imageUser: '',
+      buttonDisabled: true,
     });
     this.form.current?.reset();
   };
@@ -227,29 +228,30 @@ class Form extends Component {
               onChange={this.handleImage}
               data-testid="input-image"
             />
-            Add your image:
-            <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
-              Choice image
-            </label>
-            {this.state.imageUser.length ? (
-              <div className={styles.imageBlock}>
-                <img
-                  className={styles.imagePrev}
-                  src={this.state.imageUser}
-                  alt=""
-                  data-testid="image-block"
-                />
-              </div>
-            ) : (
-              ''
-            )}
+            <div className={styles.blockImageCard}>
+              <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
+                Choice image
+              </label>
+              {this.state.imageUser.length ? (
+                <div className={styles.imageBlock}>
+                  <img
+                    className={styles.imagePrev}
+                    src={this.state.imageUser}
+                    alt=""
+                    data-testid="image-block"
+                  />
+                </div>
+              ) : (
+                <div className={styles.imageBlock}></div>
+              )}
+            </div>
             <label className={styles.formBlockCheckbox}>
               I agree with the conditions
               <input
                 type="checkbox"
                 autoComplete="disabled"
                 ref={this.checkbox}
-                onChange={this.handleChangeLength}
+                onChange={this.handleRadio}
                 data-testid="checkbox-button"
               />
               {this.state.checkbox ? null : (
