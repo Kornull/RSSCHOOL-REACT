@@ -10,17 +10,19 @@ export type CardMenu = {
   email: string;
   gender: string;
   image: string;
+  location: string;
 };
 
-type StateForm = {
+export type StateForm = {
   userCards: CardMenu[];
   buttonDisabled: boolean;
-  cardUser: string;
+  imageUser: string;
   email: boolean;
   lastName: boolean;
   firstName: boolean;
   gender: boolean;
   checkbox: boolean;
+  image: boolean;
 };
 
 class Form extends Component {
@@ -33,15 +35,17 @@ class Form extends Component {
   private checkbox = React.createRef<HTMLInputElement>();
   private select = React.createRef<HTMLSelectElement>();
   private form = React.createRef<HTMLFormElement>();
+
   state: StateForm = {
     userCards: [],
     buttonDisabled: true,
-    cardUser: '',
+    imageUser: '',
     email: true,
     lastName: true,
     firstName: true,
     gender: true,
     checkbox: true,
+    image: false,
   };
 
   handleCheckbox = () => {
@@ -56,8 +60,19 @@ class Form extends Component {
     }
   };
 
+  handleImage = (ev: ChangeEvent) => {
+    if (this.file.current?.files && this.file.current?.files[0]) {
+      const userImage = this.file.current?.files[0].name;
+      if (userImage !== undefined && imageIsValid.test(userImage)) {
+        this.setState({ imageUser: URL.createObjectURL(this.file.current.files[0]) });
+        this.setState({ image: true, buttonDisabled: false });
+      }
+    }
+  };
+
   handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    let userCardsS: CardMenu[];
 
     if (
       this.email.current &&
@@ -65,23 +80,21 @@ class Form extends Component {
       this.firstName.current &&
       this.genderFemale.current &&
       this.genderMale.current &&
-      this.checkbox.current
+      this.checkbox.current &&
+      this.select.current
     ) {
       if (this.firstName.current.value.length < 3) {
         this.setState({ firstName: false, buttonDisabled: true });
         return;
       }
-
       if (this.lastName.current.value.length < 3) {
         this.setState({ lastName: false, buttonDisabled: true });
         return;
       }
-
       if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
         this.setState({ email: false, buttonDisabled: true });
         return;
       }
-
       if (!this.genderMale.current.checked && !this.genderFemale.current.checked) {
         this.setState({ gender: false, buttonDisabled: true });
         return;
@@ -90,25 +103,37 @@ class Form extends Component {
         this.setState({ checkbox: false, buttonDisabled: true });
         return;
       }
-    }
-    if (this.file.current?.files && this.file.current?.files[0]) {
-      const userImage = this.file.current?.files[0].name;
-      if (userImage !== undefined && imageIsValid.test(userImage)) {
-        this.setState({ cardUser: URL.createObjectURL(this.file.current.files[0]) });
-      }
+
+      userCardsS = [
+        {
+          firstName: this.firstName.current.value,
+          lastName: this.lastName.current.value,
+          email: this.email.current.value,
+          gender: this.genderFemale.current.checked
+            ? this.genderFemale.current.value
+            : this.genderMale.current.value,
+          image: this.state.imageUser,
+          location:
+            this.select.current.value === 'Location' ? 'unknown' : this.select.current.value,
+        },
+      ];
+
+      this.setState({ userCards: [...this.state.userCards, ...userCardsS] });
     }
 
     this.setState({
-      emailIsValidate: true,
-      lastNameIsValidate: true,
-      firstNameIsValidate: true,
-      genderIsValidate: true,
-      checkboxIsValidate: true,
+      email: true,
+      lastName: true,
+      firstName: true,
+      gender: true,
+      checkbox: true,
+      imageUser: '',
     });
     this.form.current?.reset();
   };
 
   render() {
+    console.log(this.state.imageUser);
     return (
       <>
         <div className={styles.formBlock}>
@@ -118,6 +143,7 @@ class Form extends Component {
             ref={this.form}
             autoComplete="off"
             noValidate
+            data-testid="form-user"
           >
             First name
             <input
@@ -127,9 +153,12 @@ class Form extends Component {
               autoComplete="disabled"
               onChange={this.handleChangeLength}
               ref={this.firstName}
+              data-testid="first-name"
             />
             {this.state.firstName ? null : (
-              <span className={styles.formBlockErrorText}>Enter your name</span>
+              <span className={styles.formBlockErrorText} data-testid="error-text">
+                Enter your firstname
+              </span>
             )}
             Last name
             <input
@@ -139,9 +168,12 @@ class Form extends Component {
               autoComplete="disabled"
               onChange={this.handleChangeLength}
               ref={this.lastName}
+              data-testid="last-name"
             />
             {this.state.lastName ? null : (
-              <span className={styles.formBlockErrorText}>Enter your Last name</span>
+              <span className={styles.formBlockErrorText} data-testid="error-text">
+                Enter your lastname
+              </span>
             )}
             Email
             <input
@@ -151,9 +183,12 @@ class Form extends Component {
               autoComplete="disabled"
               onChange={this.handleChangeLength}
               ref={this.email}
+              data-testid="email"
             />
             {this.state.email ? null : (
-              <span className={styles.formBlockErrorText}>Enter valid email</span>
+              <span className={styles.formBlockErrorText} data-testid="error-text">
+                Enter valid email
+              </span>
             )}
             <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleCheckbox}>
               Female
@@ -163,6 +198,7 @@ class Form extends Component {
                 name="gender"
                 value="female"
                 ref={this.genderFemale}
+                data-testid="gender-female"
               />
               Male
               <input
@@ -171,24 +207,46 @@ class Form extends Component {
                 name="gender"
                 value="male"
                 ref={this.genderMale}
+                data-testid="gender-male"
               />
             </label>
             {this.state.gender ? null : (
-              <span className={styles.formBlockErrorText}>Choose your gender</span>
+              <span className={styles.formBlockErrorText} data-testid="error-text">
+                Choose your gender
+              </span>
             )}
             <select className={styles.formBlockSelect} name="select" ref={this.select}>
-              <option value={this.select.current?.value}>Your planet</option>
+              <option value={this.select.current?.value}>Location</option>
               {planetsArray.map((planet: string) => (
                 <option key={planet} value={planet}>
                   {planet}
                 </option>
               ))}
             </select>
-            <input className={styles.formBlockFile} id="input__file" type="file" ref={this.file} />
+            <input
+              className={styles.formBlockFile}
+              id="input__file"
+              type="file"
+              ref={this.file}
+              onChange={this.handleImage}
+              data-testid="input-image"
+            />
             Add your image:
             <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
               Choice image
             </label>
+            {this.state.imageUser.length ? (
+              <div className={styles.imageBlock}>
+                <img
+                  className={styles.imagePrev}
+                  src={this.state.imageUser}
+                  alt=""
+                  data-testid="image-block"
+                />
+              </div>
+            ) : (
+              ''
+            )}
             <label className={styles.formBlockCheckbox}>
               I agree with the conditions
               <input
@@ -196,17 +254,24 @@ class Form extends Component {
                 autoComplete="disabled"
                 ref={this.checkbox}
                 onChange={this.handleCheckbox}
+                data-testid="checkbox-button"
               />
               {this.state.checkbox ? null : (
-                <span className={styles.formBlockErrorText}>You must agree to the terms</span>
+                <span className={styles.formBlockErrorText} data-testid="error-text">
+                  You must agree to the terms
+                </span>
               )}
             </label>
-            <button className={styles.formBlockButtonSubmit} disabled={this.state.buttonDisabled}>
+            <button
+              className={styles.formBlockButtonSubmit}
+              disabled={this.state.buttonDisabled}
+              data-testid="button-submit"
+            >
               Submit
             </button>
           </form>
         </div>
-        <UserCards images={this.state.cardUser} />
+        {/*{this.state.userCards.length ? <UserCards cards={this.state.userCards} /> : null}*/}
       </>
     );
   }
