@@ -13,7 +13,7 @@ class Card extends Component<AboutCard> {
     const { id, status, name, species, gender, image, location }: Readonly<AboutCard> = this.props;
     return (
       <div id={`${id}`} className={styles.card} data-testid="person-card">
-        <div>
+        <div className={styles.cardImage}>
           <img className={styles.cardImage} src={image} alt={name} />
         </div>
         <div className={styles.cardDescription}>

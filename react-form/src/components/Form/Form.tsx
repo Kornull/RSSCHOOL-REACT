@@ -2,7 +2,7 @@ import React, { ChangeEvent, Component, FormEvent } from 'react';
 
 import { isValidEmail, planetsArray, imageIsValid } from '../template/constants';
 import styles from './Form.module.scss';
-import UserCards from '../Cards/UserCards/UserCards';
+import UserCards from '../Cards/UserCards';
 
 export type CardMenu = {
   firstName: string;
@@ -48,8 +48,8 @@ class Form extends Component {
     image: false,
   };
 
-  handleCheckbox = () => {
-    this.setState({ gender: true, checkbox: true, buttonDisabled: false });
+  handleRadio = () => {
+    this.setState({ buttonDisabled: false, gender: true });
   };
 
   handleChangeLength = (ev: ChangeEvent) => {
@@ -60,7 +60,7 @@ class Form extends Component {
     }
   };
 
-  handleImage = (ev: ChangeEvent) => {
+  handleImage = () => {
     if (this.file.current?.files && this.file.current?.files[0]) {
       const userImage = this.file.current?.files[0].name;
       if (userImage !== undefined && imageIsValid.test(userImage)) {
@@ -86,20 +86,16 @@ class Form extends Component {
       if (this.firstName.current.value.length < 3) {
         this.setState({ firstName: false, buttonDisabled: true });
         return;
-      }
-      if (this.lastName.current.value.length < 3) {
+      } else if (this.lastName.current.value.length < 3) {
         this.setState({ lastName: false, buttonDisabled: true });
         return;
-      }
-      if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
+      } else if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
         this.setState({ email: false, buttonDisabled: true });
         return;
-      }
-      if (!this.genderMale.current.checked && !this.genderFemale.current.checked) {
+      } else if (!this.genderMale.current.checked && !this.genderFemale.current.checked) {
         this.setState({ gender: false, buttonDisabled: true });
         return;
-      }
-      if (!this.checkbox.current.checked) {
+      } else if (!this.checkbox.current.checked) {
         this.setState({ checkbox: false, buttonDisabled: true });
         return;
       }
@@ -190,7 +186,7 @@ class Form extends Component {
                 Enter valid email
               </span>
             )}
-            <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleCheckbox}>
+            <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleRadio}>
               Female
               <input
                 className={styles.formBlockInput}
@@ -253,7 +249,7 @@ class Form extends Component {
                 type="checkbox"
                 autoComplete="disabled"
                 ref={this.checkbox}
-                onChange={this.handleCheckbox}
+                onChange={this.handleChangeLength}
                 data-testid="checkbox-button"
               />
               {this.state.checkbox ? null : (
@@ -271,7 +267,7 @@ class Form extends Component {
             </button>
           </form>
         </div>
-        {/*{this.state.userCards.length ? <UserCards cards={this.state.userCards} /> : null}*/}
+        {this.state.userCards.length ? <UserCards cards={this.state.userCards} /> : null}
       </>
     );
   }
