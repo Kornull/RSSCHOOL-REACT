@@ -48,19 +48,18 @@ class Form extends Component {
     image: false,
   };
 
-  handleRadio = (): void => {
-    this.setState({ buttonDisabled: false, checkbox: true, gender: true });
-  };
-
-  handleChangeLength = (ev: ChangeEvent): void => {
+  isDisabledValidation = (ev: ChangeEvent | FormEvent): void => {
     this.setState({ buttonDisabled: false });
     const element = ev.target as HTMLInputElement;
     if (element.value.length >= 1) {
       this.setState({ [element.name]: true });
     }
+    if (element.checked) {
+      this.setState({ [element.name]: true });
+    }
   };
 
-  handleImage = () => {
+  isUploadFile = () => {
     if (this.file.current?.files && this.file.current?.files[0]) {
       const userImage = this.file.current?.files[0].name;
       if (userImage !== undefined && imageIsValid.test(userImage)) {
@@ -70,10 +69,8 @@ class Form extends Component {
     }
   };
 
-  handleSubmit = (event: FormEvent): void => {
-    event.preventDefault();
-    let userCardsS: CardMenu[];
-
+  handleSubmit = (ev: FormEvent): void => {
+    ev.preventDefault();
     if (
       this.email.current &&
       this.lastName.current &&
@@ -97,10 +94,14 @@ class Form extends Component {
         return;
       }
 
-      userCardsS = [
+      const userCardsS: CardMenu[] = [
         {
-          firstName: this.firstName.current.value,
-          lastName: this.lastName.current.value,
+          firstName:
+            this.firstName.current.value.slice(0, 1).toUpperCase() +
+            this.firstName.current.value.slice(1),
+          lastName:
+            this.lastName.current.value.slice(0, 1).toUpperCase() +
+            this.lastName.current.value.slice(1),
           email: this.email.current.value,
           gender: this.genderFemale.current.checked
             ? this.genderFemale.current.value
@@ -123,7 +124,7 @@ class Form extends Component {
       imageUser: '',
       buttonDisabled: true,
     });
-    this.form.current?.reset();
+    this.form.current!.reset();
   };
 
   render(): JSX.Element {
@@ -145,13 +146,13 @@ class Form extends Component {
                 type="text"
                 name="firstName"
                 autoComplete="disabled"
-                onChange={this.handleChangeLength}
+                onChange={this.isDisabledValidation}
                 ref={this.firstName}
                 data-testid="first-name"
               />
               {this.state.firstName ? null : (
                 <span className={styles.formBlockErrorText} data-testid="error-text">
-                  Enter your firstname
+                  Enter your first name
                 </span>
               )}
             </label>
@@ -163,13 +164,13 @@ class Form extends Component {
                 type="text"
                 name="lastName"
                 autoComplete="disabled"
-                onChange={this.handleChangeLength}
+                onChange={this.isDisabledValidation}
                 ref={this.lastName}
                 data-testid="last-name"
               />
               {this.state.lastName ? null : (
                 <span className={styles.formBlockErrorText} data-testid="error-text">
-                  Enter your lastname
+                  Enter your last name
                 </span>
               )}
             </label>
@@ -181,7 +182,7 @@ class Form extends Component {
                 type="email"
                 name="email"
                 autoComplete="disabled"
-                onChange={this.handleChangeLength}
+                onChange={this.isDisabledValidation}
                 ref={this.email}
                 data-testid="email"
               />
@@ -192,7 +193,11 @@ class Form extends Component {
               )}
             </label>
 
-            <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleRadio}>
+            <label
+              htmlFor="male"
+              className={styles.formBlockLabel}
+              onChange={this.isDisabledValidation}
+            >
               Female
               <input
                 className={styles.formBlockInput}
@@ -231,7 +236,7 @@ class Form extends Component {
                   id="input__file"
                   type="file"
                   ref={this.file}
-                  onChange={this.handleImage}
+                  onChange={this.isUploadFile}
                   data-testid="input-image"
                 />
               </label>
@@ -253,9 +258,10 @@ class Form extends Component {
               I agree with the conditions
               <input
                 type="checkbox"
+                name="checkbox"
                 autoComplete="disabled"
                 ref={this.checkbox}
-                onChange={this.handleRadio}
+                onChange={this.isDisabledValidation}
                 data-testid="checkbox-button"
               />
               {this.state.checkbox ? null : (
@@ -266,6 +272,7 @@ class Form extends Component {
             </label>
 
             <button
+              type="submit"
               className={styles.formBlockButtonSubmit}
               disabled={this.state.buttonDisabled}
               data-testid="button-submit"
