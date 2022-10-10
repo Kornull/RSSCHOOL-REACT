@@ -53,7 +53,7 @@ export const planetsArray: string[] = [
   'Zorpantheon 9',
 ];
 
-export const isValidEmail =
+export const RegExpEmailValidation =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-export const imageIsValid = /.+(\.jpg|\.jpeg|\.gif|\.png)$/i;
+export const RegExpImageValidation = /.+(\.jpg|\.jpeg|\.gif|\.png)$/i;

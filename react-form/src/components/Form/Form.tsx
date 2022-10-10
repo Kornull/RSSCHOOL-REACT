@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react';
 
-import { isValidEmail, planetsArray, imageIsValid } from '../template/constants';
+import { RegExpEmailValidation, planetsArray, RegExpImageValidation } from '../template/constants';
 import styles from './Form.module.scss';
 import UserCards from '../Cards/UserCards';
 
@@ -62,7 +62,7 @@ class Form extends Component {
   isUploadFile = () => {
     if (this.file.current?.files && this.file.current?.files[0]) {
       const userImage = this.file.current?.files[0].name;
-      if (userImage !== undefined && imageIsValid.test(userImage)) {
+      if (userImage !== undefined && RegExpImageValidation.test(userImage)) {
         this.setState({ imageUser: URL.createObjectURL(this.file.current.files[0]) });
         this.setState({ image: true, buttonDisabled: false });
       }
@@ -86,7 +86,7 @@ class Form extends Component {
       } else if (this.lastName.current.value.length < 3) {
         this.setState({ lastName: false, buttonDisabled: true });
         return;
-      } else if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
+      } else if (!RegExpEmailValidation.test(this.email.current.value.toLowerCase())) {
         this.setState({ email: false, buttonDisabled: true });
         return;
       } else if (!this.checkbox.current.checked) {

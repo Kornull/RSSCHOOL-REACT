@@ -14,10 +14,10 @@ class UserCards extends Component<UserProps> {
   }
 
   render(): JSX.Element {
-    const { cards } = this.props;
+    const { cards = [] } = this.props;
     return (
       <div className={styles.cardsBlock} data-testid="user-cards">
-        {cards ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}
+        {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}
       </div>
     );
   }
