@@ -69,3 +69,29 @@ test('upload file', () => {
   expect(input.files.item(0)).toStrictEqual(file);
   expect(input.files).toHaveLength(1);
 });
+
+describe('upload image', () => {
+  test('user going to load image', () => {
+    window.URL.createObjectURL = function () {};
+    const files = [
+      new File(['hello'], 'hello.png', { type: 'image/png' }),
+      new File(['there'], 'there.png', { type: 'image/png' }),
+    ];
+    render(<Form />);
+    const input = screen.getByLabelText(/choice image/i);
+    userEvent.upload(input, files);
+
+    expect(input.files[0]).toStrictEqual(files[0]);
+  });
+});
+
+describe("don't load image", () => {
+  test('user not going to load image', () => {
+    const files = [new File([''], '', { type: 'image/png' })];
+    render(<Form />);
+    const input = screen.getByLabelText(/choice image/i);
+    userEvent.upload(input, files);
+
+    expect(screen.queryByTestId('image-block')).toBeNull();
+  });
+});

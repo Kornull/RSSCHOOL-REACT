@@ -130,7 +130,6 @@ class Form extends Component {
   };
 
   render() {
-    console.log(this.state.imageUser);
     return (
       <>
         <div className={styles.formBlock}>
@@ -220,19 +219,19 @@ class Form extends Component {
                 </option>
               ))}
             </select>
-            <input
-              className={styles.formBlockFile}
-              id="input__file"
-              type="file"
-              ref={this.file}
-              onChange={this.handleImage}
-              data-testid="input-image"
-            />
             <div className={styles.blockImageCard}>
               <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
                 Choice image
+                <input
+                  className={styles.formBlockFile}
+                  id="input__file"
+                  type="file"
+                  ref={this.file}
+                  onChange={this.handleImage}
+                  data-testid="input-image"
+                />
               </label>
-              {this.state.imageUser.length ? (
+              {this.state.imageUser ? (
                 <div className={styles.imageBlock}>
                   <img
                     className={styles.imagePrev}
