@@ -155,6 +155,7 @@ class Form extends Component {
                 </span>
               )}
             </label>
+
             <label className={styles.labelContainer}>
               Last name
               <input
@@ -172,6 +173,7 @@ class Form extends Component {
                 </span>
               )}
             </label>
+
             <label className={styles.labelContainer}>
               Email
               <input
@@ -220,6 +222,7 @@ class Form extends Component {
                 </option>
               ))}
             </select>
+
             <div className={styles.blockImageCard}>
               <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
                 Choice image
@@ -245,6 +248,7 @@ class Form extends Component {
                 <div className={styles.imageBlock}></div>
               )}
             </div>
+
             <label className={styles.formBlockCheckbox}>
               I agree with the conditions
               <input
@@ -254,13 +258,13 @@ class Form extends Component {
                 onChange={this.handleRadio}
                 data-testid="checkbox-button"
               />
-              <span></span>
               {this.state.checkbox ? null : (
                 <span className={styles.formBlockErrorText} data-testid="error-text">
                   You must agree to the terms
                 </span>
               )}
             </label>
+
             <button
               className={styles.formBlockButtonSubmit}
               disabled={this.state.buttonDisabled}
