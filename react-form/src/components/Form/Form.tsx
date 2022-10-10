@@ -227,7 +227,6 @@ class Form extends Component {
                 </option>
               ))}
             </select>
-
             <div className={styles.blockImageCard}>
               <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
                 Choice image
@@ -253,7 +252,6 @@ class Form extends Component {
                 <div className={styles.imageBlock}></div>
               )}
             </div>
-
             <label className={styles.formBlockCheckbox}>
               I agree with the conditions
               <input
@@ -270,7 +268,6 @@ class Form extends Component {
                 </span>
               )}
             </label>
-
             <button
               type="submit"
               className={styles.formBlockButtonSubmit}
