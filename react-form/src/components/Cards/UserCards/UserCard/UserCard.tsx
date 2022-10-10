@@ -9,7 +9,7 @@ class UserCard extends Component<CardMenu> {
     super(props);
   }
 
-  render() {
+  render(): JSX.Element {
     const { location, lastName, email, firstName, gender, image } = this.props;
     return (
       <div id={`${lastName}`} className={styles.card} data-testid="person-card">

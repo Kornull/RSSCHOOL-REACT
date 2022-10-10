@@ -78,6 +78,7 @@ describe('upload image', () => {
       new File(['there'], 'there.png', { type: 'image/png' }),
     ];
     render(<Form />);
+
     const input = screen.getByLabelText(/choice image/i);
     userEvent.upload(input, files);
 

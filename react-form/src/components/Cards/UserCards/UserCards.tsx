@@ -13,7 +13,7 @@ class UserCards extends Component<UserProps> {
     super(props);
   }
 
-  render() {
+  render(): JSX.Element {
     const { cards } = this.props;
     return (
       <div className={styles.cardsBlock} data-testid="user-cards">

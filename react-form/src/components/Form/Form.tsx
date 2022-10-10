@@ -48,11 +48,11 @@ class Form extends Component {
     image: false,
   };
 
-  handleRadio = () => {
+  handleRadio = (): void => {
     this.setState({ buttonDisabled: false, checkbox: true, gender: true });
   };
 
-  handleChangeLength = (ev: ChangeEvent) => {
+  handleChangeLength = (ev: ChangeEvent): void => {
     this.setState({ buttonDisabled: false });
     const element = ev.target as HTMLInputElement;
     if (element.value.length >= 1) {
@@ -70,7 +70,7 @@ class Form extends Component {
     }
   };
 
-  handleSubmit = (event: FormEvent) => {
+  handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     let userCardsS: CardMenu[];
 
@@ -91,9 +91,6 @@ class Form extends Component {
         return;
       } else if (!isValidEmail.test(this.email.current.value.toLowerCase())) {
         this.setState({ email: false, buttonDisabled: true });
-        return;
-      } else if (!this.genderMale.current.checked && !this.genderFemale.current.checked) {
-        this.setState({ gender: false, buttonDisabled: true });
         return;
       } else if (!this.checkbox.current.checked) {
         this.setState({ checkbox: false, buttonDisabled: true });
@@ -129,7 +126,7 @@ class Form extends Component {
     this.form.current?.reset();
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <div className={styles.formBlock}>
@@ -141,51 +138,58 @@ class Form extends Component {
             noValidate
             data-testid="form-user"
           >
-            First name
-            <input
-              className={styles.formBlockInput}
-              type="text"
-              name="firstName"
-              autoComplete="disabled"
-              onChange={this.handleChangeLength}
-              ref={this.firstName}
-              data-testid="first-name"
-            />
-            {this.state.firstName ? null : (
-              <span className={styles.formBlockErrorText} data-testid="error-text">
-                Enter your firstname
-              </span>
-            )}
-            Last name
-            <input
-              className={styles.formBlockInput}
-              type="text"
-              name="lastName"
-              autoComplete="disabled"
-              onChange={this.handleChangeLength}
-              ref={this.lastName}
-              data-testid="last-name"
-            />
-            {this.state.lastName ? null : (
-              <span className={styles.formBlockErrorText} data-testid="error-text">
-                Enter your lastname
-              </span>
-            )}
-            Email
-            <input
-              className={styles.formBlockInput}
-              type="email"
-              name="email"
-              autoComplete="disabled"
-              onChange={this.handleChangeLength}
-              ref={this.email}
-              data-testid="email"
-            />
-            {this.state.email ? null : (
-              <span className={styles.formBlockErrorText} data-testid="error-text">
-                Enter valid email
-              </span>
-            )}
+            <label className={styles.labelContainer}>
+              First name
+              <input
+                className={styles.formBlockInput}
+                type="text"
+                name="firstName"
+                autoComplete="disabled"
+                onChange={this.handleChangeLength}
+                ref={this.firstName}
+                data-testid="first-name"
+              />
+              {this.state.firstName ? null : (
+                <span className={styles.formBlockErrorText} data-testid="error-text">
+                  Enter your firstname
+                </span>
+              )}
+            </label>
+            <label className={styles.labelContainer}>
+              Last name
+              <input
+                className={styles.formBlockInput}
+                type="text"
+                name="lastName"
+                autoComplete="disabled"
+                onChange={this.handleChangeLength}
+                ref={this.lastName}
+                data-testid="last-name"
+              />
+              {this.state.lastName ? null : (
+                <span className={styles.formBlockErrorText} data-testid="error-text">
+                  Enter your lastname
+                </span>
+              )}
+            </label>
+            <label className={styles.labelContainer}>
+              Email
+              <input
+                className={styles.formBlockInput}
+                type="email"
+                name="email"
+                autoComplete="disabled"
+                onChange={this.handleChangeLength}
+                ref={this.email}
+                data-testid="email"
+              />
+              {this.state.email ? null : (
+                <span className={styles.formBlockErrorText} data-testid="error-text">
+                  Enter valid email
+                </span>
+              )}
+            </label>
+
             <label htmlFor="male" className={styles.formBlockLabel} onChange={this.handleRadio}>
               Female
               <input
@@ -193,6 +197,7 @@ class Form extends Component {
                 type="radio"
                 name="gender"
                 value="female"
+                defaultChecked
                 ref={this.genderFemale}
                 data-testid="gender-female"
               />
@@ -206,11 +211,7 @@ class Form extends Component {
                 data-testid="gender-male"
               />
             </label>
-            {this.state.gender ? null : (
-              <span className={styles.formBlockErrorText} data-testid="error-text">
-                Choose your gender
-              </span>
-            )}
+
             <select className={styles.formBlockSelect} name="select" ref={this.select}>
               <option value={this.select.current?.value}>Location</option>
               {planetsArray.map((planet: string) => (
@@ -253,6 +254,7 @@ class Form extends Component {
                 onChange={this.handleRadio}
                 data-testid="checkbox-button"
               />
+              <span></span>
               {this.state.checkbox ? null : (
                 <span className={styles.formBlockErrorText} data-testid="error-text">
                   You must agree to the terms
