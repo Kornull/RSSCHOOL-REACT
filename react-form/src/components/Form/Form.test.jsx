@@ -50,7 +50,7 @@ describe('submit is validate if input has a text', () =>
     userEvent.click(screen.getByTestId('gender-male'));
     expect(screen.getByTestId('gender-male')).toBeChecked();
     userEvent.click(screen.getByText(/submit/i));
-    expect(screen.queryByTestId('error-text')).toBeNull();
+    expect(screen.queryByTestId('error-text')).not.toBeInTheDocument();
   }));
 
 test('upload file', () => {
