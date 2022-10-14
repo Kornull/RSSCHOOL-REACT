@@ -50,11 +50,17 @@ class HomePage extends Component {
       .then((data: Data) => this.setState({ cards: data.results, loading: false }));
   }
 
+  searchName = (name: string) => {
+    fetch(`${UrlApi.LinkApi}?name=${name}`)
+      .then((response: Response) => response.json())
+      .then((data: Data) => this.setState({ cards: data.results, loading: false }));
+  };
+
   render() {
     const { cards, loading } = this.state;
     return (
       <>
-        <Search />
+        <Search searchName={this.searchName} />
         {loading ? (
           <img className="loading-gif" src={Load} alt="loading"></img>
         ) : (

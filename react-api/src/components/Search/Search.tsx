@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import styles from './Search.module.scss';
 import IconSVG from '../../image/icon-search.svg';
 
@@ -10,14 +10,27 @@ enum LocalStoreKey {
   keyStorage = 'SearchValues',
 }
 
-class Search extends Component<Record<string, never>, StateSearch> {
-  state: StateSearch = {
-    search: '',
-  };
+type SearchProps = {
+  searchName: (name: string) => void;
+};
+
+class Search extends Component<SearchProps, StateSearch> {
+  constructor(props: SearchProps) {
+    super(props);
+    this.state = {
+      search: '',
+    };
+  }
 
   handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     this.setState({ search: event.target.value });
+  };
+
+  handleSearch = (ev: FormEvent) => {
+    ev.preventDefault();
+    console.log(ev);
+    this.props.searchName(this.state.search);
   };
 
   componentDidMount(): void {
@@ -35,7 +48,7 @@ class Search extends Component<Record<string, never>, StateSearch> {
     const { search } = this.state;
     return (
       <div className={styles.search}>
-        <form className={styles.searchForm} data-testid="form-search">
+        <form className={styles.searchForm} data-testid="form-search" onSubmit={this.handleSearch}>
           <input
             className={styles.searchInput}
             data-testid="search-cards"
@@ -46,9 +59,11 @@ class Search extends Component<Record<string, never>, StateSearch> {
             autoComplete="off"
             onChange={this.handelChange}
           />
-          <svg className={styles.searchIcon}>
-            <use xlinkHref={`${IconSVG}#icon-search`} />
-          </svg>
+          <button>
+            <svg className={styles.searchIcon}>
+              <use xlinkHref={`${IconSVG}#icon-search`} onSubmit={this.handleSearch} />
+            </svg>
+          </button>
         </form>
       </div>
     );
