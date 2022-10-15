@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from 'react';
+import React, { ChangeEvent, Component, FormEvent } from 'react';
 import styles from './Search.module.scss';
 import IconSVG from '../../image/icon-search.svg';
 
@@ -29,7 +29,6 @@ class Search extends Component<SearchProps, StateSearch> {
 
   handleSearch = (ev: FormEvent) => {
     ev.preventDefault();
-    console.log(ev);
     this.props.searchName(this.state.search);
   };
 
@@ -59,9 +58,9 @@ class Search extends Component<SearchProps, StateSearch> {
             autoComplete="off"
             onChange={this.handelChange}
           />
-          <button>
+          <button data-testid="button-search">
             <svg className={styles.searchIcon}>
-              <use xlinkHref={`${IconSVG}#icon-search`} onSubmit={this.handleSearch} />
+              <use xlinkHref={`${IconSVG}#icon-search`} />
             </svg>
           </button>
         </form>
