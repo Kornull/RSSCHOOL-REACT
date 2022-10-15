@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { AboutCard } from '../../pages/HomePage/HomePage';
+import { AboutCard } from '../types/types';
 import Card from './Card';
 
 import styles from './Cards.module.scss';
@@ -21,7 +21,7 @@ class Cards extends Component<CardsProps> {
         {cardList.length ? (
           cardList.map((card) => <Card key={card.id} {...card} />)
         ) : (
-          <h3>Nothing found</h3>
+          <h3 data-testid="error-text">Nothing found</h3>
         )}
       </div>
     );
