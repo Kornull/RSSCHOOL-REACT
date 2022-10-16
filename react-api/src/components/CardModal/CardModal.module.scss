@@ -68,21 +68,21 @@
     &:before,
     &:after {
       content: '';
-      top: 47%;
+      top: 50%;
       position: absolute;
-      width: 55%;
+      width: 60%;
       height: 2px;
       background-color: #ffee00;
 
     }
 
     &:before {
-      left: 27%;
+      left: 6px;
       transform: rotate(-45deg) translate(0px, -50%);
     }
 
     &:after {
-      right: 23%;
+      right: 6px;
       transform: rotate(45deg) translate(0px, -50%);
     }
   }
