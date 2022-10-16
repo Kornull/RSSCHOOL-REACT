@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { getByTestId, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import HomePage from './HomePage';
 import { UrlApi } from '../../components/types/types';
+import userEvent from '@testing-library/user-event';
 // import userEvent from '@testing-library/user-event';
 
 test('error fetch', async () => {
@@ -24,22 +25,14 @@ describe('render components on home page', () => {
     });
   });
 });
-
-// describe('render components on home page', () => {
-//   test(' if returned data from API rendered into component', async () => {
-//     const { getByTestId } = render(<HomePage />);
-//     // const search =;
-//     userEvent.type(screen.getByTestId('search-cards'), 'morty');
-//     userEvent.click(getByTestId('form-search'));
-//     expect(screen.getByTestId('person-card')).toBeInTheDocument();
-//   });
-//   test(' if returned data from API rendered into component', async () => {
-//     render(<HomePage />);
-//     // const search =;
-//     userEvent.type(screen.getByTestId('search-cards'), 'morty123456789');
-//     userEvent.click(screen.getByTestId('form-search'));
-//     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-//     screen.debug();
-//     console.log(screen.getByTestId('error-text'));
-//   });
-// });
+describe('render components on home page', () => {
+  test('user click search panel', async () => {
+    render(<HomePage />);
+    userEvent.type(screen.getByTestId('search-cards'), 'morty');
+    userEvent.click(screen.getByTestId('button-search'));
+    await waitFor(() => {
+      const subTitle = screen.getAllByText(/morty/i);
+      expect(subTitle[0]).toBeInTheDocument();
+    });
+  });
+});

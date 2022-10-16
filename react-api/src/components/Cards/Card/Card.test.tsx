@@ -45,7 +45,7 @@ describe('render card character', () => {
     );
     expect(screen.getByTestId('person-card')).toHaveTextContent(name);
     expect(screen.getByTestId('person-card')).toHaveTextContent(species);
-    expect(screen.getByTestId('person-card')).toHaveTextContent(status);
+    expect(screen.getByTestId('person-card')).not.toHaveTextContent(status);
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });

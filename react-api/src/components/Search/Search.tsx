@@ -59,8 +59,8 @@ class Search extends Component<SearchProps, StateSearch> {
             autoComplete="off"
             onChange={this.handelChange}
           />
-          <button data-testid="button-search">
-            <svg className={styles.searchIcon}>
+          <button>
+            <svg className={styles.searchIcon} data-testid="button-search">
               <use xlinkHref={`${IconSVG}#icon-search`} />
             </svg>
           </button>
