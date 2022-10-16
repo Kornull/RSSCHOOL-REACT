@@ -1,8 +1,9 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react';
 
 import { RegExpEmailValidation, planetsArray, RegExpImageValidation } from '../template/constants';
-import styles from './Form.module.scss';
 import UserCards from '../Cards/UserCards';
+
+import styles from './Form.module.scss';
 
 export type CardMenu = {
   firstName: string;

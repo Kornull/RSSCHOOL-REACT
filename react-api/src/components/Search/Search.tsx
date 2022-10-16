@@ -1,6 +1,7 @@
-import React, { ChangeEvent, Component, FormEvent } from 'react';
-import styles from './Search.module.scss';
+import React, { Component, FormEvent } from 'react';
+
 import IconSVG from '../../image/icon-search.svg';
+import styles from './Search.module.scss';
 
 type StateSearch = {
   readonly search: string;

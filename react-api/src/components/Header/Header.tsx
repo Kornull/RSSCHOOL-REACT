@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
+
+import styles from './Header.module.scss';
 
 class Header extends Component {
   render(): JSX.Element {
