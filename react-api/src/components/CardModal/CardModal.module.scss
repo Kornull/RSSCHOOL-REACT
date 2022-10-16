@@ -1,0 +1,98 @@
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #042028AF;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  z-index: 550;
+  cursor: alias;
+
+  &Card {
+    position: relative;
+    max-width: 30%;
+    width: 100%;
+    min-height: 400px;
+    background-color: #417885;
+    border-radius: 25px;
+    border: 2px solid #FF0000;
+    text-align: left;
+    padding: 20px;
+    box-shadow: 0 0 15px #fff;
+    @media (max-width: 768px) {
+      max-width: 80%;
+    }
+  }
+
+  &Image {
+    margin: 10px auto;
+    max-width: 150px;
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid #65c5dc;
+    box-shadow: 0 0 5px #f7ff00;
+  }
+
+  &List {
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  &Close {
+    position: absolute;
+    cursor: pointer;
+    top: -25px;
+    right: -25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #3b5b8a;
+    border: 2px solid #2ef800;
+    transition: background-color .2s linear, box-shadow .2s linear;
+
+    &:hover {
+      background-color: #ff0000;
+      box-shadow: 0 0 10px #fff;
+
+
+      &:before,
+      &:after {
+        background-color: #fff;
+        transition: background-color .2s linear;
+      }
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      top: 47%;
+      position: absolute;
+      width: 55%;
+      height: 2px;
+      background-color: #ffee00;
+
+    }
+
+    &:before {
+      left: 27%;
+      transform: rotate(-45deg) translate(0px, -50%);
+    }
+
+    &:after {
+      right: 23%;
+      transform: rotate(45deg) translate(0px, -50%);
+    }
+  }
+
+  &Text {
+    font-style: italic;
+    padding-left: 5px;
+    font-weight: bold;
+    text-decoration: 2px underline;
+    text-decoration-color: #37ff22;
+    text-shadow: 0 0 5px rgb(110, 7, 7);
+  }
+}

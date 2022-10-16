@@ -21,6 +21,10 @@ class Card extends Component<AboutCard, StatePerson> {
     // this.setState({ infoPerson: fetch()  });
   };
 
+  handleClickModal = (stateModal: boolean) => {
+    this.setState({ modalCondition: stateModal });
+  };
+
   render(): JSX.Element {
     const { id, status, name, species, gender, image, location }: Readonly<AboutCard> = this.props;
     return (
@@ -40,9 +44,7 @@ class Card extends Component<AboutCard, StatePerson> {
               <li className={styles.cardAboutHero}>
                 Name: <span className={styles.cardDossierText}>{name}</span>
               </li>
-              <li className={styles.cardAboutHero}>
-                Status: <span className={styles.cardDossierText}>{status}</span>
-              </li>
+
               <li className={styles.cardAboutHero}>
                 Species: <span className={styles.cardDossierText}>{species}</span>
               </li>
@@ -57,7 +59,9 @@ class Card extends Component<AboutCard, StatePerson> {
               </li>
             </ul>
           </div>
-          {this.state.modalCondition && <CardModal {...this.state.infoPerson} />}
+          {this.state.modalCondition && (
+            <CardModal {...this.state} onClickModal={this.handleClickModal} />
+          )}
         </div>
       </>
     );
