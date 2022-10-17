@@ -14,13 +14,13 @@ class Card extends Component<AboutCard, StatePerson> {
     };
   }
 
-  handleClick = () => {
-    fetch(`${this.props.url}`)
+  handleClick = (): Promise<void> => {
+    return fetch(`${this.props.url}`)
       .then((response) => response.json())
       .then((data) => this.setState({ infoPerson: [data], modalCondition: true }));
   };
 
-  handleClickModal = (stateModal: boolean) => {
+  handleClickModal = (stateModal: boolean): void => {
     this.setState({ modalCondition: stateModal });
   };
 

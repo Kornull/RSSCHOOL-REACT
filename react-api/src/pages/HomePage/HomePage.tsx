@@ -18,19 +18,19 @@ class HomePage extends Component {
     modalCondition: false,
   };
 
-  componentDidMount() {
-    fetch(`${UrlApi.LinkApi}`)
+  componentDidMount(): Promise<void> {
+    return fetch(`${UrlApi.LinkApi}`)
       .then((response: Response) => response.json())
       .then((data: Data) => this.setState({ cards: data.results, loading: false }));
   }
 
-  searchName = (name: string) => {
-    fetch(`${UrlApi.LinkApi}?name=${name}`)
+  searchName = (name: string): Promise<void> => {
+    return fetch(`${UrlApi.LinkApi}?name=${name}`)
       .then((response: Response) => response.json())
       .then((data: Data) => this.setState({ cards: data.results, loading: false }));
   };
 
-  render() {
+  render(): JSX.Element {
     const { cards, loading } = this.state;
     return (
       <>

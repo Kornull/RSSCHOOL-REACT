@@ -1,9 +1,8 @@
-import { getByTestId, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import HomePage from './HomePage';
 import { UrlApi } from '../../components/types/types';
 import userEvent from '@testing-library/user-event';
-// import userEvent from '@testing-library/user-event';
 
 test('error fetch', async () => {
   const res = await fetch(`${UrlApi.LinkApi}`);

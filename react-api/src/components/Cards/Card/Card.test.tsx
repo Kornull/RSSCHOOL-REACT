@@ -28,9 +28,8 @@ export const characterInfo = [
   },
 ];
 
+const { id, status, name, species, gender, location, type } = characterInfo[0];
 describe('render card character', () => {
-  const { id, status, name, species, gender, location, type } = characterInfo[0];
-
   test('displaying fields in a card', () => {
     render(
       <Card

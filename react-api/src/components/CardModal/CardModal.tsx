@@ -3,7 +3,7 @@ import { AboutCard } from '../types/types';
 
 import styles from './CardModal.module.scss';
 
-type ModalProps = {
+export type ModalProps = {
   infoPerson: AboutCard[];
   modalCondition: boolean;
   onClickModal: (stateModal: boolean) => void;
@@ -21,16 +21,20 @@ class CardModal extends Component<ModalProps, ModalState> {
     };
   }
 
-  handleClick = (ev: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+  handleClick = (ev: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
     ev.stopPropagation();
     const elementDom = ev.target as HTMLElement;
-    // console.log(elementDom.id);
     if (elementDom.id === 'close-modal') this.props.onClickModal(this.state.modal);
   };
 
-  render() {
+  render(): JSX.Element {
     return (
-      <div className={styles.modal} onClick={this.handleClick} id="close-modal">
+      <div
+        className={styles.modal}
+        onClick={this.handleClick}
+        id="close-modal"
+        data-testid="modal-card"
+      >
         <div className={styles.modalCard}>
           <ul>
             <li>
@@ -67,6 +71,7 @@ class CardModal extends Component<ModalProps, ModalState> {
             className={styles.modalClose}
             onClick={this.handleClick}
             id="close-modal"
+            data-testid="close-modal-card"
           ></button>
         </div>
       </div>
