@@ -10,7 +10,7 @@ type Data = {
   results: AboutCard[];
 };
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
   const [cards, setCards] = useState<Array<AboutCard>>([]);
   const [isLoading, setLoading] = useState(true);
   // const [] = useState();

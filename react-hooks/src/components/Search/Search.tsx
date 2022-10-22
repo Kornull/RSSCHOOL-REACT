@@ -32,7 +32,7 @@ const Search = (props: SearchProps): JSX.Element => {
     return localStorage.setItem(LocalStoreKey.keyStorage, '');
   }, []);
 
-  //update search localStore
+  //update localStore
   useEffect(() => {
     return localStorage.setItem(LocalStoreKey.keyStorage, search);
   }, [search]);
