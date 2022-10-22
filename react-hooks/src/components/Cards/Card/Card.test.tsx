@@ -28,39 +28,18 @@ export const characterInfo = [
   },
 ];
 
-const { id, status, name, species, gender, location, type } = characterInfo[0];
 describe('render card character', () => {
   test('displaying fields in a card', () => {
-    render(
-      <Card
-        id={id}
-        name={name}
-        species={species}
-        location={location}
-        status={status}
-        gender={gender}
-        type={type}
-      />
-    );
-    expect(screen.getByTestId('person-card')).toHaveTextContent(name);
-    expect(screen.getByTestId('person-card')).toHaveTextContent(species);
-    expect(screen.getByTestId('person-card')).not.toHaveTextContent(status);
+    render(<Card {...characterInfo[0]} />);
+    expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].name);
+    expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].species);
+    expect(screen.getByTestId('person-card')).not.toHaveTextContent(characterInfo[0].status);
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });
 
   test('checking what you output if the location field is undefined', () => {
-    render(
-      <Card
-        id={id}
-        name={name}
-        species={species}
-        location={undefined}
-        status={status}
-        gender={gender}
-        type={type}
-      />
-    );
+    render(<Card {...characterInfo[0]} location={undefined} />);
     expect(screen.getByText('unknown')).toBeInTheDocument();
   });
 });

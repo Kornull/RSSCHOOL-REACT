@@ -2,7 +2,10 @@ import React from 'react';
 import { AboutCard } from '../types/types';
 
 import styles from './CardModal.module.scss';
-import { modalCard } from '../template/constants';
+
+enum ModalCardClose {
+  closeId = 'modal-close',
+}
 
 export type ModalProps = {
   personInfo: AboutCard[];
@@ -13,13 +16,18 @@ export type ModalProps = {
 const CardModal = (props: ModalProps) => {
   const handleClick = (ev: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
     ev.stopPropagation();
-    const elementDom = ev.target as HTMLElement;
-    if (elementDom.id === 'close-modal') props.onClickModal(modalCard);
+    const element = ev.target as HTMLElement;
+    if (element.id) props.onClickModal(!props.modalCondition);
   };
 
   return (
-    <div className={styles.modal} onClick={handleClick} id="close-modal" data-testid="modal-card">
-      <div className={styles.modalCard}>
+    <div
+      className={styles.modal}
+      onClick={handleClick}
+      id={ModalCardClose.closeId}
+      data-testid="modal-card"
+    >
+      <div className={styles.modalCard} data-testid="describe-card">
         <ul>
           <li>
             <img className={styles.modalImage} src={props.personInfo[0].image} alt="image" />
@@ -51,7 +59,7 @@ const CardModal = (props: ModalProps) => {
         <button
           className={styles.modalClose}
           onClick={handleClick}
-          id="close-modal"
+          id={ModalCardClose.closeId}
           data-testid="close-modal-card"
         ></button>
       </div>
