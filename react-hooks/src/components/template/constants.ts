@@ -57,3 +57,5 @@ export const RegExpEmailValidation =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 export const RegExpImageValidation = /.+(\.jpg|\.jpeg|\.gif|\.png)$/i;
+
+export const modalCard = false;

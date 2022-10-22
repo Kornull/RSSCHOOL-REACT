@@ -4,7 +4,7 @@ import React from 'react';
 import { characterInfo } from '../Cards/Card/Card.test';
 
 export const testData: ModalProps = {
-  infoPerson: characterInfo,
+  personInfo: characterInfo,
   modalCondition: true,
   onClickModal: () => {},
 };

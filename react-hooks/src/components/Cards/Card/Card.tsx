@@ -1,70 +1,65 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-import { AboutCard, StatePerson } from '../../types/types';
+import { AboutCard } from '../../types/types';
 
 import CardModal from '../../CardModal/CardModal';
 import styles from './Card.module.scss';
 
-class Card extends Component<AboutCard, StatePerson> {
-  constructor(props: AboutCard) {
-    super(props);
-    this.state = {
-      infoPerson: [],
-      modalCondition: false,
-    };
-  }
+const Card = (props: AboutCard): JSX.Element => {
+  const [personInfo, setPersonInfo] = useState<Array<AboutCard>>([]);
+  const [modalCondition, setModalCondition] = useState(false);
 
-  handleClick = (): Promise<void> => {
-    return fetch(`${this.props.url}`)
-      .then((response) => response.json())
-      .then((data) => this.setState({ infoPerson: [data], modalCondition: true }));
+  const handleClick = () => {
+    setPersonInfo([props]);
+    setModalCondition(true);
   };
 
-  handleClickModal = (stateModal: boolean): void => {
-    this.setState({ modalCondition: stateModal });
+  const handleClickModal = (stateModal: boolean): void => {
+    setModalCondition(stateModal);
   };
 
-  render(): JSX.Element {
-    const { id, name, species, gender, image, location }: Readonly<AboutCard> = this.props;
-    return (
-      <>
-        <div
-          id={`${id}`}
-          className={styles.card}
-          data-testid="person-card"
-          onClick={this.handleClick}
-        >
-          <div className={styles.cardImage}>
-            <img className={styles.cardImage} src={image} alt={name} />
-          </div>
-          <div className={styles.cardDescription}>
-            <h3>Dossier :</h3>
-            <ul className={styles.cardAboutList}>
-              <li className={styles.cardAboutHero}>
-                Name: <span className={styles.cardDossierText}>{name}</span>
-              </li>
-
-              <li className={styles.cardAboutHero}>
-                Species: <span className={styles.cardDossierText}>{species}</span>
-              </li>
-              <li className={styles.cardAboutHero}>
-                Gender: <span className={styles.cardDossierText}>{gender}</span>
-              </li>
-              <li className={styles.cardAboutHero}>
-                Location:
-                <span className={styles.cardDossierText}>
-                  {location ? location.name : 'unknown'}
-                </span>
-              </li>
-            </ul>
-          </div>
-          {this.state.modalCondition && (
-            <CardModal {...this.state} onClickModal={this.handleClickModal} />
-          )}
+  return (
+    <>
+      <div
+        id={`${props.id}`}
+        className={styles.card}
+        data-testid="person-card"
+        onClick={handleClick}
+      >
+        <div className={styles.cardImage}>
+          <img className={styles.cardImage} src={props.image} alt={props.name} />
         </div>
-      </>
-    );
-  }
-}
+        <div className={styles.cardDescription}>
+          <h3>Dossier :</h3>
+          <ul className={styles.cardAboutList}>
+            <li className={styles.cardAboutHero}>
+              Name: <span className={styles.cardDossierText}>{props.name}</span>
+            </li>
+
+            <li className={styles.cardAboutHero}>
+              Species: <span className={styles.cardDossierText}>{props.species}</span>
+            </li>
+            <li className={styles.cardAboutHero}>
+              Gender: <span className={styles.cardDossierText}>{props.gender}</span>
+            </li>
+            <li className={styles.cardAboutHero}>
+              Location:
+              <span className={styles.cardDossierText}>
+                {props.location ? props.location.name : 'unknown'}
+              </span>
+            </li>
+          </ul>
+        </div>
+        {modalCondition && (
+          <CardModal
+            personInfo={personInfo}
+            modalCondition={modalCondition}
+            onClickModal={handleClickModal}
+          />
+        )}
+      </div>
+    </>
+  );
+};
 
 export default Card;
