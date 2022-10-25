@@ -1,18 +1,20 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import HomePage from './HomePage';
 import { UrlApi } from '../../components/types/types';
 import userEvent from '@testing-library/user-event';
 
-test('error fetch', async () => {
-  const res = await fetch(`${UrlApi.LinkApi}`);
-  const result = await res.json();
-  expect.assertions(0);
-  try {
-    await result;
-  } catch (e) {
-    expect(e).toMatch('error');
-  }
+describe('render cards on first page entry', () => {
+  test('error fetch', async () => {
+    const res = await fetch(`${UrlApi.LinkApi}`);
+    const result = await res.json();
+    expect.assertions(0);
+    try {
+      await result;
+    } catch (e) {
+      expect(e).toMatch('error');
+    }
+  });
 });
 
 describe('render components on home page', () => {

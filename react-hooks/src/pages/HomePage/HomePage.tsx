@@ -13,14 +13,7 @@ type Data = {
 const HomePage = (): JSX.Element => {
   const [cards, setCards] = useState<Array<AboutCard>>([]);
   const [isLoading, setLoading] = useState(true);
-  // const [] = useState();
-  // const [] = useState();
-  // state: StatePerson = {
-  //   cards: [],
-  //   loading: true,
-  //   infoPerson: [],
-  //   modalCondition: false,
-  // };
+
   const searchName = (name: string): Promise<void> => {
     return fetch(`${UrlApi.LinkApi}?name=${name}`)
       .then((response: Response) => response.json())

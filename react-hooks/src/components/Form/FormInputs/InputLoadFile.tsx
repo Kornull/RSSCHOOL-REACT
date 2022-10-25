@@ -13,10 +13,6 @@ type InputLoadProps = {
 };
 
 const InputLoadFile = ({ watch, register, image }: InputLoadProps) => {
-  !watch('files') || watch('files').length === 0
-    ? console.log('hui')
-    : console.log(Object(watch('files')[0]).name);
-  console.log(image);
   return (
     <>
       <div className={styles.blockImageCard}>

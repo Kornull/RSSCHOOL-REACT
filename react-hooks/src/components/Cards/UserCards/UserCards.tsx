@@ -8,19 +8,13 @@ type UserProps = {
   cards?: CardMenu[];
 };
 
-class UserCards extends Component<UserProps> {
-  constructor(props: UserProps) {
-    super(props);
-  }
-
-  render(): JSX.Element {
-    const { cards = [] } = this.props;
-    return (
-      <div className={styles.cardsBlock} data-testid="user-cards">
-        {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}
-      </div>
-    );
-  }
-}
+const UserCards = (props: UserProps): JSX.Element => {
+  const { cards = [] } = props;
+  return (
+    <div className={styles.cardsBlock} data-testid="user-cards">
+      {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}
+    </div>
+  );
+};
 
 export default UserCards;
