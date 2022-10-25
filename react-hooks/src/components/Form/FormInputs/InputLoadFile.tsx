@@ -1,9 +1,10 @@
 import React from 'react';
 
-import styles from '../Form.module.scss';
 import { UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { StateFormUser } from '../Form';
 import { RegExpImageValidation } from '../../template/constants';
+
+import styles from '../Form.module.scss';
 
 type InputLoadProps = {
   watch: UseFormWatch<StateFormUser>;

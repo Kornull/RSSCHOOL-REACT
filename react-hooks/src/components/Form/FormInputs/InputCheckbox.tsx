@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FormInputsProps } from '../../types/types';
+
 import styles from '../Form.module.scss';
 
 const InputCheckbox = ({ register, error }: FormInputsProps) => {
@@ -8,7 +9,11 @@ const InputCheckbox = ({ register, error }: FormInputsProps) => {
     <>
       <label className={styles.formBlockCheckbox}>
         I agree with the conditions
-        <input type="checkbox" data-testid="checkbox-button" {...register('checkbox')} />
+        <input
+          type="checkbox"
+          data-testid="checkbox-button"
+          {...register('checkbox', { required: true })}
+        />
         {error.checkbox && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
             You must agree to the terms

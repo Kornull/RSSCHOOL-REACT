@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';

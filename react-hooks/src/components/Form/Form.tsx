@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Component, FormEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { RegExpEmailValidation, planetsArray, RegExpImageValidation } from '../template/constants';
+import { planetsArray } from '../template/constants';
 import UserCards from '../Cards/UserCards';
 
 import styles from './Form.module.scss';
@@ -33,18 +33,6 @@ export type StateFormUser = {
   checkbox: boolean;
 };
 
-// export type StateForm = {
-//   userCards: CardMenu[];
-//   buttonDisabled: boolean;
-//   imageUser: string;
-//   email: boolean;
-//   lastName: boolean;
-//   firstName: boolean;
-//   gender: boolean;
-//   checkbox: boolean;
-//   image: boolean;
-// };
-
 const Form = () => {
   const {
     register,
@@ -68,9 +56,7 @@ const Form = () => {
     if (data.files.length > 0) {
       fileLoad(data.files[0]);
     }
-    setTimeout(() => {
-      reset();
-    }, 2000);
+    reset();
   };
 
   return (
@@ -89,48 +75,6 @@ const Form = () => {
           <Select options={planetsArray} register={register} />
           <InputLoadFile register={register} watch={watch} image={image} />
           <InputCheckbox register={register} error={errors} />
-          {/*
-          <div className={styles.blockImageCard}>
-            <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
-              Choice image
-              <input
-                className={styles.formBlockFile}
-                id="input__file"
-                type="file"
-                ref={file}
-                onChange={isUploadFile}
-                data-testid="input-image"
-              />
-            </label>
-            {imageUser ? (
-              <div className={styles.imageBlock}>
-                <img
-                  className={styles.imagePrev}
-                  src={imageUser}
-                  alt=""
-                  data-testid="image-block"
-                />
-              </div>
-            ) : (
-              <div className={styles.imageBlock}></div>
-            )}
-          </div> */}
-          {/* <label className={styles.formBlockCheckbox}>
-            I agree with the conditions
-            <input
-              type="checkbox"
-              name="checkbox"
-              autoComplete="disabled"
-              ref={checkbox}
-              onChange={isDisabledValidation}
-              data-testid="checkbox-button"
-            />
-            {checkbox ? null : (
-              <span className={styles.formBlockErrorText} data-testid="error-text">
-                You must agree to the terms
-              </span>
-            )}
-          </label> */}
           <input
             type="submit"
             className={styles.formBlockButtonSubmit}
