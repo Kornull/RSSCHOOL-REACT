@@ -1,3 +1,6 @@
+import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { StateFormUser } from '../Form/Form';
+
 export type AboutCard = {
   id: number;
   name: string;
@@ -29,3 +32,9 @@ export type StatePerson = {
 export enum UrlApi {
   LinkApi = 'https://rickandmortyapi.com/api/character/',
 }
+
+export type FormInputsProps = {
+  register: UseFormRegister<StateFormUser>;
+  error: Partial<FieldErrorsImpl<{ [key: string]: string }>>;
+  onChange?: () => void;
+};

@@ -1,9 +1,18 @@
-import React, { ChangeEvent, Component, FormEvent } from 'react';
+import React, { ChangeEvent, Component, FormEvent, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { RegExpEmailValidation, planetsArray, RegExpImageValidation } from '../template/constants';
 import UserCards from '../Cards/UserCards';
 
 import styles from './Form.module.scss';
+import InputFirstName from './FormInputs/InputFirstName';
+import { AboutCard } from '../types/types';
+import InputLastName from './FormInputs/InputLastName';
+import InputEmail from './FormInputs/InputEmail';
+import InputGender from './FormInputs/InputGender';
+import Select from './FormInputs/Select';
+import InputLoadFile from './FormInputs/InputLoadFile';
+import InputCheckbox from './FormInputs/InputCheckbox';
 
 export type CardMenu = {
   firstName: string;
@@ -14,275 +23,225 @@ export type CardMenu = {
   location: string;
 };
 
-export type StateForm = {
-  userCards: CardMenu[];
-  buttonDisabled: boolean;
-  imageUser: string;
-  email: boolean;
-  lastName: boolean;
-  firstName: boolean;
-  gender: boolean;
+export type StateFormUser = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  location: string;
+  files: string;
   checkbox: boolean;
-  image: boolean;
 };
 
-class Form extends Component {
-  private firstName = React.createRef<HTMLInputElement>();
-  private lastName = React.createRef<HTMLInputElement>();
-  private email = React.createRef<HTMLInputElement>();
-  private genderMale = React.createRef<HTMLInputElement>();
-  private genderFemale = React.createRef<HTMLInputElement>();
-  private file = React.createRef<HTMLInputElement>();
-  private checkbox = React.createRef<HTMLInputElement>();
-  private select = React.createRef<HTMLSelectElement>();
-  private form = React.createRef<HTMLFormElement>();
+// export type StateForm = {
+//   userCards: CardMenu[];
+//   buttonDisabled: boolean;
+//   imageUser: string;
+//   email: boolean;
+//   lastName: boolean;
+//   firstName: boolean;
+//   gender: boolean;
+//   checkbox: boolean;
+//   image: boolean;
+// };
 
-  state: StateForm = {
-    userCards: [],
-    buttonDisabled: true,
-    imageUser: '',
-    email: true,
-    lastName: true,
-    firstName: true,
-    gender: true,
-    checkbox: true,
-    image: false,
+const Form = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<StateFormUser>({
+    mode: 'onBlur',
+  });
+  const [image, setImage] = useState('');
+
+  const fileLoad = (file: string) => {
+    const newLinkImage = new Blob([file]);
+    setImage(URL.createObjectURL(newLinkImage));
+    console.log(image);
   };
 
-  isDisabledValidation = (ev: ChangeEvent | FormEvent): void => {
-    this.setState({ buttonDisabled: false });
-    const element = ev.target as HTMLInputElement;
-    if (element.value.length >= 1) {
-      this.setState({ [element.name]: true });
+  const onSubmit: SubmitHandler<StateFormUser> = (data): void => {
+    console.log(data);
+    if (data.files.length > 0) {
+      fileLoad(data.files[0]);
     }
-    if (element.checked) {
-      this.setState({ [element.name]: true });
-    }
+    setTimeout(() => {
+      reset();
+    }, 2000);
   };
 
-  isUploadFile = () => {
-    if (this.file.current?.files && this.file.current?.files[0]) {
-      const userImage = this.file.current?.files[0].name;
-      if (userImage !== undefined && RegExpImageValidation.test(userImage)) {
-        this.setState({ imageUser: URL.createObjectURL(this.file.current.files[0]) });
-        this.setState({ image: true, buttonDisabled: false });
-      }
-    }
-  };
-
-  handleSubmit = (ev: FormEvent): void => {
-    ev.preventDefault();
-    if (
-      this.email.current &&
-      this.lastName.current &&
-      this.firstName.current &&
-      this.genderFemale.current &&
-      this.genderMale.current &&
-      this.checkbox.current &&
-      this.select.current
-    ) {
-      if (this.firstName.current.value.length < 3) {
-        this.setState({ firstName: false, buttonDisabled: true });
-        return;
-      } else if (this.lastName.current.value.length < 3) {
-        this.setState({ lastName: false, buttonDisabled: true });
-        return;
-      } else if (!RegExpEmailValidation.test(this.email.current.value.toLowerCase())) {
-        this.setState({ email: false, buttonDisabled: true });
-        return;
-      } else if (!this.checkbox.current.checked) {
-        this.setState({ checkbox: false, buttonDisabled: true });
-        return;
-      }
-
-      const userCardsS: CardMenu[] = [
-        {
-          firstName:
-            this.firstName.current.value.slice(0, 1).toUpperCase() +
-            this.firstName.current.value.slice(1),
-          lastName:
-            this.lastName.current.value.slice(0, 1).toUpperCase() +
-            this.lastName.current.value.slice(1),
-          email: this.email.current.value,
-          gender: this.genderFemale.current.checked
-            ? this.genderFemale.current.value
-            : this.genderMale.current.value,
-          image: this.state.imageUser,
-          location:
-            this.select.current.value === 'Location' ? 'unknown' : this.select.current.value,
-        },
-      ];
-
-      this.setState({ userCards: [...this.state.userCards, ...userCardsS] });
-    }
-
-    this.setState({
-      email: true,
-      lastName: true,
-      firstName: true,
-      gender: true,
-      checkbox: true,
-      imageUser: '',
-      buttonDisabled: true,
-    });
-    this.form.current!.reset();
-  };
-
-  render(): JSX.Element {
-    return (
-      <>
-        <div className={styles.formBlock}>
-          <form
-            className={styles.formBlockUseForm}
-            onSubmit={this.handleSubmit}
-            ref={this.form}
-            autoComplete="off"
-            noValidate
-            data-testid="form-user"
-          >
-            <label className={styles.labelContainer}>
-              First name
+  return (
+    <>
+      <div className={styles.formBlock}>
+        <form
+          className={styles.formBlockUseForm}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          data-testid="form-user"
+        >
+          <InputFirstName register={register} error={errors} />
+          <InputLastName register={register} error={errors} />
+          <InputEmail register={register} error={errors} />
+          <InputGender register={register} error={errors} />
+          <Select options={planetsArray} register={register} />
+          <InputLoadFile register={register} watch={watch} image={image} />
+          <InputCheckbox register={register} error={errors} />
+          {/*
+          <div className={styles.blockImageCard}>
+            <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
+              Choice image
               <input
-                className={styles.formBlockInput}
-                type="text"
-                name="firstName"
-                autoComplete="disabled"
-                onChange={this.isDisabledValidation}
-                ref={this.firstName}
-                data-testid="first-name"
-              />
-              {this.state.firstName ? null : (
-                <span className={styles.formBlockErrorText} data-testid="error-text">
-                  Enter your first name
-                </span>
-              )}
-            </label>
-
-            <label className={styles.labelContainer}>
-              Last name
-              <input
-                className={styles.formBlockInput}
-                type="text"
-                name="lastName"
-                autoComplete="disabled"
-                onChange={this.isDisabledValidation}
-                ref={this.lastName}
-                data-testid="last-name"
-              />
-              {this.state.lastName ? null : (
-                <span className={styles.formBlockErrorText} data-testid="error-text">
-                  Enter your last name
-                </span>
-              )}
-            </label>
-
-            <label className={styles.labelContainer}>
-              Email
-              <input
-                className={styles.formBlockInput}
-                type="email"
-                name="email"
-                autoComplete="disabled"
-                onChange={this.isDisabledValidation}
-                ref={this.email}
-                data-testid="email"
-              />
-              {this.state.email ? null : (
-                <span className={styles.formBlockErrorText} data-testid="error-text">
-                  Enter valid email
-                </span>
-              )}
-            </label>
-
-            <label
-              htmlFor="male"
-              className={styles.formBlockLabel}
-              onChange={this.isDisabledValidation}
-            >
-              Female
-              <input
-                className={styles.formBlockInput}
-                type="radio"
-                name="gender"
-                value="female"
-                defaultChecked
-                ref={this.genderFemale}
-                data-testid="gender-female"
-              />
-              Male
-              <input
-                className={styles.formBlockInput}
-                type="radio"
-                name="gender"
-                value="male"
-                ref={this.genderMale}
-                data-testid="gender-male"
+                className={styles.formBlockFile}
+                id="input__file"
+                type="file"
+                ref={file}
+                onChange={isUploadFile}
+                data-testid="input-image"
               />
             </label>
-
-            <select className={styles.formBlockSelect} name="select" ref={this.select}>
-              <option value={this.select.current?.value}>Location</option>
-              {planetsArray.map((planet: string) => (
-                <option key={planet} value={planet}>
-                  {planet}
-                </option>
-              ))}
-            </select>
-            <div className={styles.blockImageCard}>
-              <label className={styles.formBlockLabelFileButton} htmlFor="input__file">
-                Choice image
-                <input
-                  className={styles.formBlockFile}
-                  id="input__file"
-                  type="file"
-                  ref={this.file}
-                  onChange={this.isUploadFile}
-                  data-testid="input-image"
+            {imageUser ? (
+              <div className={styles.imageBlock}>
+                <img
+                  className={styles.imagePrev}
+                  src={imageUser}
+                  alt=""
+                  data-testid="image-block"
                 />
-              </label>
-              {this.state.imageUser ? (
-                <div className={styles.imageBlock}>
-                  <img
-                    className={styles.imagePrev}
-                    src={this.state.imageUser}
-                    alt=""
-                    data-testid="image-block"
-                  />
-                </div>
-              ) : (
-                <div className={styles.imageBlock}></div>
-              )}
-            </div>
-            <label className={styles.formBlockCheckbox}>
-              I agree with the conditions
-              <input
-                type="checkbox"
-                name="checkbox"
-                autoComplete="disabled"
-                ref={this.checkbox}
-                onChange={this.isDisabledValidation}
-                data-testid="checkbox-button"
-              />
-              {this.state.checkbox ? null : (
-                <span className={styles.formBlockErrorText} data-testid="error-text">
-                  You must agree to the terms
-                </span>
-              )}
-            </label>
-            <button
-              type="submit"
-              className={styles.formBlockButtonSubmit}
-              disabled={this.state.buttonDisabled}
-              data-testid="button-submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-        {this.state.userCards.length ? <UserCards cards={this.state.userCards} /> : null}
-      </>
-    );
-  }
-}
+              </div>
+            ) : (
+              <div className={styles.imageBlock}></div>
+            )}
+          </div> */}
+          {/* <label className={styles.formBlockCheckbox}>
+            I agree with the conditions
+            <input
+              type="checkbox"
+              name="checkbox"
+              autoComplete="disabled"
+              ref={checkbox}
+              onChange={isDisabledValidation}
+              data-testid="checkbox-button"
+            />
+            {checkbox ? null : (
+              <span className={styles.formBlockErrorText} data-testid="error-text">
+                You must agree to the terms
+              </span>
+            )}
+          </label> */}
+          <input
+            type="submit"
+            className={styles.formBlockButtonSubmit}
+            disabled={!isValid}
+            data-testid="button-submit"
+          />
+        </form>
+      </div>
+      {/* {userCards.length ? <UserCards cards={userCards} /> : null} */}
+    </>
+  );
+};
 
 export default Form;
+// private firstName = React.createRef<HTMLInputElement>();
+// private lastName = React.createRef<HTMLInputElement>();
+// private email = React.createRef<HTMLInputElement>();
+// private genderMale = React.createRef<HTMLInputElement>();
+// private genderFemale = React.createRef<HTMLInputElement>();
+// private file = React.createRef<HTMLInputElement>();
+// private checkbox = React.createRef<HTMLInputElement>();
+// private select = React.createRef<HTMLSelectElement>();
+// private form = React.createRef<HTMLFormElement>();
+
+// state: StateForm = {
+//   userCards: [],
+//   buttonDisabled: true,
+//   imageUser: '',
+//   email: true,
+//   lastName: true,
+//   firstName: true,
+//   gender: true,
+//   checkbox: true,
+//   image: false,
+// };
+
+// isDisabledValidation = (ev: ChangeEvent | FormEvent): void => {
+//   setState({ buttonDisabled: false });
+//   const element = ev.target as HTMLInputElement;
+//   if (element.value.length >= 1) {
+//     setState({ [element.name]: true });
+//   }
+//   if (element.checked) {
+//     setState({ [element.name]: true });
+//   }
+// };
+
+// isUploadFile = () => {
+//   if (file.current?.files && file.current?.files[0]) {
+//     const userImage = file.current?.files[0].name;
+//     if (userImage !== undefined && RegExpImageValidation.test(userImage)) {
+//       setState({ imageUser: URL.createObjectURL(file.current.files[0]) });
+//       setState({ image: true, buttonDisabled: false });
+//     }
+//   }
+// };
+
+// handleSubmit = (ev: FormEvent): void => {
+//   ev.preventDefault();
+//   if (
+//     email.current &&
+//     lastName.current &&
+//     firstName.current &&
+//     genderFemale.current &&
+//     genderMale.current &&
+//     checkbox.current &&
+//     select.current
+//   ) {
+//     if (firstName.current.value.length < 3) {
+//       setState({ firstName: false, buttonDisabled: true });
+//       return;
+//     } else if (lastName.current.value.length < 3) {
+//       setState({ lastName: false, buttonDisabled: true });
+//       return;
+//     } else if (!RegExpEmailValidation.test(email.current.value.toLowerCase())) {
+//       setState({ email: false, buttonDisabled: true });
+//       return;
+//     } else if (!checkbox.current.checked) {
+//       setState({ checkbox: false, buttonDisabled: true });
+//       return;
+//     }
+
+//     const userCardsS: CardMenu[] = [
+//       {
+//         firstName:
+//           firstName.current.value.slice(0, 1).toUpperCase() +
+//           firstName.current.value.slice(1),
+//         lastName:
+//           lastName.current.value.slice(0, 1).toUpperCase() +
+//           lastName.current.value.slice(1),
+//         email: email.current.value,
+//         gender: genderFemale.current.checked
+//           ? genderFemale.current.value
+//           : genderMale.current.value,
+//         image: imageUser,
+//         location:
+//           select.current.value === 'Location' ? 'unknown' : select.current.value,
+//       },
+//     ];
+
+//     setState({ userCards: [...userCards, ...userCardsS] });
+//   }
+
+//   setState({
+//     email: true,
+//     lastName: true,
+//     firstName: true,
+//     gender: true,
+//     checkbox: true,
+//     imageUser: '',
+//     buttonDisabled: true,
+//   });
+//   form.current!.reset();
+// };

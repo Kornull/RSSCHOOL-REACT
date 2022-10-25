@@ -23,12 +23,12 @@
   }
 
   &Label {
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    @media (max-width: 768px) {
-      width: 70%;
+    //margin-bottom: 10px;
+    @media (max-width: 468px) {
+      width: 90%;
     }
   }
 
@@ -36,6 +36,7 @@
     overflow: hidden;
     max-width: 300px;
     width: 80%;
+
     & option {
       max-width: 50%;
       color: #020267;
@@ -57,7 +58,7 @@
   }
 
   &File {
-   display: none;
+    display: none;
   }
 
 
@@ -102,7 +103,7 @@
     padding: 5px;
     white-space: pre-line;
     margin-bottom: 30px;
-    font-weight: 1.6;
+    font-weight: bold;
 
     & input {
       display: block;
@@ -116,9 +117,14 @@
     }
   }
 
+  &Gender {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
   &LabelFileButton {
     display: block;
-    width: 80%;
+    width: 40%;
     max-width: 150px;
     padding: 10px 0;
     background: #4fe7c5;
@@ -140,12 +146,22 @@
   }
 }
 
+.TextLoad {
+  max-width: 170px;
+  width: 100%;
+  max-height: 80px;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+  //border-radius: 15px;
+}
+
 .blockImageCard {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  margin-bottom: 20px;
   gap: 5px;
 }
 
@@ -165,10 +181,10 @@
 .labelContainer {
   display: flex;
   flex-direction: column;
-  height: 80px;
+  height: 74px;
 
   & input {
     padding: 5px 8px;
-    margin:4px 0;
+    margin: 4px 0;
   }
 }

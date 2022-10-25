@@ -1,0 +1,41 @@
+import React from 'react';
+import { FormInputsProps } from '../../types/types';
+
+import styles from '../Form.module.scss';
+
+const InputGender = ({ register, error, onChange }: FormInputsProps) => {
+  return (
+    <>
+      <div className={styles.formBlockGender}>
+        <label className={styles.formBlockLabel} data-testid="input-gender">
+          Female
+          <input
+            className={styles.formBlockInput}
+            type="radio"
+            autoComplete="disabled"
+            value="female"
+            {...register('gender', { required: true, onChange: onChange })}
+            data-testid="gender-female"
+            id="female"
+          />
+          Male
+          <input
+            className={styles.formBlockInput}
+            type="radio"
+            autoComplete="disabled"
+            value="male"
+            {...register('gender', { required: true, onChange: onChange })}
+            data-testid="gender-male"
+          />
+        </label>
+        {error.gender && (
+          <span className={styles.formBlockErrorText} data-testid="error-text">
+            Please select a value
+          </span>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default InputGender;
