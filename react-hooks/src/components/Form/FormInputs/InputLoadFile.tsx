@@ -12,7 +12,7 @@ type InputLoadProps = {
   onButtonClick: () => void;
 };
 
-const InputLoadFile = ({ watch, register, onButtonClick }: InputLoadProps) => {
+const InputLoadFile = ({ watch, register, onButtonClick }: InputLoadProps): JSX.Element => {
   return (
     <>
       <div className={styles.blockImageCard}>

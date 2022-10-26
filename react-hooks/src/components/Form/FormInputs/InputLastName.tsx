@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputLastName = ({ register, error, onButtonClick }: FormInputsProps) => {
+const InputLastName = ({ register, error, onButtonClick }: FormInputsProps): JSX.Element => {
   return (
     <>
       <label className={styles.labelContainer}>

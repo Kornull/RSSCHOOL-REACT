@@ -13,7 +13,7 @@ export type ModalProps = {
   onClickModal: (stateModal: boolean) => void;
 };
 
-const CardModal = (props: ModalProps) => {
+const CardModal = (props: ModalProps): JSX.Element => {
   const handleClick = (ev: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
     ev.stopPropagation();
     const element = ev.target as HTMLElement;

@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputGender = ({ register, error, onButtonClick }: FormInputsProps) => {
+const InputGender = ({ register, error, onButtonClick }: FormInputsProps): JSX.Element => {
   return (
     <>
       <div className={styles.formBlockGender}>

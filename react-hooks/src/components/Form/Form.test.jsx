@@ -22,27 +22,8 @@ describe('submit is not validate if input to text no text', () => {
       expect(errorBlocks[0]).toHaveClass('formBlockErrorText');
     });
   });
-
-  //   test('displays an error text if not all required fields are filled', () => {
-  //     render(<Form />);
-  //     userEvent.type(screen.getByTestId('first-name'), 'user');
-  //     userEvent.click(screen.getByTestId('button-submit'));
-  //     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-  //     userEvent.type(screen.getByTestId('last-name'), 'user');
-  //     userEvent.click(screen.getByTestId('button-submit'));
-  //     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-  //     userEvent.type(screen.getByTestId('email'), 'user@ss.us');
-  //     userEvent.click(screen.getByTestId('button-submit'));
-  //     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-  //     userEvent.clear(screen.getByTestId('gender-female'));
-  //     userEvent.click(screen.getByTestId('gender-male'));
-  //     userEvent.click(screen.getByTestId('button-submit'));
-  //     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-  //     userEvent.clear(screen.getByTestId('checkbox-button'));
-  //     userEvent.click(screen.getByTestId('button-submit'));
-  //     expect(screen.getByTestId('error-text')).toBeInTheDocument();
-  //   });
 });
+
 describe('input length error checking', () => {
   test('shows invalid input text', async () => {
     render(<Form />);
@@ -56,7 +37,7 @@ describe('input length error checking', () => {
   });
 });
 
-describe('submit is validate if input has a text', () =>
+describe('submit is validate if input has a text', () => {
   test('not error output ', async () => {
     render(<Form />);
 
@@ -71,23 +52,7 @@ describe('submit is validate if input has a text', () =>
       userEvent.click(screen.getByTestId('button-submit'));
     });
     expect(screen.queryByTestId('error-text')).not.toBeInTheDocument();
-  }));
-
-test('upload file', () => {
-  const file = new File(['hello'], 'hello.png', { type: 'image/png' });
-
-  render(
-    <div>
-      <label htmlFor="file-uploader">Upload file:</label>
-      <input id="file-uploader" type="file" />
-    </div>
-  );
-  const input = screen.getByLabelText(/upload file/i);
-  userEvent.upload(input, file);
-
-  expect(input.files[0]).toStrictEqual(file);
-  expect(input.files.item(0)).toStrictEqual(file);
-  expect(input.files).toHaveLength(1);
+  });
 });
 
 describe('upload image', () => {
@@ -105,6 +70,7 @@ describe('upload image', () => {
     expect(input.files[0]).toStrictEqual(files[0]);
   });
 });
+
 describe('shows information about the loaded image on the page', () => {
   test('shows name image', async () => {
     window.URL.createObjectURL = function () {};
