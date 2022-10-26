@@ -56,7 +56,6 @@ const Form = () => {
   const fileLoad = (file: string) => {
     const newLinkImage = new Blob([file]);
     setImage(URL.createObjectURL(newLinkImage));
-    console.log(image);
   };
 
   const onSubmit: SubmitHandler<StateFormUser> = (data): void => {
@@ -77,6 +76,7 @@ const Form = () => {
 
     reset();
   };
+
   useEffect(() => {
     if (image) userCard[0].image = image;
     return () => setImage('');
@@ -87,16 +87,27 @@ const Form = () => {
         <form
           className={styles.formBlockUseForm}
           onSubmit={handleSubmit(onSubmit)}
-          noValidate
           data-testid="form-user"
         >
-          <InputFirstName register={register} error={errors} onButtonClick={isButtonFalse} />
-          <InputLastName register={register} error={errors} onButtonClick={isButtonFalse} />
-          <InputEmail register={register} error={errors} onButtonClick={isButtonFalse} />
-          <InputGender register={register} error={errors} onButtonClick={isButtonFalse} />
-          <Select options={planetsArray} register={register} onButtonClick={isButtonFalse} />
+          <InputFirstName
+            register={register}
+            error={errors.firstName}
+            onButtonClick={isButtonFalse}
+          />
+          <InputLastName
+            register={register}
+            error={errors.lastName}
+            onButtonClick={isButtonFalse}
+          />
+          <InputEmail register={register} error={errors.email} onButtonClick={isButtonFalse} />
+          <InputGender register={register} error={errors.gender} onButtonClick={isButtonFalse} />
+          <Select register={register} options={planetsArray} onButtonClick={isButtonFalse} />
           <InputLoadFile register={register} watch={watch} onButtonClick={isButtonFalse} />
-          <InputCheckbox register={register} error={errors} onButtonClick={isButtonFalse} />
+          <InputCheckbox
+            register={register}
+            error={errors.checkbox}
+            onButtonClick={isButtonFalse}
+          />
           <input
             type="submit"
             className={styles.formBlockButtonSubmit}

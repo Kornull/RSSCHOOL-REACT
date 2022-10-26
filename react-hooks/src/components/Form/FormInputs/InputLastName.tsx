@@ -23,9 +23,9 @@ const InputLastName = ({ register, error, onButtonClick }: FormInputsProps) => {
           })}
           data-testid="last-name"
         />
-        {error.lastName && (
+        {error && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
-            {error.lastName.message || 'Please fill in the field'}
+            {error.message || 'Please fill in the field'}
           </span>
         )}
       </label>

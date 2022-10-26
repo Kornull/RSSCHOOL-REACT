@@ -14,7 +14,7 @@ const InputCheckbox = ({ register, error, onButtonClick }: FormInputsProps) => {
           data-testid="checkbox-button"
           {...register('checkbox', { required: true, onChange: onButtonClick })}
         />
-        {error.checkbox && (
+        {error && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
             You must agree to the terms
           </span>

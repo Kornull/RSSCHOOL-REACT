@@ -28,7 +28,7 @@ const InputGender = ({ register, error, onButtonClick }: FormInputsProps) => {
             data-testid="gender-male"
           />
         </label>
-        {error.gender && (
+        {error && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
             Please select a value
           </span>

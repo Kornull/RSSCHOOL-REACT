@@ -22,7 +22,7 @@ const InputEmail = ({ register, error, onButtonClick }: FormInputsProps) => {
           })}
           data-testid="input-email"
         />
-        {error.email && (
+        {error && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
             {'Enter email "ww@ww.ww"'}
           </span>

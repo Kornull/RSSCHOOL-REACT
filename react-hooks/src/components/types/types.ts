@@ -1,4 +1,4 @@
-import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { FieldError, FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
 import { StateFormUser } from '../Form/Form';
 
 export type AboutCard = {
@@ -35,6 +35,6 @@ export enum UrlApi {
 
 export type FormInputsProps = {
   register: UseFormRegister<StateFormUser>;
-  error: Partial<FieldErrorsImpl<{ [key: string]: string }>>;
+  error?: FieldError;
   onButtonClick?: () => void;
 };
