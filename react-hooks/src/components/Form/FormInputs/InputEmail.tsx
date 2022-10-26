@@ -6,7 +6,7 @@ import { RegExpEmailValidation } from '../../template/constants';
 
 import styles from '../Form.module.scss';
 
-const InputEmail = ({ register, error, onChange }: FormInputsProps) => {
+const InputEmail = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <label className={styles.labelContainer}>
@@ -17,14 +17,14 @@ const InputEmail = ({ register, error, onChange }: FormInputsProps) => {
           autoComplete="disabled"
           {...register('email', {
             required: true,
-            onChange: onChange,
+            onChange: onButtonClick,
             pattern: RegExpEmailValidation,
           })}
           data-testid="input-email"
         />
         {error.email && (
           <span className={styles.formBlockErrorText} data-testid="error-text">
-            {'Please enter valid email "ww@ww.ww"'}
+            {'Enter email "ww@ww.ww"'}
           </span>
         )}
       </label>

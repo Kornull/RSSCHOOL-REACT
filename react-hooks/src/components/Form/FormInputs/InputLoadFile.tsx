@@ -9,10 +9,10 @@ import styles from '../Form.module.scss';
 type InputLoadProps = {
   watch: UseFormWatch<StateFormUser>;
   register: UseFormRegister<StateFormUser>;
-  image: string;
+  onButtonClick: () => void;
 };
 
-const InputLoadFile = ({ watch, register, image }: InputLoadProps) => {
+const InputLoadFile = ({ watch, register, onButtonClick }: InputLoadProps) => {
   return (
     <>
       <div className={styles.blockImageCard}>
@@ -23,7 +23,7 @@ const InputLoadFile = ({ watch, register, image }: InputLoadProps) => {
             id="input__file"
             type="file"
             data-testid="input-image"
-            {...register('files', { pattern: RegExpImageValidation })}
+            {...register('files', { pattern: RegExpImageValidation, onChange: onButtonClick })}
           />
         </label>
         {!watch('files') || watch('files').length === 0 ? (

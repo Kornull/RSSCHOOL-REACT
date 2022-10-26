@@ -36,5 +36,5 @@ export enum UrlApi {
 export type FormInputsProps = {
   register: UseFormRegister<StateFormUser>;
   error: Partial<FieldErrorsImpl<{ [key: string]: string }>>;
-  onChange?: () => void;
+  onButtonClick?: () => void;
 };

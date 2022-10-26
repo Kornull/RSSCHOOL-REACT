@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputCheckbox = ({ register, error }: FormInputsProps) => {
+const InputCheckbox = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <label className={styles.formBlockCheckbox}>
@@ -12,7 +12,7 @@ const InputCheckbox = ({ register, error }: FormInputsProps) => {
         <input
           type="checkbox"
           data-testid="checkbox-button"
-          {...register('checkbox', { required: true })}
+          {...register('checkbox', { required: true, onChange: onButtonClick })}
         />
         {error.checkbox && (
           <span className={styles.formBlockErrorText} data-testid="error-text">

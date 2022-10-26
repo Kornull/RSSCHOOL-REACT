@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputGender = ({ register, error, onChange }: FormInputsProps) => {
+const InputGender = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <div className={styles.formBlockGender}>
@@ -15,9 +15,8 @@ const InputGender = ({ register, error, onChange }: FormInputsProps) => {
             type="radio"
             autoComplete="disabled"
             value="female"
-            {...register('gender', { required: true, onChange: onChange })}
+            {...register('gender', { required: true, onChange: onButtonClick })}
             data-testid="gender-female"
-            id="female"
           />
           Male
           <input
@@ -25,7 +24,7 @@ const InputGender = ({ register, error, onChange }: FormInputsProps) => {
             type="radio"
             autoComplete="disabled"
             value="male"
-            {...register('gender', { required: true, onChange: onChange })}
+            {...register('gender', { required: true, onChange: onButtonClick })}
             data-testid="gender-male"
           />
         </label>

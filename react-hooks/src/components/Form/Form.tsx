@@ -40,12 +40,19 @@ const Form = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<StateFormUser>({
     mode: 'onBlur',
   });
   const [image, setImage] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
+  const isButtonFalse = () => {
+    setButtonDisabled(false);
+  };
+  const isButtonTrue = () => {
+    setButtonDisabled(true);
+  };
   const fileLoad = (file: string) => {
     const newLinkImage = new Blob([file]);
     setImage(URL.createObjectURL(newLinkImage));
@@ -53,7 +60,6 @@ const Form = () => {
   };
 
   const onSubmit: SubmitHandler<StateFormUser> = (data): void => {
-    console.log(data);
     if (data.files.length > 0) {
       fileLoad(data.files[0]);
     }
@@ -84,18 +90,23 @@ const Form = () => {
           noValidate
           data-testid="form-user"
         >
-          <InputFirstName register={register} error={errors} />
-          <InputLastName register={register} error={errors} />
-          <InputEmail register={register} error={errors} />
-          <InputGender register={register} error={errors} />
-          <Select options={planetsArray} register={register} />
-          <InputLoadFile register={register} watch={watch} image={image} />
-          <InputCheckbox register={register} error={errors} />
+          <InputFirstName register={register} error={errors} onButtonClick={isButtonFalse} />
+          <InputLastName register={register} error={errors} onButtonClick={isButtonFalse} />
+          <InputEmail register={register} error={errors} onButtonClick={isButtonFalse} />
+          <InputGender register={register} error={errors} onButtonClick={isButtonFalse} />
+          <Select options={planetsArray} register={register} onButtonClick={isButtonFalse} />
+          <InputLoadFile register={register} watch={watch} onButtonClick={isButtonFalse} />
+          <InputCheckbox register={register} error={errors} onButtonClick={isButtonFalse} />
           <input
             type="submit"
             className={styles.formBlockButtonSubmit}
-            // disabled={!isValid}
+            disabled={buttonDisabled}
             data-testid="button-submit"
+            onClick={() =>
+              setTimeout(() => {
+                isButtonTrue();
+              }, 500)
+            }
           />
         </form>
       </div>

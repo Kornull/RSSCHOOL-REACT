@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputFirstName = ({ register, error, onChange }: FormInputsProps) => {
+const InputFirstName = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <label className={styles.labelContainer}>
@@ -15,7 +15,7 @@ const InputFirstName = ({ register, error, onChange }: FormInputsProps) => {
           autoComplete="disabled"
           {...register('firstName', {
             required: true,
-            onChange: onChange,
+            onChange: onButtonClick,
             minLength: {
               value: 3,
               message: 'At least 3 characters',
