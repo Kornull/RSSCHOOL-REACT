@@ -9,6 +9,7 @@ type UserProps = {
 };
 
 const UserCards = ({ cards = [] }: UserProps) => {
+
   return (
     <div className={styles.cardsBlock} data-testid="user-cards">
       {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}

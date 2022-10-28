@@ -12,7 +12,7 @@ type SearchProps = {
 };
 
 const Search = (props: SearchProps) => {
-  const [search, setSearch] = useState('');
+  const [searchTerm, setSearch] = useState('');
 
   const handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -21,7 +21,7 @@ const Search = (props: SearchProps) => {
 
   const handleSearch = (ev: FormEvent): void => {
     ev.preventDefault();
-    props.searchName(search);
+    props.searchName(searchTerm);
   };
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const Search = (props: SearchProps) => {
   }, []);
 
   useEffect(() => {
-    return localStorage.setItem(LocalStoreKey.keyStorage, search);
-  }, [search]);
+    return localStorage.setItem(LocalStoreKey.keyStorage, searchTerm);
+  }, [searchTerm]);
 
   return (
     <div className={styles.search}>
@@ -44,7 +44,7 @@ const Search = (props: SearchProps) => {
           name="search"
           type="text"
           placeholder="Search..."
-          value={search}
+          value={searchTerm}
           autoComplete="off"
           onChange={handelChange}
         />
