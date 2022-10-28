@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { CardMenu } from '../../Form/Form';
 import UserCard from './UserCard';
@@ -9,7 +9,6 @@ type UserProps = {
 };
 
 const UserCards = ({ cards = [] }: UserProps) => {
-
   return (
     <div className={styles.cardsBlock} data-testid="user-cards">
       {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { planetsArray } from '../template/constants';
@@ -32,7 +32,6 @@ export type StateFormUser = {
   checkbox: boolean;
 };
 let userCards: CardMenu[] = [];
-let userCard: CardMenu[] = [];
 
 const Form = () => {
   const {
@@ -62,23 +61,25 @@ const Form = () => {
     if (data.files.length > 0) {
       fileLoad(data.files[0]);
     }
-    userCard = [
-      {
-        firstName: data.firstName.slice(0, 1).toUpperCase() + data.firstName.slice(1),
-        lastName: data.lastName.slice(0, 1).toUpperCase() + data.lastName.slice(1),
-        email: data.email,
-        gender: data.gender,
-        image: image,
-        location: data.location,
-      },
+    userCards = [
+      ...userCards,
+      ...[
+        {
+          firstName: data.firstName.slice(0, 1).toUpperCase() + data.firstName.slice(1),
+          lastName: data.lastName.slice(0, 1).toUpperCase() + data.lastName.slice(1),
+          email: data.email,
+          gender: data.gender,
+          image: image,
+          location: data.location,
+        },
+      ],
     ];
-    userCards = [...userCards, ...userCard];
 
     reset();
   };
 
   useEffect(() => {
-    if (image) userCard[0].image = image;
+    if (image) userCards[userCards.length - 1].image = image;
     return () => setImage('');
   }, [image]);
   return (

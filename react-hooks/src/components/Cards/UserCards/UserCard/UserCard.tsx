@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CardMenu } from '../../../Form/Form';
 import styles from '../../Card/Card.module.scss';
 
