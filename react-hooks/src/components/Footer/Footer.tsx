@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Footer.module.scss';
 
-const Footer = (): JSX.Element => {
+const Footer = () => {
   return (
     <footer className={styles.footer} data-testid="footer">
       <div className={styles.footerContainer}>

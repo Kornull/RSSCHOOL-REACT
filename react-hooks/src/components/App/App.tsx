@@ -9,7 +9,7 @@ import Layout from '../Layout';
 
 import './App.scss';
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
     <div className="App">
       <Routes>

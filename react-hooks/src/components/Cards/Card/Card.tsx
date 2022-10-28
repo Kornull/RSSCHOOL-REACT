@@ -5,11 +5,11 @@ import { AboutCard } from '../../types/types';
 import CardModal from '../../CardModal/CardModal';
 import styles from './Card.module.scss';
 
-const Card = (props: AboutCard): JSX.Element => {
+const Card = (props: AboutCard) => {
   const [personInfo, setPersonInfo] = useState<Array<AboutCard>>([]);
   const [modalCondition, setModalCondition] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setPersonInfo([props]);
     setModalCondition(true);
   };

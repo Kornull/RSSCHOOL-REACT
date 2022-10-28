@@ -10,7 +10,7 @@ type Data = {
   results: AboutCard[];
 };
 
-const HomePage = (): JSX.Element => {
+const HomePage = () => {
   const [cards, setCards] = useState<Array<AboutCard>>([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -22,6 +22,7 @@ const HomePage = (): JSX.Element => {
         setLoading(false);
       });
   };
+
   useEffect(() => {
     fetch(`${UrlApi.LinkApi}`)
       .then((response: Response) => response.json())
@@ -30,6 +31,7 @@ const HomePage = (): JSX.Element => {
         setLoading(false);
       });
   }, []);
+
   return (
     <>
       <Search searchName={searchName} />

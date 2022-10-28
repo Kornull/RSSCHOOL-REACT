@@ -9,7 +9,7 @@ type CardsProps = {
   cardList?: AboutCard[];
 };
 
-const Cards = (props: CardsProps): JSX.Element => {
+const Cards = (props: CardsProps) => {
   const { cardList = [] } = props;
   return (
     <div className={styles.cardsBlock}>

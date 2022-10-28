@@ -11,7 +11,7 @@ type SearchProps = {
   searchName: (name: string) => void;
 };
 
-const Search = (props: SearchProps): JSX.Element => {
+const Search = (props: SearchProps) => {
   const [search, setSearch] = useState('');
 
   const handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -24,7 +24,6 @@ const Search = (props: SearchProps): JSX.Element => {
     props.searchName(search);
   };
 
-  //Loading search text from localStore
   useEffect(() => {
     const value = localStorage.getItem(LocalStoreKey.keyStorage);
 
@@ -32,7 +31,6 @@ const Search = (props: SearchProps): JSX.Element => {
     return localStorage.setItem(LocalStoreKey.keyStorage, '');
   }, []);
 
-  //update localStore
   useEffect(() => {
     return localStorage.setItem(LocalStoreKey.keyStorage, search);
   }, [search]);

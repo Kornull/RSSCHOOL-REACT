@@ -6,7 +6,7 @@ import { RegExpEmailValidation } from '../../template/constants';
 
 import styles from '../Form.module.scss';
 
-const InputEmail = ({ register, error, onButtonClick }: FormInputsProps): JSX.Element => {
+const InputEmail = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <label className={styles.labelContainer}>

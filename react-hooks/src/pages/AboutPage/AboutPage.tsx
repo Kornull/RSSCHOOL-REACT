@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutPage = (): JSX.Element => {
+const AboutPage = () => {
   return <h1>About Us</h1>;
 };
 

@@ -8,8 +8,7 @@ type UserProps = {
   cards?: CardMenu[];
 };
 
-const UserCards = (props: UserProps): JSX.Element => {
-  const { cards = [] } = props;
+const UserCards = ({ cards = [] }: UserProps) => {
   return (
     <div className={styles.cardsBlock} data-testid="user-cards">
       {cards.length ? cards.map((card) => <UserCard key={card.lastName} {...card} />) : null}

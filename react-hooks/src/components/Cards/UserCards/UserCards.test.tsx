@@ -5,7 +5,7 @@ import UserCards from './UserCards';
 import { userCardDefaultProps } from './UserCard/UserCard.test';
 import Cards from '../Cards';
 
-describe('if an array cards comes', () => {
+describe('Cards', () => {
   test('render user cards', () => {
     render(<UserCards cards={[userCardDefaultProps]} />);
     expect(screen.getByRole('img')).toBeInTheDocument();

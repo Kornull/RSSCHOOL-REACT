@@ -34,7 +34,7 @@ export type StateFormUser = {
 let userCards: CardMenu[] = [];
 let userCard: CardMenu[] = [];
 
-const Form = (): JSX.Element => {
+const Form = () => {
   const {
     register,
     handleSubmit,

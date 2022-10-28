@@ -11,7 +11,7 @@ type SelectProps = {
   onButtonClick: () => void;
 };
 
-const Select = ({ options, register, onButtonClick }: SelectProps): JSX.Element => {
+const Select = ({ options, register, onButtonClick }: SelectProps) => {
   return (
     <>
       <select

@@ -1,6 +1,8 @@
 import React from 'react';
 import { AboutCard } from '../types/types';
 
+import ModalList from './ModalList/ModalList';
+
 import styles from './CardModal.module.scss';
 
 enum ModalCardClose {
@@ -13,11 +15,11 @@ export type ModalProps = {
   onClickModal: (stateModal: boolean) => void;
 };
 
-const CardModal = (props: ModalProps): JSX.Element => {
+const CardModal = ({ personInfo, modalCondition, onClickModal }: ModalProps) => {
   const handleClick = (ev: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
     ev.stopPropagation();
     const element = ev.target as HTMLElement;
-    if (element.id) props.onClickModal(!props.modalCondition);
+    if (element.id) onClickModal(!modalCondition);
   };
 
   return (
@@ -30,31 +32,16 @@ const CardModal = (props: ModalProps): JSX.Element => {
       <div className={styles.modalCard} data-testid="describe-card">
         <ul>
           <li>
-            <img className={styles.modalImage} src={props.personInfo[0].image} alt="image" />
+            <img className={styles.modalImage} src={personInfo[0].image} alt="image" />
           </li>
-          <li className={styles.modalList}>Dossier created: {props.personInfo[0].created}</li>
-          <li className={styles.modalList}>
-            id: <span className={styles.modalText}>{props.personInfo[0].id}</span>
-          </li>
-          <li className={styles.modalList}>
-            Full name: <span className={styles.modalText}>{props.personInfo[0].name}</span>
-          </li>
-          <li className={styles.modalList}>
-            Species: <span className={styles.modalText}>{props.personInfo[0].species}</span>
-          </li>
-          <li className={styles.modalList}>
-            Status: <span className={styles.modalText}>{props.personInfo[0].status}</span>
-          </li>
-          <li className={styles.modalList}>
-            Gender: <span className={styles.modalText}>{props.personInfo[0].gender}</span>
-          </li>
-          <li className={styles.modalList}>
-            Location: <span className={styles.modalText}>{props.personInfo[0].location!.name}</span>
-          </li>
-          <li className={styles.modalList}>
-            Origin location:{' '}
-            <span className={styles.modalText}>{props.personInfo[0].origin!.name}</span>
-          </li>
+          <ModalList title="Dossier created" describe={personInfo[0].created} />
+          <ModalList title="ID" describe={personInfo[0].id} />
+          <ModalList title="Full name" describe={personInfo[0].name} />
+          <ModalList title="Species" describe={personInfo[0].species} />
+          <ModalList title="Status" describe={personInfo[0].status} />
+          <ModalList title="Gender" describe={personInfo[0].gender} />
+          <ModalList title="Location" describe={personInfo[0].location!.name} />
+          <ModalList title="Origin location" describe={personInfo[0].origin!.name} />
         </ul>
         <button
           className={styles.modalClose}

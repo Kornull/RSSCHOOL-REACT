@@ -4,7 +4,7 @@ import { FormInputsProps } from '../../types/types';
 
 import styles from '../Form.module.scss';
 
-const InputCheckbox = ({ register, error, onButtonClick }: FormInputsProps): JSX.Element => {
+const InputCheckbox = ({ register, error, onButtonClick }: FormInputsProps) => {
   return (
     <>
       <label className={styles.formBlockCheckbox}>

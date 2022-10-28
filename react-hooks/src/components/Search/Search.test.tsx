@@ -65,13 +65,13 @@ describe('data is writing and deleting in to local storage', () => {
   });
 });
 
-describe('create form element in main page', () => {
+describe('create form element Search in main page', () => {
   test('app has search form', () => {
     render(<Search searchName={testSearch} />);
     expect(screen.getByTestId('form-search')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
-  test('displaying the search cards on the main page', () => {
+  test('displaying the search cards on the main page when entering a request', () => {
     render(<Search searchName={testSearch} />);
     expect(screen.getByTestId('search-cards')).toBeInTheDocument();
   });

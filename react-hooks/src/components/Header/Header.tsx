@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 
-const Header = (): JSX.Element => {
+const Header = () => {
   return (
     <header className={styles.header} data-testid="header-component">
       <div className={styles.headerContainer}>

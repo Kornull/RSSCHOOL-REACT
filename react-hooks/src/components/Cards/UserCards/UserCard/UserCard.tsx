@@ -4,8 +4,9 @@ import styles from '../../Card/Card.module.scss';
 
 import imageDefault from '../../../../image/19.jpeg';
 
-const UserCard = (props: CardMenu): JSX.Element => {
+const UserCard = (props: CardMenu) => {
   const { location, lastName, email, firstName, gender, image } = props;
+
   return (
     <div id={`${lastName}`} className={styles.card} data-testid="person-card">
       <div>
