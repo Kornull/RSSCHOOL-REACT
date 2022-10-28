@@ -5,14 +5,13 @@ import Form from './Form';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
-describe('render form', () =>
+describe('Form', () => {
   test('render user form', () => {
     render(<Form />);
     expect(screen.getByTestId('form-user')).toBeInTheDocument();
     expect(screen.getByTestId('first-name')).toBeInTheDocument();
-  }));
+  });
 
-describe('submit is not validate if input to text no text', () => {
   test('error output for incorrect data entered to first name', async () => {
     render(<Form />);
     userEvent.type(screen.getByTestId('first-name'), '2');
@@ -22,9 +21,7 @@ describe('submit is not validate if input to text no text', () => {
       expect(errorBlocks[0]).toHaveClass('formBlockErrorText');
     });
   });
-});
 
-describe('input length error checking', () => {
   test('shows invalid input text', async () => {
     render(<Form />);
     userEvent.type(screen.getByTestId('first-name'), 'word');
@@ -35,9 +32,7 @@ describe('input length error checking', () => {
       expect(screen.getByText(/characters/i)).toBeInTheDocument();
     });
   });
-});
 
-describe('submit is validate if input has a text', () => {
   test('not error output ', async () => {
     render(<Form />);
 
@@ -53,9 +48,7 @@ describe('submit is validate if input has a text', () => {
     });
     expect(screen.queryByTestId('error-text')).not.toBeInTheDocument();
   });
-});
 
-describe('upload image', () => {
   test('user going to load image', () => {
     window.URL.createObjectURL = function () {};
     const files = [
@@ -69,9 +62,7 @@ describe('upload image', () => {
 
     expect(input.files[0]).toStrictEqual(files[0]);
   });
-});
 
-describe('shows information about the loaded image on the page', () => {
   test('shows name image', async () => {
     window.URL.createObjectURL = function () {};
     const files = [new File(['hello'], 'hello.png', { type: 'image/png' })];
@@ -85,9 +76,7 @@ describe('shows information about the loaded image on the page', () => {
       expect(screen.getByText(/hello/i)).toBeInTheDocument();
     });
   });
-});
 
-describe('after pressing the button is disabled ', () => {
   test('button disabled', async () => {
     render(<Form />);
     const buttonSubmit = screen.getByTestId('button-submit');
@@ -96,8 +85,7 @@ describe('after pressing the button is disabled ', () => {
       expect(buttonSubmit).toBeDisabled();
     });
   });
-});
-describe("don't load image", () => {
+
   test('user not going to load image', () => {
     const files = [new File([''], '', { type: 'image/png' })];
     render(<Form />);
