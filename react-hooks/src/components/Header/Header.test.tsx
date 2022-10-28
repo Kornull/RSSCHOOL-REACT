@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('checks if the header is rendered or not', () => {
+describe('Header', () => {
   test('render header component', () => {
     render(
       <MemoryRouter>
