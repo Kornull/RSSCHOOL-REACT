@@ -82,6 +82,7 @@ const Form = () => {
     if (image) userCards[userCards.length - 1].image = image;
     return () => setImage('');
   }, [image]);
+
   return (
     <>
       <div className={styles.formBlock}>
