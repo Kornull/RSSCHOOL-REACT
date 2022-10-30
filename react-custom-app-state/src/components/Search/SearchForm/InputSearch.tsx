@@ -1,25 +1,25 @@
-import { type } from '@testing-library/user-event/dist/type';
-import React, { ChangeEvent, Dispatch } from 'react';
+import { formset } from 'components/Hooks/ContextCards';
+import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
 import styles from '../Search.module.scss';
-import { TextAction } from '../Search.utils';
 
 type SearchProps = {
   searchChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
-  searchText: string;
+  searchButton: string;
+  register: UseFormRegister<formset>;
 };
 
-const InputSearch = ({ searchChange, searchText }: SearchProps) => {
+const InputSearch = ({ searchChange, searchButton, register }: SearchProps) => {
   return (
     <>
       <input
         className={styles.searchInput}
         data-testid="search-cards"
-        name="search"
+        value={searchButton}
         type="text"
-        value={searchText}
+        {...register('valueSearch', { required: true, onChange: searchChange })}
         placeholder="Search..."
         autoComplete="off"
-        onChange={searchChange}
       />
     </>
   );

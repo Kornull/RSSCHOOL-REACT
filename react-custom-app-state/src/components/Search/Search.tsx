@@ -1,40 +1,33 @@
-import React, { FormEvent, useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import IconSVG from '../../image/icon-search.svg';
 import styles from './Search.module.scss';
 import InputRadioSearch from './SearchForm/InputRadioSearch';
 import InputSearch from './SearchForm/InputSearch';
-import reducerSearch, { Inicialized, TextActionKind } from './Search.utils';
+
+import { formset, useSearchContext } from 'components/Hooks/ContextCards';
+
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 enum LocalStoreKey {
   keyStorage = 'SearchValues',
 }
 
-type SearchProps = {
-  searchName: (name: string) => void;
-};
-
-const Search = (props: SearchProps) => {
+const Search = () => {
   const [searchTerm, setSearch] = useState('');
-  const [radioButton, setRadioButton] = useState('all');
-  const [, dispatch] = React.useReducer(reducerSearch, Inicialized);
+  const { register, handleSubmit } = useForm<formset>({
+    mode: 'onBlur',
+  });
+  const { stateSearch, dispatch } = useSearchContext();
 
   const handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log(searchTerm);
     event.preventDefault();
     setSearch(event.target.value);
   };
 
-  const handleSearch = (ev: FormEvent): void => {
-    ev.preventDefault();
-    props.searchName(searchTerm);
-  };
-  const handleClick = (name: string) => {
-    console.log(name);
-    console.log(radioButton);
-    setRadioButton(name);
-    setTimeout(() => {
-      console.log(radioButton);
-    }, 1500);
+  const onSubmit: SubmitHandler<formset> = (data) => {
+    dispatch(data);
   };
 
   useEffect(() => {
@@ -53,13 +46,12 @@ const Search = (props: SearchProps) => {
       <form
         className={styles.searchForm}
         data-testid="form-search"
-        onSubmit={handleSearch}
-        onClick={() => dispatch({ type: radioButton, valueSearch: searchTerm })}
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <InputSearch searchChange={handelChange} searchText={searchTerm} />
-        <InputRadioSearch name={TextActionKind.BREAKPOINT_ALL} clickButton={handleClick} />
-        <InputRadioSearch name={TextActionKind.BREAKPOINT_SPECIES} clickButton={handleClick} />
-        <InputRadioSearch name={TextActionKind.BREAKPOINT_STATUS} clickButton={handleClick} />
+        <InputSearch register={register} searchChange={handelChange} searchButton={searchTerm} />
+        <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
+        <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
+        <InputRadioSearch register={register} name="species" searchButton={stateSearch} />
         <button type="submit">
           <svg className={styles.searchIcon} data-testid="button-search">
             <use xlinkHref={`${IconSVG}#icon-search`} />

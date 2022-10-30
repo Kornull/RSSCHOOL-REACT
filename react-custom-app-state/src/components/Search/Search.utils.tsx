@@ -1,4 +1,4 @@
-import React, { Reducer, ReducerAction, useReducer } from 'react';
+import { Reducer } from 'react';
 
 export enum TextActionKind {
   BREAKPOINT_ALL = 'all',
@@ -22,22 +22,18 @@ export const Inicialized: TextState = {
 };
 
 const reducerSearch: Reducer<TextState, TextAction> = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case TextActionKind.BREAKPOINT_ALL:
-      console.log('1', action.type);
       return {
         textKey: action.type,
         searchValue: action.valueSearch,
       };
     case TextActionKind.BREAKPOINT_STATUS:
-      console.log('2', action.type);
       return {
         textKey: action.type,
         searchValue: action.valueSearch,
       };
     case TextActionKind.BREAKPOINT_SPECIES:
-      console.log('3', action.type);
       return {
         textKey: action.type,
         searchValue: action.valueSearch,

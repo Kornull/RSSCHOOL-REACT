@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import Cards from './Cards';
-import { characterInfo } from './Card/Card.test';
 import userEvent from '@testing-library/user-event';
 
 test('render homepage cards', () => {

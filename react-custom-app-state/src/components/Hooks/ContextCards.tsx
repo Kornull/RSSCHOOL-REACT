@@ -32,11 +32,12 @@ export type formset = {
 };
 
 export type SearchSettings = {
-  state: formset;
-  dispatch: () => void;
+  stateSearch: formset;
+  dispatch: (data: formset) => void;
 };
-const InitialSearch: SearchSettings = {
-  state: {
+
+export const InitialSearch: SearchSettings = {
+  stateSearch: {
     type: 'all',
     valueSearch: '',
   },
@@ -55,7 +56,9 @@ export const InitialCards: CardsSettings = {
   setCards: () => {},
 };
 
-const SearchContext = createContext(InitialSearch);
+export const SearchContext = createContext(InitialSearch);
 
 export const ContextCard = createContext(InitialCards);
 export const useCardContext = () => useContext(ContextCard);
+
+export const useSearchContext = () => useContext(SearchContext);
