@@ -1,22 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Search from '../../components/Search';
 import Cards from '../../components/Cards';
 
-import { CardInfo, ContextCard } from 'components/Hooks/ContextCards';
+import { CardInfo, InItialState, useCardContext } from 'components/Hooks/ContextCards';
 import Load from '../../image/loading.gif';
 import { UrlApi } from '../../components/types/types';
 
 const HomePage = () => {
-  const [cards, setCards] = useState<CardInfo>({
-    info: {
-      count: 0,
-      pages: 0,
-      next: null,
-      prev: null,
-    },
-    results: [],
-  });
+  const { setCards } = useCardContext();
+
   const [isLoading, setLoading] = useState(true);
 
   const searchName = (name: string): Promise<void> => {
@@ -25,6 +18,9 @@ const HomePage = () => {
       .then((data: CardInfo) => {
         setCards(data);
         setLoading(false);
+      })
+      .catch(() => {
+        setCards(InItialState);
       });
   };
 
@@ -35,18 +31,12 @@ const HomePage = () => {
         setCards(data);
         setLoading(false);
       });
-  }, [cards]);
+  }, [setCards]);
 
   return (
     <>
       <Search searchName={searchName} />
-      <ContextCard.Provider value={{ cards, setCards }}>
-        {isLoading ? (
-          <img className="loading-gif" src={Load} alt="loading"></img>
-        ) : (
-          <Cards cardList={cards.results} />
-        )}
-      </ContextCard.Provider>
+      {isLoading ? <img className="loading-gif" src={Load} alt="loading"></img> : <Cards />}
     </>
   );
 };
