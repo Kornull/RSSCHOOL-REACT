@@ -1,20 +1,17 @@
+import { useCardContext } from 'components/Hooks/ContextCards';
 import React from 'react';
 
-import { AboutCard } from '../types/types';
 import Card from './Card';
 
 import styles from './Cards.module.scss';
 
-type CardsProps = {
-  cardList?: AboutCard[];
-};
-
-const Cards = (props: CardsProps) => {
-  const { cardList = [] } = props;
+const Cards = () => {
+  const { cards } = useCardContext();
+  const allCards = cards.results ? cards.results : [];
   return (
     <div className={styles.cardsBlock}>
-      {cardList.length ? (
-        cardList.map((card) => <Card key={card.id} {...card} />)
+      {allCards.length ? (
+        cards.results.map((card) => <Card key={card.id} {...card} />)
       ) : (
         <h3 data-testid="error-text">Nothing found</h3>
       )}

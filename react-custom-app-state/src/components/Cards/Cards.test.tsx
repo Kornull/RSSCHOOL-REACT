@@ -5,20 +5,20 @@ import { characterInfo } from './Card/Card.test';
 import userEvent from '@testing-library/user-event';
 
 test('render homepage cards', () => {
-  render(<Cards cardList={characterInfo} />);
+  render(<Cards />);
   expect(screen.getByRole('img')).toBeInTheDocument();
   expect(screen.getByText(/name/i)).toBeInTheDocument();
   expect(screen.getByText(/location/i)).toBeInTheDocument();
 });
 
 test('not render cards', () => {
-  render(<Cards cardList={undefined} />);
+  render(<Cards />);
   expect(screen.getByText(/nothing/i)).toBeInTheDocument();
 });
 
 describe('render card modal', () => {
   test('click card - return card modal', async () => {
-    render(<Cards cardList={characterInfo} />);
+    render(<Cards />);
 
     userEvent.click(screen.getByTestId('person-card'));
     await waitFor(() => {
@@ -29,7 +29,7 @@ describe('render card modal', () => {
 
 describe('close modal card', () => {
   test('modal element missing after button click', async () => {
-    render(<Cards cardList={characterInfo} />);
+    render(<Cards />);
 
     userEvent.click(screen.getByTestId('person-card'));
 
