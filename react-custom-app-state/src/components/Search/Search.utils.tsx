@@ -16,11 +16,6 @@ export type TextAction = {
   valueSearch: string;
 };
 
-export const Inicialized: TextState = {
-  textKey: 'all',
-  searchValue: '',
-};
-
 const reducerSearch: Reducer<TextState, TextAction> = (state, action) => {
   switch (action.type) {
     case TextActionKind.BREAKPOINT_ALL:

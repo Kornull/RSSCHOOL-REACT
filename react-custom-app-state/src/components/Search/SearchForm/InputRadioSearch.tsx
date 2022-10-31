@@ -1,11 +1,11 @@
-import { formset } from 'components/Hooks/ContextCards';
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
+import { FormDataType } from '../../Hooks';
 
 type A = {
   name: string;
-  searchButton: formset;
-  register: UseFormRegister<formset>;
+  searchButton: FormDataType;
+  register: UseFormRegister<FormDataType>;
 };
 const InputRadioSearch = ({ name, register, searchButton }: A) => {
   return (

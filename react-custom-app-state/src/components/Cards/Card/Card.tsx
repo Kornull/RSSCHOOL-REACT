@@ -4,11 +4,11 @@ import { AboutCard } from '../../types/types';
 
 import CardModal from '../../CardModal/CardModal';
 import styles from './Card.module.scss';
+import { useCardContext } from '../../Hooks/ContextCards';
 
 const Card = (props: AboutCard) => {
   const [personInfo, setPersonInfo] = useState<Array<AboutCard>>([]);
   const [modalCondition, setModalCondition] = useState(false);
-
   const handleClick = (): void => {
     setPersonInfo([props]);
     setModalCondition(true);

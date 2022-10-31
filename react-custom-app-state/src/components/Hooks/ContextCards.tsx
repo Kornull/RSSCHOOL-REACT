@@ -11,7 +11,7 @@ export type CardInfo = {
   results: AboutCard[];
 };
 
-export const InItialState: CardInfo = {
+export const InitialState: CardInfo = {
   info: {
     count: 0,
     pages: 0,
@@ -26,23 +26,6 @@ export type CardsSettings = {
   setCards: (data: CardInfo) => void;
 };
 
-export type formset = {
-  type: string;
-  valueSearch: string;
-};
-
-export type SearchSettings = {
-  stateSearch: formset;
-  dispatch: (data: formset) => void;
-};
-
-export const InitialSearch: SearchSettings = {
-  stateSearch: {
-    type: 'all',
-    valueSearch: '',
-  },
-  dispatch: () => {},
-};
 export const InitialCards: CardsSettings = {
   cards: {
     info: {
@@ -56,9 +39,5 @@ export const InitialCards: CardsSettings = {
   setCards: () => {},
 };
 
-export const SearchContext = createContext(InitialSearch);
-
 export const ContextCard = createContext(InitialCards);
 export const useCardContext = () => useContext(ContextCard);
-
-export const useSearchContext = () => useContext(SearchContext);

@@ -5,9 +5,8 @@ import styles from './Search.module.scss';
 import InputRadioSearch from './SearchForm/InputRadioSearch';
 import InputSearch from './SearchForm/InputSearch';
 
-import { formset, useSearchContext } from 'components/Hooks/ContextCards';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormDataType, useSearchContext } from '../Hooks/';
 
 enum LocalStoreKey {
   keyStorage = 'SearchValues',
@@ -15,20 +14,19 @@ enum LocalStoreKey {
 
 const Search = () => {
   const [searchTerm, setSearch] = useState('');
-  const { register, handleSubmit } = useForm<formset>({
+  const { register, handleSubmit } = useForm<FormDataType>({
     mode: 'onBlur',
   });
-  const { stateSearch, dispatch } = useSearchContext();
+  const { stateSearch, setStateSearch } = useSearchContext();
 
   const handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(searchTerm);
     event.preventDefault();
     setSearch(event.target.value);
   };
 
-  const onSubmit: SubmitHandler<formset> = (data) => {
+  const onSubmit: SubmitHandler<FormDataType> = (data) => {
     console.log(data);
-    dispatch(data);
+    setStateSearch({ ...stateSearch, ...data });
   };
 
   useEffect(() => {
@@ -41,6 +39,13 @@ const Search = () => {
   useEffect(() => {
     return localStorage.setItem(LocalStoreKey.keyStorage, searchTerm);
   }, [searchTerm]);
+
+  useEffect(() => {
+    setStateSearch({
+      ...stateSearch,
+      page: '1',
+    });
+  }, [stateSearch.type, stateSearch.valueSearch]);
 
   return (
     <div className={styles.search}>

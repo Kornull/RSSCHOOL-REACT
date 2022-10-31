@@ -4,21 +4,23 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
 import {
+  SearchContext,
+  FormDataType,
   CardInfo,
   ContextCard,
-  formset,
-  InItialState,
-  SearchContext,
-} from 'components/Hooks/ContextCards';
+  InitialState,
+  stateDataSearch,
+} from '../Hooks';
 
 const Layout = () => {
-  const [stateSearch, dispatch] = useState<formset>({ type: 'all', valueSearch: '' });
-  const [cards, setCards] = useState<CardInfo>(InItialState);
+  const [stateSearch, setStateSearch] = useState<FormDataType>(stateDataSearch);
+  const [cards, setCards] = useState<CardInfo>(InitialState);
+
   return (
     <>
       <Header />
       <main className="main container" data-testid="main-block">
-        <SearchContext.Provider value={{ stateSearch, dispatch }}>
+        <SearchContext.Provider value={{ stateSearch, setStateSearch }}>
           <ContextCard.Provider value={{ cards, setCards }}>
             <Outlet />
           </ContextCard.Provider>
