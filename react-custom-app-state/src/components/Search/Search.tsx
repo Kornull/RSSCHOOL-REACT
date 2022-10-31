@@ -25,7 +25,6 @@ const Search = () => {
   };
 
   const onSubmit: SubmitHandler<FormDataType> = (data) => {
-    console.log(data);
     setStateSearch({ ...stateSearch, ...data });
   };
 
@@ -55,10 +54,12 @@ const Search = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <InputSearch register={register} searchChange={handelChange} searchButton={searchTerm} />
-        <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
-        <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
-        <InputRadioSearch register={register} name="species" searchButton={stateSearch} />
-        <button type="submit">
+        <div className={styles.searchRadioBlock}>
+          <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
+          <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
+          <InputRadioSearch register={register} name="species" searchButton={stateSearch} />
+        </div>
+        <button type="submit" className={styles.searchButton}>
           <svg className={styles.searchIcon} data-testid="button-search">
             <use xlinkHref={`${IconSVG}#icon-search`} />
           </svg>
