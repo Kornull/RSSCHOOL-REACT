@@ -27,6 +27,7 @@ const Search = () => {
   };
 
   const onSubmit: SubmitHandler<formset> = (data) => {
+    console.log(data);
     dispatch(data);
   };
 

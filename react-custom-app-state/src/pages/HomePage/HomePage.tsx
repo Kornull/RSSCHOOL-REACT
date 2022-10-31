@@ -15,29 +15,27 @@ import { UrlApi } from '../../components/types/types';
 
 const HomePage = () => {
   const { setCards } = useCardContext();
-  const { stateSearch } = useSearchContext();
+  const { stateSearch, dispatch } = useSearchContext();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${UrlApi.LinkApi}?${stateSearch.type}=${stateSearch.valueSearch}`)
+    setLoading(true);
+    fetch(
+      `${UrlApi.LinkApi}?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
+        stateSearch.valueSearch
+      }`
+    )
       .then((response: Response) => response.json())
       .then((data: CardInfo) => {
         setCards(data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       })
       .catch(() => {
         setCards(InItialState);
       });
-  }, [setCards, stateSearch]);
-
-  useEffect(() => {
-    fetch(`${UrlApi.LinkApi}`)
-      .then((response: Response) => response.json())
-      .then((data: CardInfo) => {
-        setCards(data);
-        setLoading(false);
-      });
-  }, [setCards]);
+  }, [dispatch, setCards, stateSearch.type, stateSearch.valueSearch]);
 
   return (
     <>
