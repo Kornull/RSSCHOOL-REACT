@@ -35,7 +35,6 @@ const HomePage = () => {
     <>
       <Search />
       {Array.isArray(cards.results) && <Pagination />}
-
       {isLoading ? <img className="loading-gif" src={Load} alt="loading"></img> : <Cards />}
     </>
   );

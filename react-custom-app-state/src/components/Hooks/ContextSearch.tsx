@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react';
 export type FormDataType = {
   type: string;
   valueSearch: string;
+  searchCard: string;
   page: string;
 };
 
@@ -13,7 +14,8 @@ export type SearchSettings = {
 
 export const stateDataSearch: FormDataType = {
   type: 'all',
-  valueSearch: ' ',
+  valueSearch: '',
+  searchCard: '',
   page: '1',
 };
 

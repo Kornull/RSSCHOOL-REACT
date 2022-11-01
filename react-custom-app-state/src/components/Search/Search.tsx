@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
-import IconSVG from '../../image/icon-search.svg';
-import styles from './Search.module.scss';
 import InputRadioSearch from './SearchForm/InputRadioSearch';
 import InputSearch from './SearchForm/InputSearch';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormDataType, useSearchContext } from '../Hooks/';
+import InputSearchPage from './SearchForm/InputSearchPage';
+import ButtonSearch from './SearchForm/ButtonSearch';
+import ButtonSearchCard from './SearchForm/ButtonSearchCard';
+
+import styles from './Search.module.scss';
 
 enum LocalStoreKey {
   keyStorage = 'SearchValues',
 }
 
 const Search = () => {
+  const { stateSearch, setStateSearch } = useSearchContext();
   const [searchTerm, setSearch] = useState('');
+  const [searchCard, setSearchCard] = useState('');
   const { register, handleSubmit } = useForm<FormDataType>({
     mode: 'onBlur',
   });
-  const { stateSearch, setStateSearch } = useSearchContext();
 
   const handelChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setSearch(event.target.value);
+  };
+
+  const handelChangeCard = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setSearchCard(event.target.value);
+  };
+
+  const clearSearchCars = () => {
+    setStateSearch({
+      ...stateSearch,
+      searchCard: '',
+    });
+    setSearchCard('');
   };
 
   const onSubmit: SubmitHandler<FormDataType> = (data) => {
@@ -44,7 +60,7 @@ const Search = () => {
       ...stateSearch,
       page: '1',
     });
-  }, [stateSearch.type, stateSearch.valueSearch]);
+  }, [stateSearch.searchCard, stateSearch.type, stateSearch.valueSearch]);
 
   return (
     <div className={styles.search}>
@@ -53,17 +69,19 @@ const Search = () => {
         data-testid="form-search"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <InputSearch register={register} searchChange={handelChange} searchButton={searchTerm} />
+        <InputSearch searchChange={handelChange} searchButton={searchTerm} register={register} />
+        <InputSearchPage
+          searchChange={handelChangeCard}
+          searchButton={searchCard}
+          register={register}
+        />
         <div className={styles.searchRadioBlock}>
           <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
           <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
           <InputRadioSearch register={register} name="species" searchButton={stateSearch} />
         </div>
-        <button type="submit" className={styles.searchButton}>
-          <svg className={styles.searchIcon} data-testid="button-search">
-            <use xlinkHref={`${IconSVG}#icon-search`} />
-          </svg>
-        </button>
+        <ButtonSearch clickButton={clearSearchCars} />
+        <ButtonSearchCard />
       </form>
     </div>
   );

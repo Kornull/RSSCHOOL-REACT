@@ -6,6 +6,7 @@ export type PageAction = {
   type: string;
   page: string;
   valueSearch: string;
+  searchCard: string;
 };
 
 enum PageRun {
