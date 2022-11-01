@@ -58,7 +58,6 @@ const Search = () => {
   useEffect(() => {
     setStateSearch({
       ...stateSearch,
-      page: '1',
     });
   }, [stateSearch.searchCard, stateSearch.type, stateSearch.valueSearch]);
 

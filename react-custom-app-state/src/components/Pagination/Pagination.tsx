@@ -15,7 +15,7 @@ const Pagination = () => {
       type: state.type,
       valueSearch: state.valueSearch,
       page: state.page,
-      searchCard: state.searchCard,
+      searchCard: '',
     });
   }, [setStateSearch, state.page, state.type, state.valueSearch]);
 

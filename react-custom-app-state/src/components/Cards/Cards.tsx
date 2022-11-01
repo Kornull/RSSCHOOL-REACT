@@ -19,16 +19,12 @@ const Cards = () => {
   useEffect(() => {
     if (Array.isArray(cards.results)) {
       if (newCards.length && stateSearch.searchCard.length) {
-        newCards = [];
-        cards.results.forEach((card) => {
-          if (card.name.toLowerCase().includes(stateSearch.searchCard.toLowerCase())) {
-            newCards.push(card);
-          }
-        });
+        newCards = cards.results.filter((card) =>
+          card.name.toLowerCase().includes(stateSearch.searchCard.toLowerCase())
+        );
         setSortCard(newCards);
       } else {
-        newCards = [];
-        cards.results.forEach((card) => newCards.push(card));
+        newCards = cards.results.map((card) => card);
       }
     }
     return () => setSortCard(newCards);
