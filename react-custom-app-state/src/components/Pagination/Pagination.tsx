@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 
 import { useCardContext, useSearchContext } from '../Hooks';
-import { ReducerButton } from './ReducerButton';
+import { ReducerButton } from './Pagination.utils';
 
 import styles from './Pagination.module.scss';
 

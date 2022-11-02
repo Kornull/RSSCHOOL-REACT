@@ -5,7 +5,7 @@ import PersonList from './PersonList/PersonList';
 
 import styles from './PersonCard.module.scss';
 
-enum ModalCardClose {
+enum PersonClose {
   closeId = 'modal-close',
 }
 
@@ -22,11 +22,12 @@ const PersonCard = ({ personInfo, modalCondition, onClickModal }: ModalProps) =>
     if (element.id) onClickModal(!modalCondition);
   };
 
+  const renderPersonCard = () => {};
   return (
     <div
-      className={styles.modal}
+      className={styles.person}
       onClick={handleClick}
-      id={ModalCardClose.closeId}
+      id={PersonClose.closeId}
       data-testid="modal-card"
     >
       <div className={styles.personCard} data-testid="describe-card">
@@ -46,7 +47,7 @@ const PersonCard = ({ personInfo, modalCondition, onClickModal }: ModalProps) =>
         <button
           className={styles.personClose}
           onClick={handleClick}
-          id={ModalCardClose.closeId}
+          id={PersonClose.closeId}
           data-testid="close-modal-card"
         ></button>
       </div>

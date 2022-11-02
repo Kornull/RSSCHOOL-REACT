@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 
 import { AboutCard } from '../../types/types';
+import PersonCard from '../../PersonCard/PersonCard';
 
-import CardModal from '../../PersonCard/PersonCard';
 import styles from './Card.module.scss';
-import { useCardContext } from '../../Hooks/ContextCards';
 
 const Card = (props: AboutCard) => {
   const [personInfo, setPersonInfo] = useState<Array<AboutCard>>([]);
-  const [modalCondition, setModalCondition] = useState(false);
+  const [personCondition, setPersonCondition] = useState(false);
   const handleClick = (): void => {
     setPersonInfo([props]);
-    setModalCondition(true);
+    setPersonCondition(true);
   };
 
   const handleClickModal = (stateModal: boolean): void => {
-    setModalCondition(stateModal);
+    setPersonCondition(stateModal);
   };
 
   return (
@@ -50,10 +49,10 @@ const Card = (props: AboutCard) => {
             </li>
           </ul>
         </div>
-        {modalCondition && (
-          <CardModal
+        {personCondition && (
+          <PersonCard
             personInfo={personInfo}
-            modalCondition={modalCondition}
+            personCondition={personCondition}
             onClickModal={handleClickModal}
           />
         )}
