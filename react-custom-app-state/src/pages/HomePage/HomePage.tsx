@@ -11,7 +11,7 @@ import Pagination from '../../components/Pagination';
 
 const HomePage = () => {
   const { cards, setCards } = useCardContext();
-  const { stateSearch, setStateSearch } = useSearchContext();
+  const { stateSearch } = useSearchContext();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,12 +24,15 @@ const HomePage = () => {
       .then((response: Response) => response.json())
       .then((data: CardInfo) => {
         setLoading(false);
-        setCards(data);
+        setCards({
+          ...cards,
+          ...data,
+        });
       })
       .catch(() => {
         setCards(InitialState);
       });
-  }, [setStateSearch, setCards, stateSearch.type, stateSearch.valueSearch, stateSearch.page]);
+  }, [stateSearch.type, stateSearch.valueSearch, stateSearch.page]);
 
   return (
     <>

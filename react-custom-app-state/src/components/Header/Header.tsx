@@ -15,12 +15,12 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className={styles.headerPageLink} end to="/about">
+              <NavLink className={styles.headerPageLink} end to="about">
                 About us
               </NavLink>
             </li>
             <li>
-              <NavLink className={styles.headerPageLink} end to="/user-form">
+              <NavLink className={styles.headerPageLink} end to="user-form">
                 Form
               </NavLink>
             </li>

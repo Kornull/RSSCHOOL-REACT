@@ -9,6 +9,8 @@ export type CardInfo = {
     prev: string | null;
   };
   results: AboutCard[];
+  viewPersonCard: boolean;
+  personId: string;
 };
 
 export const InitialState: CardInfo = {
@@ -19,6 +21,8 @@ export const InitialState: CardInfo = {
     prev: null,
   },
   results: [],
+  viewPersonCard: false,
+  personId: '',
 };
 
 export type CardsSettings = {
@@ -35,6 +39,8 @@ export const InitialCards: CardsSettings = {
       prev: null,
     },
     results: [],
+    viewPersonCard: false,
+    personId: '',
   },
   setCards: () => {},
 };
