@@ -2,12 +2,12 @@
   position: relative;
   width: 250px;
   border: 2px solid #65c5dc;
-  min-height: 400px;
+  min-height: 510px;
   border-radius: 15px;
   overflow: hidden;
   background-color: #417885;
   box-shadow: 0 0 15px #35636e;
-  padding-bottom: 15px;
+  //padding-bottom: px;
   transition: box-shadow .2s linear, border-bottom-left-radius .1s ease-out;
 
   &:hover {
