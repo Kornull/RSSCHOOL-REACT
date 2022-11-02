@@ -58,8 +58,15 @@ const Search = () => {
   useEffect(() => {
     setStateSearch({
       ...stateSearch,
+      page: '1',
     });
-  }, [stateSearch.searchCard, stateSearch.type, stateSearch.valueSearch]);
+  }, [stateSearch.type, stateSearch.valueSearch]);
+
+  useEffect(() => {
+    setStateSearch({
+      ...stateSearch,
+    });
+  }, [stateSearch.searchCard]);
 
   return (
     <div className={styles.search}>

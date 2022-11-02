@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { AboutCard } from '../../types/types';
 
-import CardModal from '../../CardModal/CardModal';
+import CardModal from '../../PersonCard/PersonCard';
 import styles from './Card.module.scss';
 import { useCardContext } from '../../Hooks/ContextCards';
 
