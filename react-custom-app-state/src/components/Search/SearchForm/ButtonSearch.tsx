@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from '../Search.module.scss';
+
 import IconSVG from '../../../image/icon-search.svg';
+import styles from '../Search.module.scss';
 
 type ButtonClick = {
   clickButton: () => void;

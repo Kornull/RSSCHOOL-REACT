@@ -10,6 +10,7 @@ const Header = () => {
   const handleClick = () => {
     cards.viewPersonCard = false;
   };
+
   return (
     <header className={styles.header} data-testid="header-component">
       <div className={styles.headerContainer}>

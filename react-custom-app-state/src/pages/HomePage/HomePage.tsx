@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { CardInfo, InitialState, useCardContext, useSearchContext } from '../../components/Hooks';
 
 import Search from '../../components/Search';
 import Cards from '../../components/Cards';
 import Pagination from '../../components/Pagination';
-
-import { CardInfo, InitialState, useCardContext, useSearchContext } from '../../components/Hooks';
 
 import Load from '../../image/loading.gif';
 import { ENDPOINTS } from '../../components/types/types';

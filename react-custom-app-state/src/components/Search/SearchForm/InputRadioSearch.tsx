@@ -3,12 +3,12 @@ import { UseFormRegister } from 'react-hook-form';
 import { FormDataType } from '../../Hooks';
 import styles from '../Search.module.scss';
 
-type A = {
+type InputSearchData = {
   name: string;
   searchButton: FormDataType;
   register: UseFormRegister<FormDataType>;
 };
-const InputRadioSearch = ({ name, register, searchButton }: A) => {
+const InputRadioSearch = ({ name, register, searchButton }: InputSearchData) => {
   return (
     <>
       <label htmlFor={name}>
@@ -25,4 +25,5 @@ const InputRadioSearch = ({ name, register, searchButton }: A) => {
     </>
   );
 };
+
 export default InputRadioSearch;

@@ -18,6 +18,7 @@ const Pagination = () => {
       searchCard: '',
     });
   }, [setStateSearch, state.page, state.type, state.valueSearch]);
+
   return (
     <>
       {cards.results.length ? (

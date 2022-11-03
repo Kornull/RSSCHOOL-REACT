@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { FormInputsProps } from '../../types/types';
-
 import { RegExpEmailValidation } from '../../template/constants';
 
 import styles from '../Form.module.scss';
