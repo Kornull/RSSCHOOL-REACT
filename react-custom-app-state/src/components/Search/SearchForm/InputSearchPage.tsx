@@ -13,7 +13,7 @@ const InputSearchPage = ({ searchChange, searchButton, register }: SearchProps) 
   return (
     <>
       <input
-        className={styles.searchInput}
+        className={styles.searchInputCard}
         data-testid="search-cards"
         value={searchButton}
         type="text"
