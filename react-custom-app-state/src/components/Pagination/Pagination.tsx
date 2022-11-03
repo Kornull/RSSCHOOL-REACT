@@ -18,34 +18,35 @@ const Pagination = () => {
       searchCard: '',
     });
   }, [setStateSearch, state.page, state.type, state.valueSearch]);
-
   return (
     <>
-      <div className={styles.pagination}>
-        <button
-          className={styles.paginationButtons}
-          onClick={() => dispatch({ ...stateSearch, typeClick: 'prev' })}
-          disabled={+stateSearch.page === 1}
-        >
-          {'<<'}
-        </button>
-        <div className={styles.paginationPage}>
-          {+stateSearch.page === +cards.info.pages ? (
-            <span>{stateSearch.page}</span>
-          ) : (
-            <span>
-              {stateSearch.page}...{cards.info.pages}
-            </span>
-          )}
+      {cards.results.length ? (
+        <div className={styles.pagination}>
+          <button
+            className={styles.paginationButtons}
+            onClick={() => dispatch({ ...stateSearch, typeClick: 'prev' })}
+            disabled={+stateSearch.page === 1}
+          >
+            {'<<'}
+          </button>
+          <div className={styles.paginationPage}>
+            {+stateSearch.page === +cards.info.pages ? (
+              <span>{stateSearch.page}</span>
+            ) : (
+              <span>
+                {stateSearch.page}...{cards.info.pages}
+              </span>
+            )}
+          </div>
+          <button
+            className={styles.paginationButtons}
+            onClick={() => dispatch({ ...stateSearch, typeClick: 'next' })}
+            disabled={+stateSearch.page === +cards.info.pages}
+          >
+            {'>>'}
+          </button>
         </div>
-        <button
-          className={styles.paginationButtons}
-          onClick={() => dispatch({ ...stateSearch, typeClick: 'next' })}
-          disabled={+stateSearch.page === +cards.info.pages}
-        >
-          {'>>'}
-        </button>
-      </div>
+      ) : null}
     </>
   );
 };

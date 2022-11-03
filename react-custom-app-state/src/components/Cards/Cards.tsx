@@ -2,10 +2,10 @@ import { useCardContext } from 'components/Hooks/ContextCards';
 import React, { useEffect, useState } from 'react';
 
 import Card from './Card';
-
-import styles from './Cards.module.scss';
 import { useSearchContext } from '../Hooks';
 import { AboutCard } from '../types/types';
+
+import styles from './Cards.module.scss';
 
 let newCards: AboutCard[] = [];
 
@@ -14,21 +14,18 @@ const Cards = () => {
   const { stateSearch } = useSearchContext();
   const [sortCard, setSortCard] = useState<AboutCard[]>([]);
 
-  newCards = cards.results ? cards.results : [];
-
   useEffect(() => {
+    newCards = [];
     if (Array.isArray(cards.results)) {
-      if (newCards.length && stateSearch.searchCard.length) {
+      setSortCard(cards.results);
+      if (!newCards.length && stateSearch.searchCard.length) {
         newCards = cards.results.filter((card) =>
           card.name.toLowerCase().includes(stateSearch.searchCard.toLowerCase())
         );
         setSortCard(newCards);
-      } else {
-        newCards = cards.results.map((card) => card);
       }
     }
-    return () => setSortCard(newCards);
-  }, [cards.results, stateSearch.searchCard]);
+  }, [cards.results, stateSearch.searchCard, stateSearch.valueSearch]);
 
   return (
     <div className={styles.cardsBlock}>

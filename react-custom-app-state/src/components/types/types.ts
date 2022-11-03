@@ -1,4 +1,4 @@
-import { FieldError, FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { FieldError, UseFormRegister } from 'react-hook-form';
 import { StateFormUser } from '../Form/Form';
 
 export type AboutCard = {
@@ -22,15 +22,8 @@ export type AboutCard = {
   created?: string;
 };
 
-export type StatePerson = {
-  infoPerson: AboutCard[];
-  modalCondition: boolean;
-  cards?: AboutCard[];
-  loading?: boolean;
-};
-
-export enum UrlApi {
-  LinkApi = 'https://rickandmortyapi.com/api/character/',
+export enum ENDPOINTS {
+  character = 'https://rickandmortyapi.com/api/character/',
 }
 
 export type FormInputsProps = {

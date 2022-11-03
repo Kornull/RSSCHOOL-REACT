@@ -88,11 +88,10 @@
       border: none;
       border-radius: 50%;
       @media (max-width: 498px) {
-      right: 10%;
-    }
+        right: 10%;
+      }
     }
   }
-
 
   &RadioBlock {
     display: flex;

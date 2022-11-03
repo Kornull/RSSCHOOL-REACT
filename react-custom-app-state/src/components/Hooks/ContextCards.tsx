@@ -11,6 +11,7 @@ export type CardInfo = {
   results: AboutCard[];
   viewPersonCard: boolean;
   personId: string;
+  error?: string;
 };
 
 export const InitialState: CardInfo = {

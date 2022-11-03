@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import InputRadioSearch from './SearchForm/InputRadioSearch';
 import InputSearch from './SearchForm/InputSearch';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { FormDataType, useSearchContext } from '../Hooks/';
 import InputSearchPage from './SearchForm/InputSearchPage';
 import ButtonSearch from './SearchForm/ButtonSearch';
 import ButtonSearchCard from './SearchForm/ButtonSearchCard';
+import { FormDataType, useSearchContext } from '../Hooks/';
 
 import styles from './Search.module.scss';
-
-enum LocalStoreKey {
-  keyStorage = 'SearchValues',
-}
 
 const Search = () => {
   const { stateSearch, setStateSearch } = useSearchContext();
@@ -35,7 +31,7 @@ const Search = () => {
   const clearSearchCars = () => {
     setStateSearch({
       ...stateSearch,
-      searchCard: '',
+      searchCard,
     });
     setSearchCard('');
   };
@@ -43,17 +39,6 @@ const Search = () => {
   const onSubmit: SubmitHandler<FormDataType> = (data) => {
     setStateSearch({ ...stateSearch, ...data });
   };
-
-  useEffect(() => {
-    const value = localStorage.getItem(LocalStoreKey.keyStorage);
-
-    if (value) setSearch(value);
-    return localStorage.setItem(LocalStoreKey.keyStorage, '');
-  }, []);
-
-  useEffect(() => {
-    return localStorage.setItem(LocalStoreKey.keyStorage, searchTerm);
-  }, [searchTerm]);
 
   useEffect(() => {
     setStateSearch({
@@ -65,6 +50,7 @@ const Search = () => {
   useEffect(() => {
     setStateSearch({
       ...stateSearch,
+      searchCard,
     });
   }, [stateSearch.searchCard]);
 
@@ -81,6 +67,7 @@ const Search = () => {
           searchButton={searchCard}
           register={register}
         />
+        {}
         <div className={styles.searchRadioBlock}>
           <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
           <InputRadioSearch register={register} name="status" searchButton={stateSearch} />

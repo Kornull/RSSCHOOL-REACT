@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import Search from '../../components/Search';
 import Cards from '../../components/Cards';
+import Pagination from '../../components/Pagination';
 
 import { CardInfo, InitialState, useCardContext, useSearchContext } from '../../components/Hooks';
 
 import Load from '../../image/loading.gif';
-import { UrlApi } from '../../components/types/types';
-import Pagination from '../../components/Pagination';
+import { ENDPOINTS } from '../../components/types/types';
 
 const HomePage = () => {
   const { cards, setCards } = useCardContext();
@@ -17,21 +17,22 @@ const HomePage = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `${UrlApi.LinkApi}?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
+      `${ENDPOINTS.character}?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
         stateSearch.valueSearch
       }&page=${stateSearch.page}`
     )
       .then((response: Response) => response.json())
       .then((data: CardInfo) => {
-        setLoading(false);
-        setCards({
-          ...cards,
-          ...data,
-        });
-      })
-      .catch(() => {
-        setCards(InitialState);
+        if (data.error?.length) {
+          return setCards(InitialState);
+        } else {
+          setCards({
+            ...cards,
+            ...data,
+          });
+        }
       });
+    setLoading(false);
   }, [stateSearch.type, stateSearch.valueSearch, stateSearch.page]);
 
   return (

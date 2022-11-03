@@ -1,12 +1,12 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import HomePage from './HomePage';
-import { UrlApi } from '../../components/types/types';
+import { ENDPOINTS } from '../../components/types/types';
 import userEvent from '@testing-library/user-event';
 
 describe('render cards on first page entry', () => {
   test('error fetch', async () => {
-    const res = await fetch(`${UrlApi.LinkApi}`);
+    const res = await fetch(`${ENDPOINTS.character}`);
     const result = await res.json();
     expect.assertions(0);
     try {
