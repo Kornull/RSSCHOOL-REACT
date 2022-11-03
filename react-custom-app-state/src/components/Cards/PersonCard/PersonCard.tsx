@@ -12,12 +12,16 @@ enum PersonClose {
 }
 
 const PersonCard = () => {
-  const { cards } = useCardContext();
+  const { cards, setCards } = useCardContext();
   const navigate = useNavigate();
 
   const handleClick = (ev: React.MouseEvent<HTMLButtonElement>): void => {
     ev.stopPropagation();
     navigate(-1);
+    setCards({
+      ...cards,
+      viewPersonCard: false,
+    });
   };
 
   const personInfo = cards.results!.find(

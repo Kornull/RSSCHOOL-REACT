@@ -30,6 +30,7 @@ const App = () => {
       navigate('/');
     }
   }, [location.pathname]);
+
   return (
     <div className="App">
       <SearchContext.Provider value={{ stateSearch, setStateSearch }}>

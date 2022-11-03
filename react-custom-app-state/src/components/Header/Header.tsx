@@ -2,8 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.scss';
+import { useCardContext } from '../Hooks';
 
 const Header = () => {
+  const { cards } = useCardContext();
   return (
     <header className={styles.header} data-testid="header-component">
       <div className={styles.headerContainer}>
@@ -24,6 +26,13 @@ const Header = () => {
                 Form
               </NavLink>
             </li>
+            {cards.viewPersonCard && (
+              <li>
+                <NavLink className={styles.headerPageLink} end to={`person-${cards.personId}`}>
+                  Person
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
