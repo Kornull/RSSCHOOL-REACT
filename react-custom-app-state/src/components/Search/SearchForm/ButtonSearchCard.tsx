@@ -7,7 +7,7 @@ const ButtonSearchCard = () => {
   return (
     <>
       <button type="submit" className={styles.searchButtonCard}>
-        <svg className={styles.searchIconCard} data-testid="button-search">
+        <svg className={styles.searchIconCard} data-testid="button-search-card">
           <use xlinkHref={`${IconSVG}#icon-search`} />
         </svg>
       </button>

@@ -1,8 +1,9 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import HomePage from './HomePage';
 import { ENDPOINTS } from '../../components/types/types';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter } from 'react-router-dom';
+import App from 'components/App';
 
 describe('render cards on first page entry', () => {
   test('error fetch', async () => {
@@ -19,18 +20,41 @@ describe('render cards on first page entry', () => {
 
 describe('render components on home page', () => {
   test(' if returned data from API rendered into component', async () => {
-    render(<HomePage />);
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
 
     await waitFor(() => {
       expect(screen.getByText(/sanchez/i)).toBeInTheDocument();
     });
   });
 });
+
 describe('render components on home page', () => {
   test('user click search panel', async () => {
-    render(<HomePage />);
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
     userEvent.type(screen.getByTestId('search-cards'), 'morty');
     userEvent.click(screen.getByTestId('button-search'));
+    await waitFor(() => {
+      const subTitle = screen.getAllByText(/morty/i);
+      expect(subTitle[0]).toBeInTheDocument();
+    });
+  });
+
+  test('user click search parameter card', async () => {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+    userEvent.type(screen.getByTestId('search-cards-page'), 'morty');
+    userEvent.click(screen.getByTestId('button-search-card'));
     await waitFor(() => {
       const subTitle = screen.getAllByText(/morty/i);
       expect(subTitle[0]).toBeInTheDocument();

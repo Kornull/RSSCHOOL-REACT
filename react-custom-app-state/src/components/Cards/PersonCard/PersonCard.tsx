@@ -1,11 +1,11 @@
 import React from 'react';
-import { AboutCard } from '../../types/types';
 
 import PersonList from './PersonList/PersonList';
 
 import styles from './PersonCard.module.scss';
 import { useCardContext } from '../../Hooks';
 import { useNavigate } from 'react-router-dom';
+import { AboutCard } from 'components/types/types';
 
 enum PersonClose {
   closeId = 'modal-close',
@@ -48,7 +48,7 @@ const PersonCard = () => {
           className={styles.personClose}
           onClick={handleClick}
           id={PersonClose.closeId}
-          data-testid="close-modal-card"
+          data-testid="close-person"
         >
           Back
         </button>
@@ -57,4 +57,4 @@ const PersonCard = () => {
   );
 };
 
-export default React.memo(PersonCard);
+export default PersonCard;

@@ -14,7 +14,7 @@ const InputSearchPage = ({ searchChange, searchButton, register }: SearchProps) 
     <>
       <input
         className={styles.searchInputCard}
-        data-testid="search-cards"
+        data-testid="search-cards-page"
         value={searchButton}
         type="text"
         {...register('searchCard', { required: false, onChange: searchChange })}

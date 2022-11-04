@@ -67,8 +67,7 @@ const Search = () => {
           searchButton={searchCard}
           register={register}
         />
-        {}
-        <div className={styles.searchRadioBlock}>
+        <div className={styles.searchRadioBlock} data-testid="radio-search">
           <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
           <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
           <InputRadioSearch register={register} name="species" searchButton={stateSearch} />

@@ -19,7 +19,12 @@ const Card = (props: AboutCard) => {
 
   return (
     <>
-      <Link to={`person-${props.id}`} onClick={handleClick} id={`${props.id}`}>
+      <Link
+        to={`person-${props.id}`}
+        onClick={handleClick}
+        id={`${props.id}`}
+        data-testid="person-card-link"
+      >
         <div id={`${props.id}`} className={styles.card} data-testid="person-card">
           <div className={styles.cardImage}>
             <img className={styles.cardImage} src={props.image} alt={props.name} />

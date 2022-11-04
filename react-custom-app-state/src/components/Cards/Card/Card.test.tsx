@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Card from './Card';
 
 export const characterInfo = [
@@ -29,17 +30,19 @@ export const characterInfo = [
 ];
 
 describe('render card character', () => {
-  test('displaying fields in a card', () => {
-    render(<Card {...characterInfo[0]} />);
-    expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].name);
-    expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].species);
-    expect(screen.getByTestId('person-card')).not.toHaveTextContent(characterInfo[0].status);
-    expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(screen.getByRole('list')).toBeInTheDocument();
-  });
+  test('displaying fields in a card', async () => {
+    render(
+      <BrowserRouter>
+        <Card {...characterInfo[0]} />
+      </BrowserRouter>
+    );
 
-  test('checking what you output if the location field is undefined', () => {
-    render(<Card {...characterInfo[0]} location={undefined} />);
-    expect(screen.getByText('unknown')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].name);
+      expect(screen.getByTestId('person-card')).toHaveTextContent(characterInfo[0].species);
+      expect(screen.getByTestId('person-card')).not.toHaveTextContent(characterInfo[0].status);
+      expect(screen.getByRole('img')).toBeInTheDocument();
+      expect(screen.getByRole('list')).toBeInTheDocument();
+    });
   });
 });

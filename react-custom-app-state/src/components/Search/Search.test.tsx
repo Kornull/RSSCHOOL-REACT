@@ -49,19 +49,13 @@ describe('data is writing and deleting in to local storage', () => {
     localStorageMock.clear();
     expect(localStorage.getItem(idLocal)).toBe(undefined);
   });
-  test('text returns to input from localstorage', () => {
-    render(<Search />);
-    setLocalStorage(idLocal, textInput);
-    expect(localStorage.getItem(idLocal)).toEqual(JSON.stringify(textInput));
-    userEvent.type(screen.getByRole('textbox'), `${textInput}`);
-  });
 });
 
 describe('create form element Search in main page', () => {
   test('app has search form', () => {
     render(<Search />);
     expect(screen.getByTestId('form-search')).toBeInTheDocument();
-    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByTestId('radio-search')).toBeInTheDocument();
   });
   test('displaying the search cards on the main page when entering a request', () => {
     render(<Search />);

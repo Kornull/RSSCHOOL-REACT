@@ -32,7 +32,7 @@ const Header = () => {
               </NavLink>
             </li>
             {cards.viewPersonCard && (
-              <li>
+              <li data-testid="link-person">
                 <NavLink className={styles.headerPageLink} end to={`person-${cards.personId}`}>
                   Person
                 </NavLink>

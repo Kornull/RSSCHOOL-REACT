@@ -22,19 +22,20 @@ const Pagination = () => {
   return (
     <>
       {cards.results.length ? (
-        <div className={styles.pagination}>
+        <div className={styles.pagination} data-testid="search-pagination">
           <button
             className={styles.paginationButtons}
             onClick={() => dispatch({ ...stateSearch, typeClick: 'prev' })}
             disabled={+stateSearch.page === 1}
+            data-testid="test-btn-prev"
           >
             {'<<'}
           </button>
           <div className={styles.paginationPage}>
             {+stateSearch.page === +cards.info.pages ? (
-              <span>{stateSearch.page}</span>
+              <span data-testid="number-page">{stateSearch.page}</span>
             ) : (
-              <span>
+              <span data-testid="number-pages">
                 {stateSearch.page}...{cards.info.pages}
               </span>
             )}
@@ -43,6 +44,7 @@ const Pagination = () => {
             className={styles.paginationButtons}
             onClick={() => dispatch({ ...stateSearch, typeClick: 'next' })}
             disabled={+stateSearch.page === +cards.info.pages}
+            data-testid="test-btn-next"
           >
             {'>>'}
           </button>
