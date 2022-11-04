@@ -28,7 +28,7 @@ const Search = () => {
     setSearchCard(event.target.value);
   };
 
-  const clearSearchCars = () => {
+  const clearSearchCars = (): void => {
     setStateSearch({
       ...stateSearch,
       searchCard,

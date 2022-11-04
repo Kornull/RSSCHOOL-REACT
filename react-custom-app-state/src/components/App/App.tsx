@@ -29,7 +29,7 @@ const App = () => {
     if (location.pathname.includes('person') && !cards.personId) {
       navigate('/');
     }
-  }, [location.pathname]);
+  }, [cards.personId, location.pathname, navigate]);
 
   return (
     <div className="App">

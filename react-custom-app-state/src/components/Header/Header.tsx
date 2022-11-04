@@ -8,7 +8,7 @@ import styles from './Header.module.scss';
 const Header = () => {
   const { cards } = useCardContext();
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     cards.viewPersonCard = false;
   };
 
