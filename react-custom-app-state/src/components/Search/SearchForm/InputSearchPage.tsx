@@ -18,7 +18,7 @@ const InputSearchPage = ({ searchChange, searchButton, register }: SearchProps) 
         value={searchButton}
         type="text"
         {...register('searchCard', { required: false, onChange: searchChange })}
-        placeholder="Search card..."
+        placeholder="Page search..."
         autoComplete="off"
       />
     </>

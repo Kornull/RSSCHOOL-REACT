@@ -10,7 +10,12 @@ type ButtonClick = {
 const ButtonSearch = ({ clickButton }: ButtonClick) => {
   return (
     <>
-      <button type="submit" className={styles.searchButton} onClick={clickButton}>
+      <button
+        type="submit"
+        className={styles.searchButton}
+        onClick={clickButton}
+        title="search name"
+      >
         <svg className={styles.searchIcon} data-testid="button-search">
           <use xlinkHref={`${IconSVG}#icon-search`} />
         </svg>

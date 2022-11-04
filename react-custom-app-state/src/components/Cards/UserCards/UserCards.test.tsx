@@ -3,7 +3,6 @@ import React from 'react';
 import UserCards from './UserCards';
 
 import { userCardDefaultProps } from './UserCard/UserCard.test';
-import Cards from '../Cards';
 
 describe('Cards', () => {
   test('render user cards', () => {

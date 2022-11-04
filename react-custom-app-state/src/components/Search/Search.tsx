@@ -68,9 +68,24 @@ const Search = () => {
           register={register}
         />
         <div className={styles.searchRadioBlock} data-testid="radio-search">
-          <InputRadioSearch register={register} name="all" searchButton={stateSearch} />
-          <InputRadioSearch register={register} name="status" searchButton={stateSearch} />
-          <InputRadioSearch register={register} name="species" searchButton={stateSearch} />
+          <InputRadioSearch
+            register={register}
+            name="all"
+            searchButton={stateSearch}
+            statusSearch="name"
+          />
+          <InputRadioSearch
+            register={register}
+            name="status"
+            searchButton={stateSearch}
+            statusSearch="dead or alive"
+          />
+          <InputRadioSearch
+            register={register}
+            name="species"
+            searchButton={stateSearch}
+            statusSearch="species"
+          />
         </div>
         <ButtonSearch clickButton={clearSearchCars} />
         <ButtonSearchCard />

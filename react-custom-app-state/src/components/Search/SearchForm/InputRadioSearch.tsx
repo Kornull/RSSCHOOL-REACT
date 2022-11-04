@@ -7,8 +7,10 @@ type InputSearchData = {
   name: string;
   searchButton: FormDataType;
   register: UseFormRegister<FormDataType>;
+  statusSearch: string;
 };
-const InputRadioSearch = ({ name, register, searchButton }: InputSearchData) => {
+
+const InputRadioSearch = ({ name, register, searchButton, statusSearch }: InputSearchData) => {
   return (
     <>
       <label htmlFor={name}>
@@ -20,6 +22,7 @@ const InputRadioSearch = ({ name, register, searchButton }: InputSearchData) => 
           type="radio"
           value={name}
           defaultChecked={name === searchButton.type}
+          title={statusSearch}
         />
       </label>
     </>
