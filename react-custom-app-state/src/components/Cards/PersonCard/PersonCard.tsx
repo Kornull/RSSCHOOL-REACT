@@ -1,11 +1,11 @@
 import React from 'react';
-
-import PersonList from './PersonList/PersonList';
-
-import styles from './PersonCard.module.scss';
 import { useCardContext } from '../../Hooks';
 import { useNavigate } from 'react-router-dom';
+
+import PersonList from './PersonList/PersonList';
 import { AboutCard } from 'components/types/types';
+
+import styles from './PersonCard.module.scss';
 
 enum PersonClose {
   closeId = 'modal-close',
