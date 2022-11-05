@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 
 import { useCardContext, useSearchContext } from '../Hooks';
 import { ReducerButton } from './Pagination.utils';
+import { ViewNumOfPages } from './PaginationComponents/ViewNumOfPages';
 
 import styles from './Pagination.module.scss';
 
@@ -31,15 +32,7 @@ const Pagination = () => {
           >
             {'<<'}
           </button>
-          <div className={styles.paginationPage}>
-            {+stateSearch.page === +cards.info.pages ? (
-              <span data-testid="number-page">{stateSearch.page}</span>
-            ) : (
-              <span data-testid="number-pages">
-                {stateSearch.page}...{cards.info.pages}
-              </span>
-            )}
-          </div>
+          <ViewNumOfPages cards={cards} stateSearch={stateSearch} />
           <button
             className={styles.paginationButtons}
             onClick={() => dispatch({ ...stateSearch, typeClick: 'next' })}

@@ -57,7 +57,7 @@ describe('create form element Search in main page', () => {
     expect(screen.getByTestId('form-search')).toBeInTheDocument();
     expect(screen.getByTestId('radio-search')).toBeInTheDocument();
   });
-  test('displaying the search cards on the main page when entering a request', () => {
+  test('should display cards if you enter a name of the person', () => {
     render(<Search />);
     expect(screen.getByTestId('search-cards')).toBeInTheDocument();
   });

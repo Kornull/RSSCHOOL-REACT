@@ -17,12 +17,13 @@ const Cards = () => {
   useEffect(() => {
     newCards = [];
     if (Array.isArray(cards.results)) {
-      setSortCard(cards.results);
       if (!newCards.length && stateSearch.searchCard.length) {
         newCards = cards.results.filter((card) =>
           card.name.toLowerCase().includes(stateSearch.searchCard.toLowerCase())
         );
         setSortCard(newCards);
+      } else {
+        setSortCard(cards.results);
       }
     }
   }, [cards.results, stateSearch.searchCard, stateSearch.valueSearch]);

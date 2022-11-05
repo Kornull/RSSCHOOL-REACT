@@ -16,7 +16,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('view number one page', async () => {
+  test('shows the first page number if there is only one page', async () => {
     render(
       <BrowserRouter>
         <App />
@@ -29,7 +29,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('if more pages', async () => {
+  test('if many pages displays their number', async () => {
     render(
       <BrowserRouter>
         <App />
@@ -40,7 +40,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('click button next page', async () => {
+  test('if click button next page', async () => {
     render(
       <BrowserRouter>
         <App />
@@ -56,7 +56,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('click button prev page - button disabled', async () => {
+  test('if click button prev page - button disabled', async () => {
     render(
       <BrowserRouter>
         <App />
@@ -72,7 +72,7 @@ describe('Pagination', () => {
       }, 500);
     });
   });
-  test('click button next page - button disabled', async () => {
+  test('if click button next page - button disabled', async () => {
     render(
       <BrowserRouter>
         <App />

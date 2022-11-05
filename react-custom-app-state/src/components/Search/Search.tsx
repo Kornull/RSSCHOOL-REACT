@@ -87,7 +87,7 @@ const Search = () => {
             statusSearch="species"
           />
         </div>
-        <ButtonSearch clickButton={clearSearchCars} />
+        <ButtonSearch onClick={clearSearchCars} />
         <ButtonSearchCard />
       </form>
     </div>

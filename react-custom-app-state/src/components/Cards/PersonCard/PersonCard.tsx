@@ -1,9 +1,8 @@
 import React from 'react';
 import { useCardContext } from '../../Hooks';
 import { useNavigate } from 'react-router-dom';
-
-import PersonList from './PersonList/PersonList';
 import { AboutCard } from 'components/types/types';
+import PersonDescription from './PersonDescription';
 
 import styles from './PersonCard.module.scss';
 
@@ -29,20 +28,25 @@ const PersonCard = () => {
   ) as AboutCard;
 
   return (
-    <div className={styles.person} id={PersonClose.closeId} data-testid="modal-card">
+    <div className={styles.person} id={`person-${PersonClose.closeId}`} data-testid="modal-card">
       <div className={styles.personCard} data-testid="describe-card">
         <ul>
           <li>
             <img className={styles.personImage} src={personInfo.image} alt="image" />
           </li>
-          <PersonList title="Dossier created" describe={personInfo.created} />
-          <PersonList title="ID" describe={personInfo.id} />
-          <PersonList title="Full name" describe={personInfo.name} />
-          <PersonList title="Species" describe={personInfo.species} />
-          <PersonList title="Status" describe={personInfo.status} />
-          <PersonList title="Gender" describe={personInfo.gender} />
-          <PersonList title="Location" describe={personInfo.location!.name} />
-          <PersonList title="Origin location" describe={personInfo.origin!.name} />
+          {personInfo.created ? (
+            <PersonDescription title="Dossier created" describe={personInfo.created} />
+          ) : (
+            <PersonDescription title="Dossier created" describe={''} />
+          )}
+
+          <PersonDescription title="ID" describe={personInfo.id} />
+          <PersonDescription title="Full name" describe={personInfo.name} />
+          <PersonDescription title="Species" describe={personInfo.species} />
+          <PersonDescription title="Status" describe={personInfo.status} />
+          <PersonDescription title="Gender" describe={personInfo.gender} />
+          <PersonDescription title="Location" describe={personInfo.location!.name} />
+          <PersonDescription title="Origin location" describe={personInfo.origin!.name} />
         </ul>
         <button
           className={styles.personClose}
