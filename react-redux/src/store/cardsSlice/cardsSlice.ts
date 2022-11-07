@@ -1,5 +1,5 @@
-import { createAsyncThunk, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit';
-import { AboutCard, ENDPOINTS } from 'components/types/types';
+import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { AboutCard } from 'components/types/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 export type CardInfo = {
@@ -35,7 +35,7 @@ export const InitialCardsState: CardState = {
 
 let newData: CardInfo;
 
-export const fetchSearchCards = createAsyncThunk<CardInfo, string, { rejectValue: string }>(
+export const fetchSearchCards = createAsyncThunk<CardInfo, string>(
   'cards/fetchSearchCards',
   async (searchPageLink: string) => {
     await fetch(searchPageLink)
