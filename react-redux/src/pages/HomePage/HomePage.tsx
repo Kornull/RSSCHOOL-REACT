@@ -6,7 +6,7 @@ import Cards from '../../components/Cards';
 import { useAppDispatch } from 'store/hooks';
 import Load from '../../image/loading.gif';
 import { ENDPOINTS } from '../../components/types/types';
-import { AddCards, addCards, CardInfo } from 'store/cards-reducer/cardsSlice';
+import { addPersonId, addCards, CardInfo } from 'store/cardsSlice/cardsSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +23,7 @@ const HomePage = () => {
       .then((response: Response) => response.json())
       .then((data: CardInfo) => {
         dispatch(addCards(data));
+        dispatch(addPersonId('er'));
         // if (data.error?.length) {
         //   return dispatch(addCards({
         //     ...

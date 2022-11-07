@@ -6,7 +6,7 @@ import { AboutCard } from '../../types/types';
 
 import styles from './Card.module.scss';
 
-const Card = (props: AboutCard) => {
+const Card: React.FC<AboutCard> = (props) => {
   // const { cards, setCards } = useCardContext();
 
   // const handleClick = (): void => {

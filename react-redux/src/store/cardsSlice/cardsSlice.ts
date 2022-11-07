@@ -1,10 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AboutCard } from 'components/types/types';
 import { createSlice } from '@reduxjs/toolkit';
-
-enum ActionsCards {
-  ADD_CARDS = 'ADD_CARDS',
-}
+import { ActionsCards } from 'store/types';
 
 export type CardInfo = {
   info: {
@@ -37,7 +34,7 @@ export const InitialCardsState: CardState = {
 
 export type AddCards = {
   type: ActionsCards.ADD_CARDS;
-  payload: CardInfo;
+  payload: CardState;
 };
 
 export const cardsSlice = createSlice({
@@ -45,12 +42,13 @@ export const cardsSlice = createSlice({
   initialState: InitialCardsState,
   reducers: {
     addCards(state: CardState, action: PayloadAction<CardInfo>) {
-      console.log(action);
-      console.log(state);
       state.cards = action.payload;
+    },
+    addPersonId(state: CardState, action: PayloadAction<string>) {
+      state.cards.personId = action.payload;
     },
   },
 });
 
-export const { addCards } = cardsSlice.actions;
+export const { addCards, addPersonId } = cardsSlice.actions;
 export default cardsSlice.reducer;
