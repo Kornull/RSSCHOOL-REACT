@@ -11,20 +11,13 @@ const Pagination = () => {
   const cards = useAppSelector((state) => state.cards.cards);
   const search = useAppSelector((state) => state.search.search);
 
-  const clickNext = () => {
-    dispatch(pageNumber(search.page + 1));
-  };
-  const clickPrev = () => {
-    dispatch(pageNumber(search.page - 1));
-  };
-
   return (
     <>
       {cards.results.length ? (
         <div className={styles.pagination} data-testid="search-pagination">
           <button
             className={styles.paginationButtons}
-            onClick={() => clickPrev()}
+            onClick={() => dispatch(pageNumber(search.page - 1))}
             disabled={+search.page === 1}
             data-testid="test-btn-prev"
           >
@@ -33,7 +26,7 @@ const Pagination = () => {
           <ViewNumOfPages cards={cards} stateSearch={search} />
           <button
             className={styles.paginationButtons}
-            onClick={() => clickNext()}
+            onClick={() => dispatch(pageNumber(search.page + 1))}
             disabled={+search.page === +cards.info.pages}
             data-testid="test-btn-next"
           >
