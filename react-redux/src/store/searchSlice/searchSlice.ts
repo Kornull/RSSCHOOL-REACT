@@ -36,13 +36,24 @@ export const searchSlice = createSlice({
   name: 'cards',
   initialState: InitialSearchState,
   reducers: {
-    searchRun(state: SearchState, action: PayloadAction<SearchDataType>) {
-      // console.log(action);
-      // console.log(state);
-      state.search = action.payload;
+    // searchRun(state: SearchState, action: PayloadAction<SearchDataType>) {
+    //   state.search = action.payload;
+    // },
+    searchCard(state: SearchState, action: PayloadAction<string>) {
+      state.search.valueSearch = action.payload;
+    },
+    searchCardToPage(state: SearchState, action: PayloadAction<string>) {
+      state.search.searchCard = action.payload;
+    },
+    searchStatus(state: SearchState, action: PayloadAction<string>) {
+      state.search.type = action.payload;
+    },
+
+    pageStart(state: SearchState, action: PayloadAction<string>) {
+      state.search.page = action.payload;
     },
   },
 });
 
-export const { searchRun } = searchSlice.actions;
+export const { searchCard, pageStart, searchCardToPage, searchStatus } = searchSlice.actions;
 export default searchSlice.reducer;

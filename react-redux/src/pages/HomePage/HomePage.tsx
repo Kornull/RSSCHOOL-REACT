@@ -3,13 +3,15 @@ import React, { useState, useEffect } from 'react';
 import Cards from '../../components/Cards';
 // import Pagination from '../../components/Pagination';
 
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Load from '../../image/loading.gif';
-import { ENDPOINTS } from '../../components/types/types';
-import { addPersonId, addCards, CardInfo } from 'store/cardsSlice/cardsSlice';
-
+import { fetchCards, fetchSearchCards } from 'store/cardsSlice/cardsSlice';
+// import { Search } from 'react-router-dom';
+import Search from 'components/Search';
+import { ENDPOINTS } from 'components/types/types';
 const HomePage = () => {
   const dispatch = useAppDispatch();
+  const search = useAppSelector((state) => state.search.search);
   // const se = useSelector(addCards);
   // const { cards, setCards } = useCardContext();
   // const { stateSearch } = useSearchContext();
@@ -17,30 +19,23 @@ const HomePage = () => {
   // ?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
   // stateSearch.valueSearch
   // }&page=${stateSearch.page}
+  // useEffect(() => {
+  //   setLoading(true);
+  //   dispatch(fetchCards());
+  //   setLoading(false);
+  // }, []);
+
   useEffect(() => {
-    setLoading(true);
-    fetch(`${ENDPOINTS.character}`)
-      .then((response: Response) => response.json())
-      .then((data: CardInfo) => {
-        dispatch(addCards(data));
-        dispatch(addPersonId('er'));
-        // if (data.error?.length) {
-        //   return dispatch(addCards({
-        //     ...
-        //   }));
-        // } else {
-        //   setCards({
-        //     ...cards,
-        //     ...data,
-        //   });
-        // }
-      });
+    const Link = `${ENDPOINTS.character}?${search.type === 'all' ? 'name' : search.type}=${
+      search.valueSearch
+    }&page=${search.page}`;
+    dispatch(fetchSearchCards(Link));
     setLoading(false);
-  }, [dispatch]);
+  }, [search.valueSearch]);
 
   return (
     <>
-      {/* <Search /> */}
+      <Search />
       {/* {Array.isArray(payload.results) && <Pagination />} */}
       {isLoading ? <img className="loading-gif" src={Load} alt="loading"></img> : <Cards />}
     </>

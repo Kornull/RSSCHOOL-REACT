@@ -9,24 +9,28 @@ let newCards: AboutCard[] = [];
 
 const Cards = () => {
   const cards = useAppSelector((state) => state.cards.cards);
+  const search = useAppSelector((state) => state.search.search);
 
   const [sortCard, setSortCard] = useState<AboutCard[]>([]);
-  setTimeout(() => {
-    console.log(cards);
-  }, 1500);
+
   useEffect(() => {
     newCards = [];
+    if (cards.results === undefined) {
+      setSortCard([]);
+    } else {
+      if (!newCards.length && search.searchCard.length) {
+        console.log('SEARCH', search.searchCard, cards.results);
+        newCards = cards.results.filter((card) =>
+          card.name.toLowerCase().includes(search.searchCard.toLowerCase())
+        );
 
-    console.log('cardsCARDS');
-    // if (!newCards.length && stateSearch.searchCard.length) {
-    // newCards = cards.results.filter((card) =>
-    // card.name.toLowerCase().includes(stateSearch.searchCard.toLowerCase())
-    // );
-    // setSortCard(newCards);
-    // } else {
-    setSortCard(cards.results);
-    // }
-  }, [cards]);
+        console.log(newCards);
+        setSortCard(newCards);
+      } else {
+        setSortCard(cards.results);
+      }
+    }
+  }, [cards, search.searchCard]);
 
   return (
     <div className={styles.cardsBlock}>
