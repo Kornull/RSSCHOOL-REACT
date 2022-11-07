@@ -1,26 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { setPersonCard, setPersonId } from 'store/cardsSlice/cardsSlice';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch } from 'store/hooks';
 
 import { AboutCard } from '../../types/types';
-// import { useCardContext } from '../../Hooks';
 
 import styles from './Card.module.scss';
 
 const Card: React.FC<AboutCard> = (props) => {
-  // const { cards, setCards } = useCardContext();
   const dispatch = useAppDispatch();
-  // const cards = useAppSelector((state) => state.cards.cards);
 
   const handleClick = (): void => {
     dispatch(setPersonCard(true));
     dispatch(setPersonId(props.id));
-    // setCards({
-    //   ...cards,
-    //   viewPersonCard: true,
-    //   personId: `${props.id}`,
-    // });
   };
 
   return (
