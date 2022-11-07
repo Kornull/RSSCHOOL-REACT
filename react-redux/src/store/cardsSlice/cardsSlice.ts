@@ -1,7 +1,6 @@
 import { createAsyncThunk, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit';
 import { AboutCard, ENDPOINTS } from 'components/types/types';
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionsCards } from 'store/types';
 
 export type CardInfo = {
   info: {
@@ -34,23 +33,6 @@ export const InitialCardsState: CardState = {
   },
 };
 
-export type AddCards = {
-  type: ActionsCards.ADD_CARDS;
-  payload: CardState;
-};
-
-export const fetchCards = createAsyncThunk<CardInfo, undefined, { rejectValue: string }>(
-  'cards/fetchCards',
-  async () => {
-    const res = await fetch(`${ENDPOINTS.character}`);
-    if (!res.ok) return isRejectedWithValue('Ups');
-
-    const data = res.json();
-
-    return data;
-  }
-);
-
 let newData: CardInfo;
 
 export const fetchSearchCards = createAsyncThunk<CardInfo, string, { rejectValue: string }>(
@@ -61,7 +43,6 @@ export const fetchSearchCards = createAsyncThunk<CardInfo, string, { rejectValue
       .then((data: CardInfo) => {
         if (data.error?.length) {
           newData = InitialCardsState.cards;
-          isRejectedWithValue('errr');
         } else {
           newData = data;
         }
@@ -84,14 +65,6 @@ export const cardsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCards.pending, (state) => {
-        state.cards.loading = true;
-        state.cards.error = null;
-      })
-      .addCase(fetchCards.fulfilled, (state, action) => {
-        state.cards.loading = false;
-        state.cards = action.payload;
-      })
       .addCase(fetchSearchCards.pending, (state) => {
         state.cards.loading = true;
         state.cards.error = null;

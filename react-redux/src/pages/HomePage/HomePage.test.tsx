@@ -4,6 +4,8 @@ import { ENDPOINTS } from '../../components/types/types';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'components/App';
+import { Provider } from 'react-redux';
+import store from '../../store';
 
 describe('render cards on first page entry', () => {
   test('error fetch', async () => {
@@ -22,7 +24,9 @@ describe('render components on home page', () => {
   test(' if returned data from API rendered into component', async () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
 
@@ -36,7 +40,9 @@ describe('render components on home page', () => {
   test('user click search panel', async () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
     userEvent.type(screen.getByTestId('search-cards'), 'morty');
@@ -50,7 +56,9 @@ describe('render components on home page', () => {
   test('user click search parameter card', async () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
     userEvent.type(screen.getByTestId('search-cards-page'), 'morty');

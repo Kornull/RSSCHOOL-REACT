@@ -3,12 +3,16 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import App from 'components/App';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import store from '../../../store';
 
 describe('click does not close ModalCard', () => {
   test('render PersonCard', async () => {
     render(
       <MemoryRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
 
@@ -17,12 +21,15 @@ describe('click does not close ModalCard', () => {
       fireEvent.click(card[0]);
 
       expect(screen.getByTestId('modal-card')).toBeInTheDocument();
+      expect(screen.getByTestId('link-person')).toBeInTheDocument();
     });
   });
   test('close PersonCard', async () => {
     render(
       <MemoryRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
 

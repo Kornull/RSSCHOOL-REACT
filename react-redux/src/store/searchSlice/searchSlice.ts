@@ -1,6 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionsCards } from 'store/types';
 
 export type SearchDataType = {
   type: string;
@@ -20,11 +19,6 @@ export const InitialSearchState: SearchState = {
     searchCard: '',
     page: 1,
   },
-};
-
-export type PagesStateType = {
-  type: ActionsCards.SET_PAGES;
-  payload: SearchState;
 };
 
 export const searchSlice = createSlice({

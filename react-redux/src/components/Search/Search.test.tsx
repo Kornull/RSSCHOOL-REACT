@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import Search from './Search';
+import store from '../../store';
+import { Provider } from 'react-redux';
 
 type LocalMock = {
   [key: string]: string;
@@ -53,19 +55,31 @@ describe('data is writing and deleting in to local storage', () => {
 
 describe('create form element Search in main page', () => {
   test('app has search form', () => {
-    render(<Search />);
+    render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
     expect(screen.getByTestId('form-search')).toBeInTheDocument();
     expect(screen.getByTestId('radio-search')).toBeInTheDocument();
   });
   test('should display cards if you enter a name of the person', () => {
-    render(<Search />);
+    render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
     expect(screen.getByTestId('search-cards')).toBeInTheDocument();
   });
 });
 
 describe('submit button click check', () => {
   test('any text remains in the input field after the button is clicked', () => {
-    render(<Search />);
+    render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
     userEvent.click(screen.getByTestId('button-search'));
   });
 });

@@ -2,6 +2,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Card from './Card';
+import { Provider } from 'react-redux';
+import store from '../../../store';
+import Search from '../../Search';
 
 export const characterInfo = [
   {
@@ -33,7 +36,9 @@ describe('render card character', () => {
   test('displaying fields in a card', async () => {
     render(
       <BrowserRouter>
-        <Card {...characterInfo[0]} />
+        <Provider store={store}>
+          <Card {...characterInfo[0]} />
+        </Provider>
       </BrowserRouter>
     );
 

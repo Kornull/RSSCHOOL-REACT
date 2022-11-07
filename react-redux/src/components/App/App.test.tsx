@@ -3,13 +3,17 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '../../store';
 
 describe('checks if there is a main block on the page when rendering pages', () => {
   test('rendering a component 404 page', () => {
     const badRoute = '/some/bad/route';
     render(
       <MemoryRouter initialEntries={[badRoute]}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
     expect(screen.getByTestId('page-404')).toBeInTheDocument();
@@ -20,7 +24,9 @@ describe('checks if there is a main block on the page when rendering pages', () 
     const route = '/';
     render(
       <MemoryRouter initialEntries={[route]}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
 
@@ -31,7 +37,9 @@ describe('checks if there is a main block on the page when rendering pages', () 
     const aboutRoute = '/about';
     render(
       <MemoryRouter initialEntries={[aboutRoute]}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
 

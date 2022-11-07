@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
 import cardsReducer from './cardsSlice/cardsSlice';
-import { MiddlewareArray } from '@reduxjs/toolkit';
 import pagesReducer from './searchSlice/searchSlice';
 
 const store = configureStore({
@@ -9,7 +7,6 @@ const store = configureStore({
     cards: cardsReducer,
     search: pagesReducer,
   },
-  // middleware: MiddlewareArray(thunk),
 });
 
 export default store;

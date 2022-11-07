@@ -9,8 +9,10 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.cards.cards);
   const handleClick = (): void => {
-    dispatch(setPersonCard(false));
-    dispatch(setPersonId(null));
+    if (cards.viewPersonCard) {
+      dispatch(setPersonCard(false));
+      dispatch(setPersonId(null));
+    }
   };
 
   return (
