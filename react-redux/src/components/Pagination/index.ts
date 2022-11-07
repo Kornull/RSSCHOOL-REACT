@@ -1,2 +1,2 @@
-export * from './Pagination.utils';
-export { default } from './Pagination';
+// export * from './Pagination.utils';
+// export { default } from './Pagination';

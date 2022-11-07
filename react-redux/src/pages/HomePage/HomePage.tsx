@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { CardInfo, InitialState, useCardContext, useSearchContext } from '../../components/Hooks';
-
-import Search from '../../components/Search';
+// import { useDispatch, useSelector } from 'react-redux';
 import Cards from '../../components/Cards';
-import Pagination from '../../components/Pagination';
+// import Pagination from '../../components/Pagination';
 
+import { useAppDispatch } from 'store/hooks';
 import Load from '../../image/loading.gif';
 import { ENDPOINTS } from '../../components/types/types';
+import { AddCards, addCards, CardInfo } from 'store/cards-reducer/cardsSlice';
 
 const HomePage = () => {
-  const { cards, setCards } = useCardContext();
-  const { stateSearch } = useSearchContext();
+  const dispatch = useAppDispatch();
+  // const se = useSelector(addCards);
+  // const { cards, setCards } = useCardContext();
+  // const { stateSearch } = useSearchContext();
   const [isLoading, setLoading] = useState(true);
-
+  // ?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
+  // stateSearch.valueSearch
+  // }&page=${stateSearch.page}
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `${ENDPOINTS.character}?${stateSearch.type === 'all' ? 'name' : stateSearch.type}=${
-        stateSearch.valueSearch
-      }&page=${stateSearch.page}`
-    )
+    fetch(`${ENDPOINTS.character}`)
       .then((response: Response) => response.json())
       .then((data: CardInfo) => {
-        if (data.error?.length) {
-          return setCards(InitialState);
-        } else {
-          setCards({
-            ...cards,
-            ...data,
-          });
-        }
+        dispatch(addCards(data));
+        // if (data.error?.length) {
+        //   return dispatch(addCards({
+        //     ...
+        //   }));
+        // } else {
+        //   setCards({
+        //     ...cards,
+        //     ...data,
+        //   });
+        // }
       });
     setLoading(false);
-  }, [stateSearch.type, stateSearch.valueSearch, stateSearch.page]);
+  }, [dispatch]);
 
   return (
     <>
-      <Search />
-      {Array.isArray(cards.results) && <Pagination />}
+      {/* <Search /> */}
+      {/* {Array.isArray(payload.results) && <Pagination />} */}
       {isLoading ? <img className="loading-gif" src={Load} alt="loading"></img> : <Cards />}
     </>
   );
