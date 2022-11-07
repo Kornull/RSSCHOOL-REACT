@@ -2,7 +2,6 @@ import { createAsyncThunk, isRejectedWithValue, PayloadAction } from '@reduxjs/t
 import { AboutCard, ENDPOINTS } from 'components/types/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { ActionsCards } from 'store/types';
-import { useAppSelector } from 'store/hooks';
 
 export type CardInfo = {
   info: {
@@ -54,34 +53,30 @@ export const fetchCards = createAsyncThunk<CardInfo, undefined, { rejectValue: s
   }
 );
 
+let newData: CardInfo;
+
 export const fetchSearchCards = createAsyncThunk<CardInfo, string, { rejectValue: string }>(
   'cards/fetchSearchCards',
   async (searchPageLink: string) => {
-    // const search = useAppSelector((state) => state.search.search);
+    await fetch(searchPageLink)
+      .then((response: Response) => response.json())
+      .then((data: CardInfo) => {
+        if (data.error?.length) {
+          newData = InitialCardsState.cards;
+          isRejectedWithValue('errr');
+        } else {
+          newData = data;
+        }
+      });
 
-    const res = await fetch(searchPageLink);
-
-    if (!res.ok) {
-      return InitialCardsState;
-    }
-
-    const data = res.json();
-
-    return data;
+    return newData;
   }
 );
 
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState: InitialCardsState,
-  reducers: {
-    // addCards(state: CardState, action: PayloadAction<CardInfo>) {
-    //   state.cards = action.payload;
-    // },
-    // addPersonId(state: CardState, action: PayloadAction<string>) {
-    //   state.cards.personId = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCards.pending, (state) => {
@@ -89,19 +84,18 @@ export const cardsSlice = createSlice({
         state.cards.error = null;
       })
       .addCase(fetchCards.fulfilled, (state, action) => {
-        state.cards = action.payload;
         state.cards.loading = false;
+        state.cards = action.payload;
       })
       .addCase(fetchSearchCards.pending, (state) => {
         state.cards.loading = true;
         state.cards.error = null;
       })
       .addCase(fetchSearchCards.fulfilled, (state, action) => {
+        state.cards.loading = false;
         state.cards = action.payload;
-        // state.cards.loading = false;
       });
   },
 });
 
-// export const { addCards, addPersonId } = cardsSlice.actions;
 export default cardsSlice.reducer;

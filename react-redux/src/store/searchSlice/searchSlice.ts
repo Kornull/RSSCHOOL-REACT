@@ -7,7 +7,7 @@ export type SearchDataType = {
   type: string;
   valueSearch: string;
   searchCard: string;
-  page: string;
+  page: number;
 };
 
 type SearchState = {
@@ -19,7 +19,7 @@ export const InitialSearchState: SearchState = {
     type: 'all',
     valueSearch: '',
     searchCard: '',
-    page: '1',
+    page: 1,
   },
 };
 
@@ -49,11 +49,14 @@ export const searchSlice = createSlice({
       state.search.type = action.payload;
     },
 
-    pageStart(state: SearchState, action: PayloadAction<string>) {
+    pageNumber(state: SearchState, action: PayloadAction<number>) {
       state.search.page = action.payload;
     },
+    // pageNext(state: SearchState, action: PayloadAction<number>) {
+    //   state.search.page = action.payload;
+    // },
   },
 });
 
-export const { searchCard, pageStart, searchCardToPage, searchStatus } = searchSlice.actions;
+export const { pageNumber, searchCard, searchCardToPage, searchStatus } = searchSlice.actions;
 export default searchSlice.reducer;
