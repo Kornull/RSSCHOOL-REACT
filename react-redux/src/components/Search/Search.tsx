@@ -7,6 +7,7 @@ import InputSearchPage from './SearchForm/InputSearchPage';
 import ButtonSearch from './SearchForm/ButtonSearch';
 import ButtonSearchCard from './SearchForm/ButtonSearchCard';
 import {
+  pageNumber,
   searchCard,
   searchCardToPage,
   SearchDataType,
@@ -42,6 +43,7 @@ const Search = () => {
       dispatch(searchCard(data.valueSearch));
       dispatch(searchStatus(data.type));
       dispatch(searchCardToPage(''));
+      dispatch(pageNumber(1));
     }
     reset({
       searchCard: '',

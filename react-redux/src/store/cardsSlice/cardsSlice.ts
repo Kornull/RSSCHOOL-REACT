@@ -12,8 +12,7 @@ export type CardInfo = {
   };
   results: AboutCard[];
   viewPersonCard: boolean;
-  personId: string;
-  status: null | string;
+  personId: number | null;
   loading: boolean;
   error?: string | null;
 };
@@ -30,8 +29,7 @@ export const InitialCardsState: CardState = {
     },
     results: [],
     viewPersonCard: false,
-    personId: '',
-    status: null,
+    personId: null,
     loading: false,
   },
 };
@@ -76,7 +74,14 @@ export const fetchSearchCards = createAsyncThunk<CardInfo, string, { rejectValue
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState: InitialCardsState,
-  reducers: {},
+  reducers: {
+    setPersonCard(state: CardState, action: PayloadAction<boolean>) {
+      state.cards.viewPersonCard = action.payload;
+    },
+    setPersonId(state: CardState, action: PayloadAction<number | null>) {
+      state.cards.personId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCards.pending, (state) => {
@@ -98,4 +103,5 @@ export const cardsSlice = createSlice({
   },
 });
 
+export const { setPersonCard, setPersonId } = cardsSlice.actions;
 export default cardsSlice.reducer;

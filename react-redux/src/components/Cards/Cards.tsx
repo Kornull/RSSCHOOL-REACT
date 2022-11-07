@@ -19,12 +19,9 @@ const Cards = () => {
       setSortCard([]);
     } else {
       if (!newCards.length && search.searchCard.length) {
-        console.log('SEARCH', search.searchCard, cards.results);
         newCards = cards.results.filter((card) =>
           card.name.toLowerCase().includes(search.searchCard.toLowerCase())
         );
-
-        console.log(newCards);
         setSortCard(newCards);
       } else {
         setSortCard(cards.results);

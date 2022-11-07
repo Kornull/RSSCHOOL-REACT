@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Cards from '../../components/Cards';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -18,7 +18,7 @@ const HomePage = () => {
     }&page=${search.page}`;
 
     dispatch(fetchSearchCards(Link));
-  }, [search.valueSearch, search.page]);
+  }, [search.valueSearch, search.page, search.type, dispatch]);
 
   return (
     <>

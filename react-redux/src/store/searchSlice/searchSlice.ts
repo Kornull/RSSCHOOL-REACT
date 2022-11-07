@@ -1,5 +1,4 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-// import { AboutCard } from 'components/types/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { ActionsCards } from 'store/types';
 
@@ -23,22 +22,15 @@ export const InitialSearchState: SearchState = {
   },
 };
 
-//
-
 export type PagesStateType = {
   type: ActionsCards.SET_PAGES;
   payload: SearchState;
-
-  // payload: CardInfo;
 };
 
 export const searchSlice = createSlice({
   name: 'cards',
   initialState: InitialSearchState,
   reducers: {
-    // searchRun(state: SearchState, action: PayloadAction<SearchDataType>) {
-    //   state.search = action.payload;
-    // },
     searchCard(state: SearchState, action: PayloadAction<string>) {
       state.search.valueSearch = action.payload;
     },
@@ -52,9 +44,6 @@ export const searchSlice = createSlice({
     pageNumber(state: SearchState, action: PayloadAction<number>) {
       state.search.page = action.payload;
     },
-    // pageNext(state: SearchState, action: PayloadAction<number>) {
-    //   state.search.page = action.payload;
-    // },
   },
 });
 
