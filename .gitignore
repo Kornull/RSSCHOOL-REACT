@@ -39,6 +39,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+build/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -102,3 +103,16 @@ dist
 
 # TernJS port file
 .tern-port
+.idea/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
