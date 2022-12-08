@@ -1,9 +1,8 @@
-// import { useCardContext } from 'components/Hooks/ContextCards';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from './Card';
 import { AboutCard } from '../types/types';
 import styles from './Cards.module.scss';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from 'store/hooks';
 
 let newCards: AboutCard[] = [];
 

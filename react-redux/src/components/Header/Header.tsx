@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { setPersonCard, setPersonId } from 'store/cardsSlice/cardsSlice';
 import { useAppDispatch, useAppSelector } from 'store/hooks';

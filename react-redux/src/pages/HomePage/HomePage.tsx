@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Cards from '../../components/Cards';
+import { useEffect } from 'react';
+import Cards from 'components/Cards';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import Load from '../../image/loading.gif';
+import Load from 'image/loading.gif';
 import { fetchSearchCards } from 'store/cardsSlice/cardsSlice';
 import Search from 'components/Search';
 import { ENDPOINTS } from 'components/types/types';

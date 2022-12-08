@@ -1,4 +1,3 @@
-import React from 'react';
 import { CardInfo } from 'store/cardsSlice/cardsSlice';
 import { SearchDataType } from 'store/searchSlice/searchSlice';
 

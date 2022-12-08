@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ViewNumOfPages } from './PaginationComponents/ViewNumOfPages';
 
 import styles from './Pagination.module.scss';

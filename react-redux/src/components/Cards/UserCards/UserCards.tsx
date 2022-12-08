@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { CardMenu } from '../../Form/Form';
+import { CardMenu } from 'components/Form/Form';
 import UserCard from './UserCard';
 import styles from '../Cards.module.scss';
 

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import HomePage from '../../pages/HomePage';
-import AboutPage from '../../pages/AboutPage';
-import NotFoundPage from '../../pages/NotFoundPage';
+import HomePage from 'pages/HomePage';
+import AboutPage from 'pages/AboutPage';
+import NotFoundPage from 'pages/NotFoundPage';
 import Form from '../Form';
 import Layout from '../Layout';
 

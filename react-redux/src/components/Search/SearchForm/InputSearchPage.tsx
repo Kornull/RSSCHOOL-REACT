@@ -1,6 +1,6 @@
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { SearchDataType } from '../../../store/searchSlice/searchSlice';
+import { SearchDataType } from 'store/searchSlice/searchSlice';
 
 import styles from '../Search.module.scss';
 

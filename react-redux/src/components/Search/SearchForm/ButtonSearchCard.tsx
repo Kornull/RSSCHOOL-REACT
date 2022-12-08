@@ -1,6 +1,4 @@
-import React from 'react';
-
-import IconSVG from '../../../image/icon-search.svg';
+import IconSVG from 'image/icon-search.svg';
 import styles from '../Search.module.scss';
 
 const ButtonSearchCard = () => {

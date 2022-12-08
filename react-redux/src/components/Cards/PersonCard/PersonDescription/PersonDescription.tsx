@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from '../PersonCard.module.scss';
 
 type DescribeModalProp = {

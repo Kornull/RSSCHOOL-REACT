@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import InputRadioSearch from './SearchForm/InputRadioSearch';
@@ -14,8 +14,9 @@ import {
   searchStatus,
 } from 'store/searchSlice/searchSlice';
 
-import styles from './Search.module.scss';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+
+import styles from './Search.module.scss';
 
 const Search = () => {
   const dispatch = useAppDispatch();

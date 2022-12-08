@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { StateFormUser } from '../Form';
 import { RegExpImageValidation } from '../../template/constants';

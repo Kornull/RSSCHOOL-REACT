@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AboutCard } from 'components/types/types';
 import PersonDescription from './PersonDescription';

@@ -1,5 +1,4 @@
-import React from 'react';
-import NotFoundPng from '../../image/not-found.png';
+import NotFoundPng from 'image/not-found.png';
 
 import styles from './NotFoundPage.module.scss';
 
